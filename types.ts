@@ -1,6 +1,3 @@
-import { PropsWithChildren } from 'react'
-import { theme } from '../../../theme'
-
 type Colors =
   | 'main'
   | 'b0'
@@ -33,10 +30,6 @@ type FontWeight = 'regular' | 'bold'
 
 type FontSize = 's1' | 's2' | 's3' | 's4' | 's5' | 's6'
 
-interface ICustomTextProps extends PropsWithChildren {
-  color?: Colors
-  fontWeight?: FontWeight
-  'font-size'?: FontSize
-}
+type Space = 'xs2' | 'xs' | 'sm2' | 'sm' | 'md' | 'lg' | 'xl' | 'xl2'
 
-export { Colors, FontSize, ICustomTextProps }
+export { Colors, FontSize, FontWeight, Space }
