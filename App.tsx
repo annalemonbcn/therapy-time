@@ -4,7 +4,7 @@ import { theme } from './theme'
 import { Inter_700Bold, Inter_400Regular, useFonts } from '@expo-google-fonts/inter'
 import { useEffect } from 'react'
 import * as SplashScreen from 'expo-splash-screen'
-import CustomText from './src/components/customText'
+import Header from './src/components/header'
 
 export default function App() {
   const [loaded, error] = useFonts({
@@ -24,20 +24,16 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <CustomText color="lightPurple" fontWeight="bold" font-size="s6">
-        Open up App.tsx to start working on your app!
-      </CustomText>
-      <StatusBar style="auto" />
+      <Header />
     </View>
   )
 }
 
-// TEST if fontFamily works
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.b0,
     alignItems: 'center',
-    justifyContent: 'center'
+    paddingTop: 70
   }
 })

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Text } from 'react-native'
-import { theme } from '../../../theme'
 import { Colors, FontSize, ICustomTextProps } from './types'
+import { theme } from '../../../../theme' // --> add global path
 
 const StyledText = styled(Text)<ICustomTextProps>`
   font-family: ${({ fontWeight }) =>
