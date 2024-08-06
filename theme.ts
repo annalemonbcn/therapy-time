@@ -32,11 +32,11 @@ const colors = {
 const typography = {
   fontSize: {
     s1: '10px',
-    s2: '12px',
-    s3: '14px',
-    s4: '16px',
-    s5: '18px',
-    s6: '20px'
+    s2: '14px',
+    s3: '16px',
+    s4: '20px',
+    s5: '24px',
+    s6: '32px'
   },
   fontWeight: {
     regular: 'Inter_400Regular',
@@ -46,17 +46,17 @@ const typography = {
 
 const borders = {
   sizes: {
-    sm: 1,
-    md: 2,
-    lg: 4,
-    xl: 8
+    sm: '1px',
+    md: '2px',
+    lg: '4px',
+    xl: '8px'
   },
   radius: {
-    sm: 4,
-    md: 8,
-    lg: 16,
-    xl: 32,
-    circle: 'full'
+    sm: '4px',
+    md: '8px',
+    lg: '16px',
+    xl: '32px',
+    circle: '100%'
   }
 }
 

@@ -2,7 +2,7 @@ import { View } from 'react-native'
 import styled from 'styled-components'
 import { IHorizontalContainerProps } from './types'
 import { theme } from '../../../../theme'
-import { Colors } from '../customText/types'
+import { Colors } from 'types'
 
 const StyledHorizontalContainer = styled(View)<IHorizontalContainerProps>`
   width: ${({ fullWidth }) => (fullWidth ? '100%' : 'auto')};

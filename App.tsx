@@ -5,12 +5,12 @@ import { Inter_700Bold, Inter_400Regular, useFonts } from '@expo-google-fonts/in
 import { useEffect } from 'react'
 import * as SplashScreen from 'expo-splash-screen'
 import Header from './src/components/header'
+import { getStatusBarHeight } from './src/utils'
+import Home from './src/pages/home'
+import { useLoadInitialConfig } from 'src/hooks'
 
 export default function App() {
-  const [loaded, error] = useFonts({
-    Inter_400Regular,
-    Inter_700Bold
-  })
+  const { loaded, error } = useLoadInitialConfig()
 
   useEffect(() => {
     if (loaded || error) {
@@ -18,13 +18,14 @@ export default function App() {
     }
   }, [loaded, error])
 
-  if (!loaded && !error) {
-    return null
-  }
+  if (!loaded && !error) return null
 
   return (
     <View style={styles.container}>
       <Header />
+      <View style={styles.body}>
+        <Home />
+      </View>
     </View>
   )
 }
@@ -32,8 +33,14 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.b0,
+    backgroundColor: theme.colors.b200,
     alignItems: 'center',
-    paddingTop: 70
+    paddingTop: getStatusBarHeight()
+  },
+  body: {
+    // backgroundColor: 'pink',
+    width: '100%',
+    paddingHorizontal: 32, // -> canviar per theme.space.lg
+    alignItems: 'center'
   }
 })
