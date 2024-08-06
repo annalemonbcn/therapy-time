@@ -1,15 +1,19 @@
-import { StyleSheet, View } from 'react-native'
-import Button from 'src/components/custom/customButton'
-import Text from 'src/components/custom/customText'
-import HorizontalContainer from 'src/components/custom/horizontalContainer'
 import Location from './components/location'
 import Heading from './components/heading'
+import TherapistsList from './components/therapistsList'
+import { useSessionType } from './hooks'
+import { useEffect } from 'react'
 
-const Home = () => (
-  <>
-    <Location />
-    <Heading />
-  </>
-)
+const Home = () => {
+  const { sessionType, setSessionType } = useSessionType()
+
+  return (
+    <>
+      <Location />
+      <Heading setSessionType={setSessionType} />
+      <TherapistsList sessionType={sessionType} />
+    </>
+  )
+}
 
 export default Home

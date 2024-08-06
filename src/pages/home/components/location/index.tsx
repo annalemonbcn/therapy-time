@@ -1,7 +1,8 @@
 import { StyleSheet, View } from 'react-native'
 import Text from 'src/components/custom/customText'
-import Entypo from '@expo/vector-icons/Entypo'
 import HorizontalContainer from 'src/components/custom/horizontalContainer'
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6'
+import Entypo from '@expo/vector-icons/Entypo'
 import { theme } from 'theme'
 
 const Location = () => (
@@ -9,10 +10,10 @@ const Location = () => (
     <Text color="b500" size="s2">
       Location
     </Text>
-    <HorizontalContainer verticalCenter>
-      <Entypo name="location-pin" size={24} color="black" />
-      <Text color="b700" size="s2" fontWeight="bold">
-        Sample Location
+    <HorizontalContainer verticalCenter gap="sm2">
+      <FontAwesome6 name="location-dot" size={20} color="black" />
+      <Text color="b700" fontWeight="semi-bold">
+        Barcelona
       </Text>
       <Entypo name="chevron-small-down" size={24} color="black" />
     </HorizontalContainer>
@@ -24,6 +25,7 @@ export default Location
 const styles = StyleSheet.create({
   locationContainer: {
     alignSelf: 'flex-start',
-    paddingVertical: 8
+    paddingVertical: theme.space.sm2,
+    gap: theme.space.xs
   }
 })

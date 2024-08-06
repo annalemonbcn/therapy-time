@@ -40,6 +40,7 @@ const typography = {
   },
   fontWeight: {
     regular: 'Inter_400Regular',
+    "semi-bold": 'Inter_600SemiBold',
     bold: 'Inter_700Bold'
   }
 }

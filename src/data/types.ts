@@ -48,4 +48,4 @@ type Therapist = {
   }
 }
 
-export { Therapist }
+export { Therapist, SessionType }
