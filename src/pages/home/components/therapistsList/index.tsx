@@ -1,18 +1,17 @@
-import { View, Text } from 'react-native'
+import { FlatList } from 'react-native'
 import { ITherapistsListProps } from './types'
-import { getFilteredTherapists } from 'src/utils'
-import { useEffect, useMemo } from 'react'
 import { useGetFilteredTherapists } from './hooks'
+import Therapist from '../therapist'
 
 const TherapistsList = ({ sessionType }: ITherapistsListProps) => {
   const { filteredList } = useGetFilteredTherapists(sessionType)
 
-  useEffect(() => console.log('filteredList', filteredList), [filteredList])
-
   return (
-    <View>
-      <Text></Text>
-    </View>
+    <FlatList
+      data={filteredList}
+      keyExtractor={(therapist) => therapist.basicInfo.id}
+      renderItem={(obj) => <Therapist therapist={obj.item} />}
+    />
   )
 }
 
