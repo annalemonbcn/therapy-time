@@ -22,7 +22,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Header />
+      {/* <Header /> */}
       <View style={styles.body}>
         <Home />
       </View>

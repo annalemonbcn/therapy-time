@@ -6,12 +6,12 @@ import Text from '../customText'
 
 const StyledPressable = styled(Pressable)<ICustomButtonProps>`
   min-width: 150px;
-  padding: ${theme.space.md};
+  padding: ${`${theme.space.md}px`};
 
   justify-content: center;
   align-items: center;
 
-  border-radius: ${theme.borders.radius.md};
+  border-radius: ${`${theme.borders.radius.md}px`};
 
   ${({ primary }) =>
     primary &&

@@ -31,12 +31,12 @@ const colors = {
 
 const typography = {
   fontSize: {
-    s1: '10px',
-    s2: '14px',
-    s3: '16px',
-    s4: '20px',
-    s5: '24px',
-    s6: '32px'
+    s1: 10,
+    s2: 14,
+    s3: 16,
+    s4: 20,
+    s5: 24,
+    s6: 32
   },
   fontWeight: {
     regular: 'Inter_400Regular',
@@ -46,29 +46,29 @@ const typography = {
 
 const borders = {
   sizes: {
-    sm: '1px',
-    md: '2px',
-    lg: '4px',
-    xl: '8px'
+    sm: 1,
+    md: 2,
+    lg: 4,
+    xl: 8
   },
   radius: {
-    sm: '4px',
-    md: '8px',
-    lg: '16px',
-    xl: '32px',
+    sm: 4,
+    md: 8,
+    lg: 16,
+    xl: 32,
     circle: '100%'
   }
 }
 
 const space = {
-  xs2: '2px',
-  xs: '4px',
-  sm2: '8px',
-  sm: '10px',
-  md: '16px',
-  lg: '24px',
-  xl: '32px',
-  xl2: '40px'
+  xs2: 2,
+  xs: 4,
+  sm2: 8,
+  sm: 10,
+  md: 16,
+  lg: 24,
+  xl: 32,
+  xl2: 40
 }
 
 const theme = {
