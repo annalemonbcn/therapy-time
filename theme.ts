@@ -57,7 +57,7 @@ const borders = {
     md: 8,
     lg: 16,
     xl: 32,
-    circle: '100%'
+    circle: 100
   }
 }
 

@@ -4,9 +4,9 @@ const mockTherapists: Therapist[] = [
   {
     basicInfo: {
       id: 'therapist1',
-      name: 'Dr. Jane Smith',
+      name: 'Jane Smith',
       description: 'Specializes in cognitive-behavioral therapy.',
-      profilePicture: 'https://api.dicebear.com/9.x/identicon/svg?seed=Midnight',
+      profilePicture: 'https://ui-avatars.com/api/?background=random&name=Jane+Smith',
       languages: [
         {
           id: 'en',
@@ -49,9 +49,9 @@ const mockTherapists: Therapist[] = [
   {
     basicInfo: {
       id: 'therapist2',
-      name: 'Dr. Emily Johnson',
+      name: 'Emily Johnson',
       description: 'Expert in family therapy.',
-      profilePicture: 'https://api.dicebear.com/9.x/identicon/svg?seed=Miss%20kitty',
+      profilePicture: 'https://ui-avatars.com/api/?background=random&name=Emily+Johnson',
       languages: [
         {
           id: 'en',
@@ -94,9 +94,9 @@ const mockTherapists: Therapist[] = [
   {
     basicInfo: {
       id: 'therapist3',
-      name: 'Dr. Michael Brown',
+      name: 'Michael Brown',
       description: 'Specializes in sports psychology.',
-      profilePicture: 'https://api.dicebear.com/9.x/identicon/svg?seed=Snuggles',
+      profilePicture: 'https://ui-avatars.com/api/?background=random&name=Michael+Brown',
       languages: [
         {
           id: 'en',
@@ -135,9 +135,9 @@ const mockTherapists: Therapist[] = [
   {
     basicInfo: {
       id: 'therapist4',
-      name: 'Dr. Olivia White',
+      name: 'Olivia White',
       description: 'Expert in child development.',
-      profilePicture: 'https://api.dicebear.com/9.x/identicon/svg?seed=Pumpkin',
+      profilePicture: 'https://ui-avatars.com/api/?background=random&name=Olivia+White',
       languages: [
         {
           id: 'en',
@@ -181,9 +181,9 @@ const mockTherapists: Therapist[] = [
   {
     basicInfo: {
       id: 'therapist5',
-      name: 'Dr. Sarah Green',
+      name: 'Sarah Green',
       description: 'Focuses on mindfulness and meditation.',
-      profilePicture: 'https://api.dicebear.com/9.x/identicon/svg?seed=Felix',
+      profilePicture: 'https://ui-avatars.com/api/?background=random&name=Sarah+Green',
       languages: [
         {
           id: 'it',
@@ -222,9 +222,9 @@ const mockTherapists: Therapist[] = [
   {
     basicInfo: {
       id: 'therapist6',
-      name: 'Dr. James Black',
+      name: 'James Black',
       description: 'Specializes in trauma recovery.',
-      profilePicture: 'https://api.dicebear.com/9.x/identicon/svg?seed=Garfield',
+      profilePicture: 'https://ui-avatars.com/api/?background=random&name=James+Black',
       languages: [
         {
           id: 'fr',
@@ -263,9 +263,9 @@ const mockTherapists: Therapist[] = [
   {
     basicInfo: {
       id: 'therapist7',
-      name: 'Dr. Anna Blue',
+      name: 'Anna Blue',
       description: 'Expert in couples therapy.',
-      profilePicture: 'https://api.dicebear.com/9.x/identicon/svg?seed=Whiskers',
+      profilePicture: 'https://ui-avatars.com/api/?background=random&name=Anna+Blue',
       languages: [
         {
           id: 'en',
@@ -308,9 +308,9 @@ const mockTherapists: Therapist[] = [
   {
     basicInfo: {
       id: 'therapist8',
-      name: 'Dr. Peter Red',
+      name: 'Peter Red',
       description: 'Specializes in stress management.',
-      profilePicture: 'https://api.dicebear.com/9.x/identicon/svg?seed=Bandit',
+      profilePicture: 'https://ui-avatars.com/api/?background=random&name=Peter+Red',
       languages: [
         {
           id: 'en',

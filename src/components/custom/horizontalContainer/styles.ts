@@ -14,7 +14,7 @@ const StyledHorizontalContainer = styled(View)<IHorizontalContainerProps>`
   background-color: ${({ backgroundColor }) => backgroundColor && theme.colors[backgroundColor as Colors]};
 
   flex-direction: row;
-  gap: ${({ gap }) => (gap ? theme.space[gap] : 0)};
+  gap: ${({ gap }) => (gap ? `${theme.space[gap]}px` : 0)};
   justify-content: ${({ horizontalCenter }) => (horizontalCenter ? 'center' : 'inherit')};
   align-items: ${({ verticalCenter }) => (verticalCenter ? 'center' : 'inherit')};
 `

@@ -19,13 +19,18 @@ const StyledPressable = styled(Pressable)<ICustomButtonProps>`
       background-color: ${theme.colors.main};
     `}
 
-  ${({ secondary }) =>
-    secondary &&
-    `
+  ${({ secondary }) => {
+    const borderWidth = `${theme.borders.sizes.sm}px`
+
+    return (
+      secondary &&
+      `
       background-color: ${theme.colors.b0};
-      border-width: ${theme.borders.sizes.sm};
+      border-width: ${borderWidth};
       border-color: ${theme.colors.main};
-    `}
+    `
+    )
+  }}
 `
 
 const StyledText = styled(Text)<ButtonProps>`

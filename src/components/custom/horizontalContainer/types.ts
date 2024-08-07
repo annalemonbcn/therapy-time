@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react'
-import { Colors, Space } from '../../../../types'
+import { Colors, Space } from 'types'
 
 interface IHorizontalContainerProps extends PropsWithChildren {
   paddingVertical?: Space

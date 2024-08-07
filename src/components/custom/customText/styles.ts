@@ -4,7 +4,7 @@ import { ICustomTextProps } from './types'
 import { theme } from '../../../../theme' // --> add global path
 
 const StyledText = styled(Text)<ICustomTextProps>`
-  font-size: ${({ size }) => (size ? theme.typography.fontSize[size] : theme.typography.fontSize.s3)};
+  font-size: ${({ size }) => (size ? `${theme.typography.fontSize[size]}px` : `${theme.typography.fontSize.s3}px`)};
   color: ${({ color }) => (color ? theme.colors[color] : theme.colors.main)};
 
   ${({ fontWeight }) => fontWeight === 'regular' && `font-family: ${theme.typography.fontWeight.regular}`}
