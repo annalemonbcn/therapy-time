@@ -1,16 +1,20 @@
-import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View } from 'react-native'
-import { theme } from './theme'
-import { Inter_700Bold, Inter_400Regular, useFonts } from '@expo-google-fonts/inter'
 import { useEffect } from 'react'
 import * as SplashScreen from 'expo-splash-screen'
-import Header from './src/components/header'
+import Home from './src/pages/home'
+import { useLoadInitialConfig } from 'src/hooks'
+import { UserProvider, useUserContext } from 'src/context/UserProvider'
+import LocationScreen from 'src/pages/locationScreen'
 
-export default function App() {
-  const [loaded, error] = useFonts({
-    Inter_400Regular,
-    Inter_700Bold
-  })
+const AppDisplay = () => {
+  const { userLocation } = useUserContext()
+
+  if (!userLocation) return <LocationScreen />
+
+  return <Home />
+}
+
+const App = () => {
+  const { loaded, error } = useLoadInitialConfig()
 
   useEffect(() => {
     if (loaded || error) {
@@ -18,22 +22,13 @@ export default function App() {
     }
   }, [loaded, error])
 
-  if (!loaded && !error) {
-    return null
-  }
+  if (!loaded && !error) return null
 
   return (
-    <View style={styles.container}>
-      <Header />
-    </View>
+    <UserProvider>
+      <AppDisplay />
+    </UserProvider>
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: theme.colors.b0,
-    alignItems: 'center',
-    paddingTop: 70
-  }
-})
+export default App

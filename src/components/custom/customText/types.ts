@@ -1,10 +1,13 @@
 import { PropsWithChildren } from 'react'
-import { Colors, FontWeight, FontSize } from '../../../../types'
+import { StyleProp, TextStyle } from 'react-native'
+import { Colors, FontSize, FontWeight } from 'types'
 
 interface ICustomTextProps extends PropsWithChildren {
   color?: Colors
   fontWeight?: FontWeight
-  'font-size'?: FontSize
+  size?: FontSize
+  textAlign?: 'auto' | 'left' | 'right' | 'center' | 'justify' | undefined
+  style?: StyleProp<TextStyle> | undefined
 }
 
-export { Colors, FontSize, ICustomTextProps }
+export { ICustomTextProps }

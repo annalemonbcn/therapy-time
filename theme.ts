@@ -31,17 +31,30 @@ const colors = {
 
 const typography = {
   fontSize: {
-    s1: '10px',
-    s2: '12px',
-    s3: '14px',
-    s4: '16px',
-    s5: '18px',
-    s6: '20px'
+    s1: 10,
+    s11: 12,
+    s2: 14,
+    s3: 16,
+    s4: 20,
+    s5: 24,
+    s6: 32
   },
   fontWeight: {
     regular: 'Inter_400Regular',
+    'semi-bold': 'Inter_600SemiBold',
     bold: 'Inter_700Bold'
   }
+}
+
+const space = {
+  xs2: 2,
+  xs: 4,
+  sm2: 8,
+  sm: 12,
+  md: 16,
+  lg: 24,
+  xl: 32,
+  xl2: 40
 }
 
 const borders = {
@@ -52,23 +65,26 @@ const borders = {
     xl: 8
   },
   radius: {
-    sm: 4,
-    md: 8,
+    xs: 4,
+    sm: 8,
+    md: 12,
     lg: 16,
     xl: 32,
-    circle: 'full'
+    xl2: 64,
+    circle: 100
+  },
+  shadow: {
+    basicShadow: {
+      shadowColor: colors.b400,
+      shadowOffset: {
+        width: 0,
+        height: 12
+      },
+      shadowOpacity: 0.2,
+      shadowRadius: 6,
+      elevation: 15
+    }
   }
-}
-
-const space = {
-  xs2: '2px',
-  xs: '4px',
-  sm2: '8px',
-  sm: '10px',
-  md: '16px',
-  lg: '24px',
-  xl: '32px',
-  xl2: '40px'
 }
 
 const theme = {

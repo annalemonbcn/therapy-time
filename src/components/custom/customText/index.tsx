@@ -1,6 +1,10 @@
 import { ICustomTextProps } from './types'
 import { StyledText } from './styles'
 
-const CustomText = ({ children, ...props }: ICustomTextProps) => <StyledText {...props}>{children}</StyledText>
+const Text = ({ children, style, ...props }: ICustomTextProps) => (
+  <StyledText {...props} style={style}>
+    {children}
+  </StyledText>
+)
 
-export default CustomText
+export default Text
