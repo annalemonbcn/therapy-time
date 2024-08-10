@@ -5,7 +5,6 @@ import { ButtonProps, ICustomButtonProps } from './types'
 import Text from '../customText'
 
 const StyledPressable = styled(Pressable)<ICustomButtonProps>`
-  width: ${({ fullWidth }) => (fullWidth ? '100%' : 'auto')};
   padding: ${theme.space.md}px;
 
   justify-content: center;

@@ -1,20 +1,28 @@
 import Location from './components/location'
 import Heading from './components/heading'
 import TherapistsList from './components/therapistsList'
-import { useSessionType } from './hooks'
-import { useUserContext } from 'src/context/UserProvider'
-import LocationScreen from '../locationScreen'
+import { StyleSheet, View } from 'react-native'
+import PageWrapper from 'src/components/custom/pageWrapper'
+import { getStatusBarHeight } from 'src/utils'
 
 const Home = () => {
-  const { sessionType, setSessionType } = useSessionType()
-
   return (
-    <>
-      <Location />
-      <Heading setSessionType={setSessionType} />
-      <TherapistsList sessionType={sessionType} />
-    </>
+    <PageWrapper>
+      <View style={styles.pageContainer}>
+        <Location />
+        <Heading />
+        <TherapistsList />
+      </View>
+    </PageWrapper>
   )
 }
+
+const styles = StyleSheet.create({
+  pageContainer: {
+    width: '100%',
+    alignItems: 'center',
+    paddingTop: getStatusBarHeight()
+  }
+})
 
 export default Home

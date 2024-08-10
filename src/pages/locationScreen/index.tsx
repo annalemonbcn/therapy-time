@@ -2,15 +2,19 @@ import { Image, StyleSheet, TextInput, View } from 'react-native'
 import Button from 'src/components/custom/customButton'
 import CustomInput from 'src/components/custom/customInput'
 import Text from 'src/components/custom/customText'
+import PageWrapper from 'src/components/custom/pageWrapper'
 import { useUserContext } from 'src/context/UserProvider'
 import { theme } from 'theme'
 
 const LocationScreen = () => {
   const { setUserLocation } = useUserContext()
 
+  // TODO: mock behavior
+  const handleSetLocation = () => setUserLocation('Barcelona')
+
   return (
-    <View style={styles.pageWrapper}>
-      <View style={styles.container}>
+    <PageWrapper centerVertically>
+      <View style={styles.pageContainer}>
         <Image source={require('assets/location.png')} />
         <View style={styles.titleContainer}>
           <Text size="s5" fontWeight="semi-bold">
@@ -21,7 +25,7 @@ const LocationScreen = () => {
           </Text>
         </View>
         <View style={styles.buttonsContainer}>
-          <Button primary fullWidth onPress={() => setUserLocation('Barcelona')}>
+          <Button primary onPress={handleSetLocation}>
             Sure, I'd like that
           </Button>
           <View style={styles.manualLocationContainer}>
@@ -30,21 +34,15 @@ const LocationScreen = () => {
           </View>
         </View>
       </View>
-    </View>
+    </PageWrapper>
   )
 }
 
 const styles = StyleSheet.create({
-  pageWrapper: {
+  pageContainer: {
     width: '100%',
-    height: '100%',
-    justifyContent: 'center',
-    backgroundColor: theme.colors.b0
-  },
-  container: {
     alignItems: 'center',
     gap: theme.space.xl,
-    paddingHorizontal: 20,
     textAlign: 'center'
   },
   titleContainer: {
@@ -54,7 +52,6 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     width: '100%',
     marginTop: theme.space.md,
-    alignItems: 'center',
     gap: theme.space.md
   },
   manualLocationContainer: {

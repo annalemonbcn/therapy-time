@@ -55,8 +55,9 @@ const borders = {
   radius: {
     sm: 4,
     md: 8,
-    lg: 16,
-    xl: 32,
+    lg: 12,
+    xl: 16,
+    xl2: 32,
     circle: 100
   }
 }

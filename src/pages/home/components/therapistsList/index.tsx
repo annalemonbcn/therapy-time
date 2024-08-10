@@ -1,32 +1,28 @@
 import { FlatList, StyleSheet, View } from 'react-native'
-import { ITherapistsListProps } from './types'
 import { useGetFilteredTherapists } from './hooks'
 import Therapist from '../therapist'
 import { theme } from 'theme'
+import Text from 'src/components/custom/customText'
 
-const Separator = <View style={{ height: 1, backgroundColor: theme.colors.b400 }} />
-
-const TherapistsList = ({ sessionType }: ITherapistsListProps) => {
-  const { filteredList } = useGetFilteredTherapists(sessionType)
+const TherapistsList = () => {
+  const { filteredList } = useGetFilteredTherapists()
 
   return (
-    <FlatList
-      data={filteredList}
-      keyExtractor={(therapist) => therapist.basicInfo.id}
-      renderItem={(obj) => <Therapist therapist={obj.item} />}
-      ItemSeparatorComponent={() => Separator}
-      style={styles.list}
-    />
+    <View style={styles.container}>
+      <Text fontWeight="bold">{filteredList.length} founds</Text>
+      <FlatList
+        data={filteredList}
+        keyExtractor={(therapist) => therapist.basicInfo.id}
+        renderItem={(obj) => <Therapist therapist={obj.item} />}
+      />
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
-  list: {
+  container: {
     marginTop: theme.space.xl2,
-    paddingHorizontal: theme.space.md,
     width: '100%',
-    backgroundColor: theme.colors.b50,
-    borderRadius: theme.borders.radius.lg
   }
 })
 

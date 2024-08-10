@@ -17,11 +17,11 @@ const Location = () => {
         Location
       </Text>
       <HorizontalContainer verticalCenter gap="sm2">
-        <FontAwesome6 name="location-dot" size={20} color="black" />
+        <FontAwesome6 name="location-dot" size={20} color={theme.colors.main} />
         <Text color="b700" fontWeight="semi-bold">
           {userLocation}
         </Text>
-        <Entypo name="chevron-small-down" size={24} color="black" />
+        <Entypo name="chevron-small-down" size={24} color={theme.colors.main} />
       </HorizontalContainer>
     </View>
   )

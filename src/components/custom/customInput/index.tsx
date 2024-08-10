@@ -1,13 +1,8 @@
 import { useState } from 'react'
 import { StyledButton, StyledInput, StyledInputWrapper } from './styles'
+import { ICustomInputProps } from './types'
 
-interface IInputProps {
-  value: string
-  placeholder?: string
-  triggerAction?: any
-}
-
-const CustomInput = ({ value, placeholder, triggerAction }: IInputProps) => {
+const CustomInput = ({ value, placeholder, triggerAction }: ICustomInputProps) => {
   const [text, setText] = useState(value)
 
   return (

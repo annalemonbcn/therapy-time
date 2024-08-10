@@ -2,7 +2,8 @@ import { View, StyleSheet } from 'react-native'
 import Button from 'src/components/custom/customButton'
 import Text from 'src/components/custom/customText'
 import HorizontalContainer from 'src/components/custom/horizontalContainer'
-import { IChooseSessionTypeProps, IHeadingProps } from './types'
+import { theme } from 'theme'
+import { useUserContext } from 'src/context/UserProvider'
 
 const AppTitle = () => (
   <View style={styles.headingContainer}>
@@ -12,32 +13,44 @@ const AppTitle = () => (
   </View>
 )
 
-const ChooseSessionType = ({ setSessionType }: IChooseSessionTypeProps) => (
-  <View style={{ gap: 16 }}>
-    <Text size="s3" fontWeight="bold" color="b600">
-      Choose your type of therapy:
-    </Text>
-    <HorizontalContainer horizontalCenter gap="lg">
-      <Button primary onPress={() => setSessionType('online')}>
-        Online
-      </Button>
-      <Button secondary onPress={() => setSessionType('presential')}>
-        Face-to-face
-      </Button>
-    </HorizontalContainer>
-  </View>
-)
+const ChooseSessionType = () => {
+  const { setSessionType } = useUserContext()
 
-const Heading = ({ setSessionType }: IHeadingProps) => (
+  return (
+    <View style={styles.sessionContainer}>
+      <Text size="s3" fontWeight="bold" color="b600">
+        Choose your type of therapy:
+      </Text>
+      <HorizontalContainer fullWidth horizontalCenter gap="md">
+        <View style={{ flex: 1 }}>
+          <Button primary onPress={() => setSessionType('online')}>
+            Online
+          </Button>
+        </View>
+        <View style={{ flex: 1 }}>
+          <Button secondary onPress={() => setSessionType('presential')}>
+            Face-to-face
+          </Button>
+        </View>
+      </HorizontalContainer>
+    </View>
+  )
+}
+
+const Heading = () => (
   <>
     <AppTitle />
-    <ChooseSessionType setSessionType={setSessionType} />
+    <ChooseSessionType />
   </>
 )
 
 const styles = StyleSheet.create({
   headingContainer: {
-    paddingVertical: 40
+    paddingVertical: theme.space.xl2
+  },
+  sessionContainer: {
+    alignItems: 'center',
+    gap: theme.space.lg
   }
 })
 
