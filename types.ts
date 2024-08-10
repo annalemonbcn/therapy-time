@@ -28,7 +28,7 @@ type Colors =
 
 type FontWeight = 'regular' | 'semi-bold' | 'bold'
 
-type FontSize = 's1' | 's2' | 's3' | 's4' | 's5' | 's6'
+type FontSize = 's1' | 's11' | 's2' | 's3' | 's4' | 's5' | 's6'
 
 type Space = 'xs2' | 'xs' | 'sm2' | 'sm' | 'md' | 'lg' | 'xl' | 'xl2'
 

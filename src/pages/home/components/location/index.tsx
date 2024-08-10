@@ -1,15 +1,14 @@
 import { StyleSheet, View } from 'react-native'
 import Text from 'src/components/custom/customText'
 import HorizontalContainer from 'src/components/custom/horizontalContainer'
-import FontAwesome6 from '@expo/vector-icons/FontAwesome6'
-import Entypo from '@expo/vector-icons/Entypo'
+import Ionicons from '@expo/vector-icons/Ionicons'
 import { theme } from 'theme'
 import { useUserContext } from 'src/context/UserProvider'
 
 const Location = () => {
   const { userLocation } = useUserContext()
 
-  if(!userLocation) console.error('No user location')
+  if (!userLocation) console.error('No user location')
 
   return (
     <View style={styles.locationContainer}>
@@ -17,11 +16,11 @@ const Location = () => {
         Location
       </Text>
       <HorizontalContainer verticalCenter gap="sm2">
-        <FontAwesome6 name="location-dot" size={20} color={theme.colors.main} />
+        <Ionicons name="location-sharp" size={22} color={theme.colors.main} />
         <Text color="b700" fontWeight="semi-bold">
           {userLocation}
         </Text>
-        <Entypo name="chevron-small-down" size={24} color={theme.colors.main} />
+        <Ionicons name="chevron-down" size={20} color={theme.colors.main} />
       </HorizontalContainer>
     </View>
   )

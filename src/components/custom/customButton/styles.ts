@@ -10,7 +10,7 @@ const StyledPressable = styled(Pressable)<ICustomButtonProps>`
   justify-content: center;
   align-items: center;
 
-  border-radius: ${theme.borders.radius.md}px;
+  border-radius: ${theme.borders.radius.xl2}px;
 
   ${({ primary }) =>
     primary &&

@@ -12,7 +12,7 @@ const StyledInputWrapper = styled(View)`
 const StyledInput = styled(TextInput)`
   width: 100%;
   background-color: ${theme.colors.b50};
-  border-radius: ${theme.borders.radius.md}px;
+  border-radius: ${theme.borders.radius.sm}px;
   border-width: ${theme.borders.sizes.sm}px;
   border-color: ${theme.colors.b300};
   padding: ${theme.space.md}px ${theme.space.lg}px;

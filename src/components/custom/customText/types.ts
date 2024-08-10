@@ -7,7 +7,7 @@ interface ICustomTextProps extends PropsWithChildren {
   fontWeight?: FontWeight
   size?: FontSize
   textAlign?: 'auto' | 'left' | 'right' | 'center' | 'justify' | undefined
-  // style?: StyleProp<TextStyle> | undefined
+  style?: StyleProp<TextStyle> | undefined
 }
 
 export { ICustomTextProps }

@@ -32,6 +32,7 @@ const colors = {
 const typography = {
   fontSize: {
     s1: 10,
+    s11: 12,
     s2: 14,
     s3: 16,
     s4: 20,
@@ -40,25 +41,8 @@ const typography = {
   },
   fontWeight: {
     regular: 'Inter_400Regular',
-    "semi-bold": 'Inter_600SemiBold',
+    'semi-bold': 'Inter_600SemiBold',
     bold: 'Inter_700Bold'
-  }
-}
-
-const borders = {
-  sizes: {
-    sm: 1,
-    md: 2,
-    lg: 4,
-    xl: 8
-  },
-  radius: {
-    sm: 4,
-    md: 8,
-    lg: 12,
-    xl: 16,
-    xl2: 32,
-    circle: 100
   }
 }
 
@@ -71,6 +55,36 @@ const space = {
   lg: 24,
   xl: 32,
   xl2: 40
+}
+
+const borders = {
+  sizes: {
+    sm: 1,
+    md: 2,
+    lg: 4,
+    xl: 8
+  },
+  radius: {
+    xs: 4,
+    sm: 8,
+    md: 12,
+    lg: 16,
+    xl: 32,
+    xl2: 64,
+    circle: 100
+  },
+  shadow: {
+    basicShadow: {
+      shadowColor: colors.b400,
+      shadowOffset: {
+        width: 0,
+        height: 12
+      },
+      shadowOpacity: 0.2,
+      shadowRadius: 6,
+      elevation: 15
+    }
+  }
 }
 
 const theme = {
