@@ -5,13 +5,13 @@ import { ButtonProps, ICustomButtonProps } from './types'
 import Text from '../customText'
 
 const StyledPressable = styled(Pressable)<ICustomButtonProps>`
-  min-width: 150px;
-  padding: ${`${theme.space.md}px`};
+  width: ${({ fullWidth }) => (fullWidth ? '100%' : 'auto')};
+  padding: ${theme.space.md}px;
 
   justify-content: center;
   align-items: center;
 
-  border-radius: ${`${theme.borders.radius.md}px`};
+  border-radius: ${theme.borders.radius.md}px;
 
   ${({ primary }) =>
     primary &&

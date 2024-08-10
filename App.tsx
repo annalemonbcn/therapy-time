@@ -1,13 +1,13 @@
-import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { theme } from './theme'
-import { Inter_700Bold, Inter_400Regular, useFonts } from '@expo-google-fonts/inter'
 import { useEffect } from 'react'
 import * as SplashScreen from 'expo-splash-screen'
 import Header from './src/components/header'
 import { getStatusBarHeight } from './src/utils'
 import Home from './src/pages/home'
 import { useLoadInitialConfig } from 'src/hooks'
+import { UserProvider, useUserContext } from 'src/context/UserProvider'
+import LocationScreen from 'src/pages/locationScreen'
 
 export default function App() {
   const { loaded, error } = useLoadInitialConfig()
@@ -21,8 +21,18 @@ export default function App() {
   if (!loaded && !error) return null
 
   return (
+    <UserProvider>
+      <AppDisplay />
+    </UserProvider>
+  )
+}
+
+const AppDisplay = () => {
+  const { userLocation } = useUserContext()
+  if (!userLocation) return <LocationScreen />
+
+  return (
     <View style={styles.container}>
-      {/* <Header /> */}
       <View style={styles.body}>
         <Home />
       </View>

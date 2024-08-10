@@ -65,7 +65,7 @@ const space = {
   xs2: 2,
   xs: 4,
   sm2: 8,
-  sm: 10,
+  sm: 12,
   md: 16,
   lg: 24,
   xl: 32,

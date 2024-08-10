@@ -2,7 +2,8 @@ import Location from './components/location'
 import Heading from './components/heading'
 import TherapistsList from './components/therapistsList'
 import { useSessionType } from './hooks'
-import { useEffect } from 'react'
+import { useUserContext } from 'src/context/UserProvider'
+import LocationScreen from '../locationScreen'
 
 const Home = () => {
   const { sessionType, setSessionType } = useSessionType()
