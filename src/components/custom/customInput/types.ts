@@ -1,7 +1,15 @@
 interface ICustomInputProps {
-  value: string
+  defaultValue: string
+  setInputValue: React.Dispatch<React.SetStateAction<string>>
   placeholder?: string
-  triggerAction?: any
+  sendButton?: {
+    isInside: boolean
+    triggerAction: any
+  }
 }
 
-export { ICustomInputProps }
+interface IStyledButtonProps {
+  isInside: boolean
+}
+
+export { ICustomInputProps, IStyledButtonProps }

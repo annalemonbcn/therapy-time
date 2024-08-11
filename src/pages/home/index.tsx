@@ -4,18 +4,19 @@ import TherapistsList from './components/therapistsList'
 import { StyleSheet, View } from 'react-native'
 import PageWrapper from 'src/components/custom/pageWrapper'
 import { getStatusBarHeight } from 'src/utils'
+import { ModalProvider } from 'src/context/useModalController'
 
-const Home = () => {
-  return (
-    <PageWrapper>
-      <View style={styles.pageContainer}>
-        <Location />
-        <Heading />
+const Home = () => (
+  <PageWrapper>
+    <View style={styles.pageContainer}>
+      <Location />
+      <Heading />
+      <ModalProvider>
         <TherapistsList />
-      </View>
-    </PageWrapper>
-  )
-}
+      </ModalProvider>
+    </View>
+  </PageWrapper>
+)
 
 const styles = StyleSheet.create({
   pageContainer: {

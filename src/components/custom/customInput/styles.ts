@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { theme } from 'theme'
 import Button from '../customButton'
 import Text from '../customText'
+import { IStyledButtonProps } from './types'
 
 const StyledInputWrapper = styled(View)`
   width: 100%;
@@ -18,10 +19,14 @@ const StyledInput = styled(TextInput)`
   padding: ${theme.space.md}px ${theme.space.lg}px;
 `
 
-const StyledButton = styled(Button)`
-  position: absolute;
-  top: 8px;
-  right: ${theme.space.sm}px;
+const StyledButton = styled(Button)<IStyledButtonProps>`
+  ${({ isInside }) =>
+    isInside &&
+    `
+      position: absolute;
+      top: ${theme.space.sm2}px;
+      right: ${theme.space.sm}px;
+    `}
 `
 
 export { StyledInputWrapper, StyledInput, StyledButton }

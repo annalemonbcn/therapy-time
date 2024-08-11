@@ -9,8 +9,8 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 import AntDesign from '@expo/vector-icons/AntDesign'
 import Separator from 'src/components/separator'
 
-const Therapist = ({ therapist }: ITherapistProps) => (
-  <BasicCard hasShadow>
+const TherapistCard = ({ therapist, onPress }: ITherapistProps) => (
+  <BasicCard hasShadow onPress={onPress}>
     <Image
       source={{
         uri: therapist.basicInfo.profilePicture
@@ -21,13 +21,13 @@ const Therapist = ({ therapist }: ITherapistProps) => (
       <Text fontWeight="bold">{therapist.basicInfo.name}</Text>
       <Separator />
       <View style={{ gap: theme.space.sm2 }}>
-        <HorizontalContainer verticalCenter>
+        <HorizontalContainer verticalCenter="center">
           <Ionicons name="location-outline" size={16} color={theme.colors.b600} />
           <Text size="s2" fontWeight="semi-bold" color="b600">
             {therapist.location.city}, {therapist.location.province}
           </Text>
         </HorizontalContainer>
-        <HorizontalContainer verticalCenter gap="xs">
+        <HorizontalContainer verticalCenter="center" gap="xs">
           <AntDesign name="star" size={24} color="#FFE0BA" />
           <Text size="s2" color="b500">
             {therapist.reviews.average} |
@@ -53,4 +53,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Therapist
+export default TherapistCard

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Image, StyleSheet, TextInput, View } from 'react-native'
 import Button from 'src/components/custom/customButton'
 import CustomInput from 'src/components/custom/customInput'
@@ -5,8 +6,12 @@ import Text from 'src/components/custom/customText'
 import PageWrapper from 'src/components/custom/pageWrapper'
 import { useUserContext } from 'src/context/UserProvider'
 import { theme } from 'theme'
+import { LocationFormData } from './types'
+import { FormProvider, useForm } from 'react-hook-form'
 
 const LocationScreen = () => {
+  const [inputValue, setInputValue] = useState('')
+
   const { setUserLocation } = useUserContext()
 
   // TODO: mock behavior
@@ -30,7 +35,12 @@ const LocationScreen = () => {
           </Button>
           <View style={styles.manualLocationContainer}>
             <Text size="s2">or enter it manually</Text>
-            <CustomInput value="" placeholder="Enter your location" triggerAction={setUserLocation} />
+            <CustomInput
+              defaultValue={inputValue}
+              setInputValue={setInputValue}
+              placeholder="Enter your location"
+              sendButton={{ isInside: false, triggerAction: () => setUserLocation(inputValue) }}
+            />
           </View>
         </View>
       </View>

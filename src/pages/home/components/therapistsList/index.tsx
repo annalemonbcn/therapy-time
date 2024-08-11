@@ -1,11 +1,24 @@
 import { FlatList, StyleSheet, View } from 'react-native'
 import { useGetFilteredTherapists } from './hooks'
-import Therapist from '../therapist'
+import TherapistCard from '../therapistCard'
 import { theme } from 'theme'
 import Text from 'src/components/custom/customText'
+import { useState } from 'react'
+import BasicModal from 'src/components/customModal'
+import { Therapist } from 'src/data/types'
+import { useModalContext } from 'src/context/useModalController'
 
 const TherapistsList = () => {
   const { filteredList } = useGetFilteredTherapists()
+
+  const { isOpen, handleOpen, handleClose } = useModalContext()
+
+  const [selectedTherapist, setSelectedTherapist] = useState<Therapist | undefined>(undefined)
+
+  const handlePress = (item: Therapist) => {
+    setSelectedTherapist(item)
+    handleOpen()
+  }
 
   return (
     <View style={styles.container}>
@@ -15,9 +28,10 @@ const TherapistsList = () => {
       <FlatList
         data={filteredList}
         keyExtractor={(therapist) => therapist.basicInfo.id}
-        renderItem={(obj) => <Therapist therapist={obj.item} />}
+        renderItem={({ item }) => <TherapistCard therapist={item} onPress={() => handlePress(item)} />}
         style={styles.list}
       />
+      <BasicModal isOpen={isOpen} closeModal={() => handleClose()} therapist={selectedTherapist} />
     </View>
   )
 }
@@ -29,6 +43,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   list: {
+    marginVertical: theme.space.sm2,
     paddingHorizontal: 8
   }
 })

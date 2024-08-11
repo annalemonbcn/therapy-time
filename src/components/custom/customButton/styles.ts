@@ -1,10 +1,10 @@
-import { Pressable } from 'react-native'
+import { TouchableOpacity } from 'react-native'
 import styled from 'styled-components'
 import { theme } from 'theme'
 import { ButtonProps, ICustomButtonProps } from './types'
 import Text from '../customText'
 
-const StyledPressable = styled(Pressable)<ICustomButtonProps>`
+const StyledTouchable = styled(TouchableOpacity)<ICustomButtonProps>`
   padding: ${theme.space.md}px;
 
   justify-content: center;
@@ -39,4 +39,4 @@ const StyledText = styled(Text)<ButtonProps>`
   ${({ secondary }) => secondary && `color: ${theme.colors.main}`}
 `
 
-export { StyledPressable, StyledText }
+export { StyledTouchable, StyledText }
