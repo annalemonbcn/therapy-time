@@ -1,9 +1,9 @@
+import { PropsWithChildren } from 'react'
 import { Therapist } from 'src/data/types'
 
-interface IBasicModalProps {
+interface IBasicModalProps extends PropsWithChildren {
   isOpen: boolean
   closeModal: any // -> TODO: ?
-  therapist: Therapist | undefined
 }
 
 export { IBasicModalProps }

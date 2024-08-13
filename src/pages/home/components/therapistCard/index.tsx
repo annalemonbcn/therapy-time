@@ -1,52 +1,45 @@
 import { Image, StyleSheet, View } from 'react-native'
-import { ITherapistProps } from './types'
+import { ISmallCardProps, ITherapistProps } from './types'
 import Text from 'src/components/custom/customText'
 import { theme } from 'theme'
-import React from 'react'
+import React, { FC } from 'react'
 import BasicCard from 'src/components/basicCard'
 import HorizontalContainer from 'src/components/custom/horizontalContainer'
 import Ionicons from '@expo/vector-icons/Ionicons'
-import AntDesign from '@expo/vector-icons/AntDesign'
 import Separator from 'src/components/separator'
+import TagList from 'src/components/tagList'
+import CardImage from './components/image'
+import CardName from './components/name'
+import CardLocation from './components/location'
+import CardReviews from './components/reviews'
+import { Therapist } from 'src/data/types'
 
-const TherapistCard = ({ therapist, onPress }: ITherapistProps) => (
-  <BasicCard hasShadow onPress={onPress}>
-    <Image
-      source={{
-        uri: therapist.basicInfo.profilePicture
-      }}
-      style={styles.image}
-    />
-    <View style={styles.infoContainer}>
-      <Text fontWeight="bold">{therapist.basicInfo.name}</Text>
-      <Separator />
-      <View style={{ gap: theme.space.sm2 }}>
-        <HorizontalContainer verticalCenter="center">
-          <Ionicons name="location-outline" size={16} color={theme.colors.b600} />
-          <Text size="s2" fontWeight="semi-bold" color="b600">
-            {therapist.location.city}, {therapist.location.province}
-          </Text>
-        </HorizontalContainer>
-        <HorizontalContainer verticalCenter="center" gap="xs">
-          <AntDesign name="star" size={24} color="#FFE0BA" />
-          <Text size="s2" color="b500">
-            {therapist.reviews.average} |
-          </Text>
-          <Text size="s2" color="b500">
-            {therapist.reviews.totalRatings} {therapist.reviews.totalRatings > 1 ? 'Reviews' : 'Review'}
-          </Text>
-        </HorizontalContainer>
-      </View>
-    </View>
-  </BasicCard>
+const LargeCard = ({ therapist }: { therapist: Therapist }) => (
+  <View>
+    <TagList items={therapist.sessionInfo.tags} />
+  </View>
 )
 
+const TherapistCard = ({ therapist, onPress, isLargeCard = false }: ITherapistProps) => {
+  const renderLargeCard = isLargeCard && <LargeCard therapist={therapist} />
+
+  return (
+    <BasicCard hasShadow onPress={onPress}>
+      <CardImage url={therapist.basicInfo.profilePicture} />
+      <View style={styles.infoContainer}>
+        <CardName name={therapist.basicInfo.name} />
+        <Separator />
+        <View style={{ gap: theme.space.sm2 }}>
+          <CardLocation location={`${therapist.location.city}, ${therapist.location.province}`} />
+          <CardReviews average={therapist.reviews.average} totalRatings={therapist.reviews.totalRatings} />
+        </View>
+        {renderLargeCard}
+      </View>
+    </BasicCard>
+  )
+}
+
 const styles = StyleSheet.create({
-  image: {
-    width: 110,
-    height: 110,
-    borderRadius: theme.borders.radius.md
-  },
   infoContainer: {
     width: '100%',
     gap: theme.space.sm

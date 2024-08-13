@@ -31,7 +31,11 @@ const TherapistsList = () => {
         renderItem={({ item }) => <TherapistCard therapist={item} onPress={() => handlePress(item)} />}
         style={styles.list}
       />
-      <BasicModal isOpen={isOpen} closeModal={() => handleClose()} therapist={selectedTherapist} />
+      <BasicModal isOpen={isOpen} closeModal={() => handleClose()}>
+        {/* TODO: solve this */}
+        <Text>This is a children example to see if the info overflows the modal, which will be an error, for sure</Text>
+        {/* <TherapistCard therapist={selectedTherapist as Therapist} isLargeCard={true} /> */}
+      </BasicModal>
     </View>
   )
 }

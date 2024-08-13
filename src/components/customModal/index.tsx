@@ -1,44 +1,25 @@
 import { Modal, StyleSheet, View } from 'react-native'
-import Text from '../custom/customText'
 import { IBasicModalProps } from './types'
-import Button from '../custom/customButton'
+import { StyledModal } from './styles'
+import { theme } from 'theme'
+import ModalHeader from './components/header'
+import { StyledPageWrapper } from '../custom/pageWrapper/styles'
+import ModalBody from './components/body'
 
-const BasicModal = ({ isOpen, closeModal, therapist }: IBasicModalProps) => (
-  <Modal animationType="slide" transparent={true} visible={isOpen} onRequestClose={() => closeModal()}>
-    <View style={styles.centeredView}>
-      <View style={styles.modalView}>
-        <Text style={styles.modalText}>{therapist?.basicInfo.name}</Text>
-        <Button onPress={closeModal}>Close</Button>
-      </View>
-    </View>
+const BasicModal = ({ isOpen, closeModal, children }: IBasicModalProps) => (
+  <Modal animationType="fade" transparent={true} visible={isOpen} onRequestClose={() => closeModal()}>
+    <StyledPageWrapper centerVertically style={styles.backgroundOpacity}>
+      <StyledModal style={theme.borders.shadow.basicShadow}>
+        <ModalHeader />
+        <ModalBody>{children}</ModalBody>
+      </StyledModal>
+    </StyledPageWrapper>
   </Modal>
 )
 
 const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center'
+  backgroundOpacity: {
+    backgroundColor: 'rgba(0, 0, 0, 0.4)'
   }
 })
 

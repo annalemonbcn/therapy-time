@@ -17,6 +17,7 @@ type SessionType = 'online' | 'presential'
 
 type SessionInfo = {
   type: SessionType[]
+  tags: string[]
   sessionPrice: number
   // availableHours: ??
 }
@@ -44,6 +45,15 @@ type Therapist = {
   reviews: {
     totalRatings: number
     average: number
+    reviews: Review[]
+  }
+}
+
+type User = {
+  basicInfo: BasicInfo
+  location: LocationInfo
+  reviews: {
+    totalRatings: number
     reviews: Review[]
   }
 }
