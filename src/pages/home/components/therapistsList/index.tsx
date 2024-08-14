@@ -22,7 +22,7 @@ const TherapistsList = () => {
         <FlatList
           data={filteredList}
           keyExtractor={(therapist) => therapist.basicInfo.id}
-          renderItem={({ item }) => <TherapistCard therapist={item} onPress={() => handlePress(item)} />}
+          renderItem={({ item }) => <TherapistCard therapist={item} onPress={() => handlePress(item)} showReviews={true} />}
           style={styles.list}
           scrollEnabled={false}
         />

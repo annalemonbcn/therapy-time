@@ -4,12 +4,14 @@ import Home from './src/pages/home'
 import { useLoadInitialConfig } from 'src/hooks'
 import { UserProvider, useUserContext } from 'src/context/UserProvider'
 import LocationScreen from 'src/pages/locationScreen'
+import DoctorDetails from 'src/pages/doctorDetails'
 
 const AppDisplay = () => {
   const { userLocation } = useUserContext()
 
   if (!userLocation) return <LocationScreen />
 
+  return <DoctorDetails />
   return <Home />
 }
 
