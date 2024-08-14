@@ -21,7 +21,7 @@ const ChooseSessionType = () => {
       <Text size="s3" fontWeight="bold" color="b600">
         Choose your type of therapy:
       </Text>
-      <HorizontalContainer fullWidth horizontalCenter gap="md">
+      <HorizontalContainer fullWidth horizontalCenter={'center'} gap="md">
         <View style={{ flex: 1 }}>
           <Button primary onPress={() => setSessionType('online')}>
             Online

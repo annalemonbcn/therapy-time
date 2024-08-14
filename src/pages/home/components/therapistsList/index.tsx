@@ -1,23 +1,32 @@
 import { FlatList, StyleSheet, View } from 'react-native'
 import { useGetFilteredTherapists } from './hooks'
-import Therapist from '../therapist'
+import TherapistCard from '../therapistCard'
 import { theme } from 'theme'
 import Text from 'src/components/custom/customText'
+import { Therapist } from 'src/data/types'
 
 const TherapistsList = () => {
   const { filteredList } = useGetFilteredTherapists()
+
+  const handlePress = (item: Therapist) => {
+    // TODO: open therapist page
+    console.error('Open therapist page')
+  }
 
   return (
     <View style={styles.container}>
       <Text fontWeight="bold" style={{ paddingHorizontal: 8 }}>
         {filteredList.length} {filteredList.length > 1 ? 'founds' : 'found'}
       </Text>
-      <FlatList
-        data={filteredList}
-        keyExtractor={(therapist) => therapist.basicInfo.id}
-        renderItem={(obj) => <Therapist therapist={obj.item} />}
-        style={styles.list}
-      />
+      <View>
+        <FlatList
+          data={filteredList}
+          keyExtractor={(therapist) => therapist.basicInfo.id}
+          renderItem={({ item }) => <TherapistCard therapist={item} onPress={() => handlePress(item)} />}
+          style={styles.list}
+          scrollEnabled={false}
+        />
+      </View>
     </View>
   )
 }
@@ -29,6 +38,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   list: {
+    marginVertical: theme.space.sm2,
     paddingHorizontal: 8
   }
 })

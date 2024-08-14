@@ -1,10 +1,11 @@
-import { StyledPressable, StyledText } from './styles'
+import { StyledTouchable, StyledText } from './styles'
 import { ICustomButtonProps } from './types'
 
 const Button = ({ onPress, children, ...props }: ICustomButtonProps) => (
-  <StyledPressable {...props} onPress={onPress}>
+  <StyledTouchable {...props} onPress={onPress}>
     <StyledText {...props}>{children}</StyledText>
-  </StyledPressable>
+  </StyledTouchable>
+
 )
 
 export default Button

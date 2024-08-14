@@ -15,7 +15,7 @@ const Location = () => {
       <Text color="b500" size="s2">
         Location
       </Text>
-      <HorizontalContainer verticalCenter gap="sm2">
+      <HorizontalContainer verticalCenter="flex-end" gap="sm2">
         <Ionicons name="location-sharp" size={22} color={theme.colors.main} />
         <Text color="b700" fontWeight="semi-bold">
           {userLocation}

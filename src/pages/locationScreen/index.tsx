@@ -5,6 +5,11 @@ import Text from 'src/components/custom/customText'
 import PageWrapper from 'src/components/custom/pageWrapper'
 import { useUserContext } from 'src/context/UserProvider'
 import { theme } from 'theme'
+import LocationForm from './components/locationForm'
+
+export type LocationFormType = {
+  locationValue: string
+}
 
 const LocationScreen = () => {
   const { setUserLocation } = useUserContext()
@@ -30,7 +35,7 @@ const LocationScreen = () => {
           </Button>
           <View style={styles.manualLocationContainer}>
             <Text size="s2">or enter it manually</Text>
-            <CustomInput value="" placeholder="Enter your location" triggerAction={setUserLocation} />
+            <LocationForm />
           </View>
         </View>
       </View>

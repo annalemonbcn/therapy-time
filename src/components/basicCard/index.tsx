@@ -1,13 +1,16 @@
-import { PropsWithChildren } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { theme } from 'theme'
 import { IBasicCardProps } from './types'
 
-const BasicCard = ({ hasShadow, children }: IBasicCardProps) => {
+const BasicCard = ({ onPress, hasShadow, children }: IBasicCardProps) => {
   const baseStyles = [styles.card, styles.borders]
   const finalStyles = hasShadow ? [...baseStyles, theme.borders.shadow.basicShadow] : baseStyles
 
-  return <View style={finalStyles}>{children}</View>
+  return (
+    <TouchableOpacity onPress={onPress}>
+      <View style={finalStyles}>{children}</View>
+    </TouchableOpacity>
+  )
 }
 
 const styles = StyleSheet.create({

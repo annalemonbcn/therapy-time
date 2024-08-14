@@ -27,7 +27,8 @@ const mockTherapists: Therapist[] = [
     },
     sessionInfo: {
       type: ['online', 'presential'],
-      sessionPrice: 150
+      sessionPrice: 150,
+      tags: ['gestalt', 'anxiety', 'trauma']
     },
     reviews: {
       totalRatings: 1,
@@ -72,7 +73,8 @@ const mockTherapists: Therapist[] = [
     },
     sessionInfo: {
       type: ['online', 'presential'],
-      sessionPrice: 200
+      sessionPrice: 200,
+      tags: ['behaviorism', 'stress']
     },
     reviews: {
       totalRatings: 1,
@@ -113,7 +115,8 @@ const mockTherapists: Therapist[] = [
     },
     sessionInfo: {
       type: ['online'],
-      sessionPrice: 175
+      sessionPrice: 175,
+      tags: ['psychoanalysis', 'mindfulness']
     },
     reviews: {
       totalRatings: 1,
@@ -158,7 +161,8 @@ const mockTherapists: Therapist[] = [
     },
     sessionInfo: {
       type: ['online'],
-      sessionPrice: 180
+      sessionPrice: 180,
+      tags: ['gestalt', 'anxiety', 'trauma']
     },
     reviews: {
       totalRatings: 18,
@@ -200,7 +204,8 @@ const mockTherapists: Therapist[] = [
     },
     sessionInfo: {
       type: ['presential'],
-      sessionPrice: 190
+      sessionPrice: 190,
+      tags: ['behaviorism', 'stress']
     },
     reviews: {
       totalRatings: 1,
@@ -241,7 +246,8 @@ const mockTherapists: Therapist[] = [
     },
     sessionInfo: {
       type: ['presential'],
-      sessionPrice: 185
+      sessionPrice: 185,
+      tags: ['gestalt', 'anxiety', 'trauma']
     },
     reviews: {
       totalRatings: 1,
@@ -286,7 +292,8 @@ const mockTherapists: Therapist[] = [
     },
     sessionInfo: {
       type: ['presential'],
-      sessionPrice: 195
+      sessionPrice: 195,
+      tags: ['psychoanalysis', 'trauma']
     },
     reviews: {
       totalRatings: 1,
@@ -327,7 +334,8 @@ const mockTherapists: Therapist[] = [
     },
     sessionInfo: {
       type: ['online', 'presential'],
-      sessionPrice: 200
+      sessionPrice: 200,
+      tags: ['gestalt', 'anxiety', 'trauma']
     },
     reviews: {
       totalRatings: 1,
