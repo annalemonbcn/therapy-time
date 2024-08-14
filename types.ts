@@ -32,6 +32,6 @@ type FontSize = 's1' | 's11' | 's2' | 's3' | 's4' | 's5' | 's6'
 
 type Space = 'xs2' | 'xs' | 'sm2' | 'sm' | 'md' | 'lg' | 'xl' | 'xl2'
 
-type FlexCenter = 'center' | 'flex-start' | 'flex-end'
+type FlexCenter = 'center' | 'flex-start' | 'flex-end' | 'space-between'
 
 export { Colors, FontSize, FontWeight, Space, FlexCenter }

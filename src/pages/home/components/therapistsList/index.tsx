@@ -3,21 +3,14 @@ import { useGetFilteredTherapists } from './hooks'
 import TherapistCard from '../therapistCard'
 import { theme } from 'theme'
 import Text from 'src/components/custom/customText'
-import { useState } from 'react'
-import BasicModal from 'src/components/customModal'
 import { Therapist } from 'src/data/types'
-import { useModalContext } from 'src/context/useModalController'
 
 const TherapistsList = () => {
   const { filteredList } = useGetFilteredTherapists()
 
-  const { isOpen, handleOpen, handleClose } = useModalContext()
-
-  const [selectedTherapist, setSelectedTherapist] = useState<Therapist | undefined>(undefined)
-
   const handlePress = (item: Therapist) => {
-    setSelectedTherapist(item)
-    handleOpen()
+    // TODO: open therapist page
+    console.error('Open therapist page')
   }
 
   return (
@@ -34,11 +27,6 @@ const TherapistsList = () => {
           scrollEnabled={false}
         />
       </View>
-      <BasicModal isOpen={isOpen} closeModal={() => handleClose()}>
-        {/* TODO: solve this */}
-        <Text>This is a children example to see if the info overflows the modal, which will be an error, for sure</Text>
-        {/* <TherapistCard therapist={selectedTherapist as Therapist} isLargeCard={true} /> */}
-      </BasicModal>
     </View>
   )
 }

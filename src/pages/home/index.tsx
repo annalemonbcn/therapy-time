@@ -11,9 +11,7 @@ const Home = () => (
     <ScrollView style={styles.pageContainer}>
       <Location />
       <Heading />
-      <ModalProvider>
-        <TherapistsList />
-      </ModalProvider>
+      <TherapistsList />
     </ScrollView>
   </PageWrapper>
 )
