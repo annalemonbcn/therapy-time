@@ -1,15 +1,15 @@
 import Text from 'src/components/custom/customText'
 import HorizontalContainer from 'src/components/custom/horizontalContainer'
-import Feather from '@expo/vector-icons/Feather'
-import { theme } from 'theme'
+import ArrowIcon from 'src/components/icons/arrowIcon'
+import HeartIcon from 'src/components/icons/heartIcon'
 
 const TopNavigation = () => (
-  <HorizontalContainer horizontalCenter="space-between" verticalCenter='center' paddingVertical="sm2">
-    <Feather name="arrow-left" size={24} color={theme.colors.main} />
+  <HorizontalContainer horizontalCenter="space-between" verticalCenter="center" paddingVertical="sm2">
+    <ArrowIcon />
     <Text fontWeight="semi-bold" size="s4">
       Details
     </Text>
-    <Feather name="heart" size={20} color={theme.colors.main} />
+    <HeartIcon size={20} />
   </HorizontalContainer>
 )
 
