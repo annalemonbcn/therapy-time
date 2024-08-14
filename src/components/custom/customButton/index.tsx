@@ -5,6 +5,7 @@ const Button = ({ onPress, children, ...props }: ICustomButtonProps) => (
   <StyledTouchable {...props} onPress={onPress}>
     <StyledText {...props}>{children}</StyledText>
   </StyledTouchable>
+
 )
 
 export default Button

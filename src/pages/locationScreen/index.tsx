@@ -1,5 +1,6 @@
 import { Image, StyleSheet, TextInput, View } from 'react-native'
 import Button from 'src/components/custom/customButton'
+import CustomInput from 'src/components/custom/customInput'
 import Text from 'src/components/custom/customText'
 import PageWrapper from 'src/components/custom/pageWrapper'
 import { useUserContext } from 'src/context/UserProvider'
