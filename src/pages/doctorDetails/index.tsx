@@ -1,31 +1,50 @@
-import { ScrollView, StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import PageWrapper from 'src/components/custom/pageWrapper'
 import { getStatusBarHeight } from 'src/utils'
 import TopNavigation from './components/topNavigation'
 import TherapistCard from '../home/components/therapistCard'
-import { mockTherapists } from 'src/data/mock.data'
+import { useDoctorDetails } from './hooks'
+import AboutMe from './components/aboutMe'
+import { theme } from 'theme'
+import WorkingTime from './components/workingTime'
+import Reviews from './components/reviews'
+import Button from 'src/components/custom/customButton'
+import styled from 'styled-components'
 
 const DoctorDetails = () => {
-  // FLOW
-  // 1. Get therapistId from params
-  // 2. Fetch therapist info
-  // 3. Send therapist info to TherapistCard
-
-  const therapist = mockTherapists[2]
+  const { therapist } = useDoctorDetails()
 
   return (
     <PageWrapper>
-      <ScrollView style={styles.pageContainer}>
+      <View style={styles.pageContainer}>
         <TopNavigation />
         <TherapistCard therapist={therapist} imgSize={70} />
-      </ScrollView>
+        <View style={styles.specs}>
+          <AboutMe description={therapist.basicInfo.description} />
+          <WorkingTime workingTime={therapist.sessionInfo.workingSchedule} />
+          <Reviews reviews={therapist.reviews.reviews} />
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button primary onPress={() => console.error('book appointment button pressed')}>
+            Book appointment
+          </Button>
+        </View>
+      </View>
     </PageWrapper>
   )
 }
 
 const styles = StyleSheet.create({
   pageContainer: {
-    marginTop: getStatusBarHeight()
+    marginTop: getStatusBarHeight(),
+    position: 'relative'
+  },
+  specs: {
+    gap: theme.space.md,
+    paddingVertical: theme.space.md
+  },
+  buttonContainer: {
+    marginVertical: theme.space.lg
   }
 })
 

@@ -1,14 +1,15 @@
-import { Image, StyleSheet, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { ITherapistCardProps } from './types'
 import Text from 'src/components/custom/customText'
 import { theme } from 'theme'
 import React, { FC } from 'react'
 import BasicCard from 'src/components/basicCard'
 import Separator from 'src/components/separator'
-import CardImage from './components/image'
+import CardImage from 'src/components/custom/image'
 import CardName from './components/name'
 import CardLocation from './components/location'
 import CardReviews from './components/reviews'
+import { toTitleCase } from 'src/utils'
 
 const TherapistCard = ({ therapist, onPress, showReviews = false, imgSize }: ITherapistCardProps) => (
   <BasicCard hasShadow onPress={onPress}>
@@ -17,6 +18,11 @@ const TherapistCard = ({ therapist, onPress, showReviews = false, imgSize }: ITh
       <CardName name={therapist.basicInfo.name} />
       <Separator />
       <View style={{ gap: theme.space.sm2 }}>
+        {!showReviews && (
+          <Text fontWeight="semi-bold" size="s2" color="b600">
+            {toTitleCase(therapist.basicInfo.specialty)}
+          </Text>
+        )}
         <CardLocation location={`${therapist.location.city}, ${therapist.location.province}`} />
         {showReviews && (
           <CardReviews average={therapist.reviews.average} totalRatings={therapist.reviews.totalRatings} />

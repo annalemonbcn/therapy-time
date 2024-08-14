@@ -7,4 +7,11 @@ const getStatusBarHeight = () => Constants.statusBarHeight
 const getFilteredTherapists = (sessionType: SessionType) =>
   mockTherapists.filter((therapist) => therapist.sessionInfo.type.includes(sessionType))
 
-export { getStatusBarHeight, getFilteredTherapists }
+const toTitleCase = (str: string) => {
+  return str
+    .split('_')
+    .map((w) => w[0].toUpperCase() + w.substring(1).toLowerCase())
+    .join(' ')
+}
+
+export { getStatusBarHeight, getFilteredTherapists, toTitleCase }

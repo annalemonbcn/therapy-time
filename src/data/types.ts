@@ -15,16 +15,109 @@ type LocationInfo = {
 
 type SessionType = 'online' | 'presential'
 
+type Days = 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday' | 'Sunday'
+type Hours =
+  | '00'
+  | '01'
+  | '02'
+  | '03'
+  | '04'
+  | '05'
+  | '06'
+  | '07'
+  | '08'
+  | '09'
+  | '10'
+  | '11'
+  | '12'
+  | '13'
+  | '14'
+  | '15'
+  | '16'
+  | '17'
+  | '18'
+  | '19'
+  | '20'
+  | '21'
+  | '22'
+  | '23'
+
+type Minutes =
+  | '00'
+  | '01'
+  | '02'
+  | '03'
+  | '04'
+  | '05'
+  | '06'
+  | '07'
+  | '08'
+  | '09'
+  | '10'
+  | '11'
+  | '12'
+  | '13'
+  | '14'
+  | '15'
+  | '16'
+  | '17'
+  | '18'
+  | '19'
+  | '20'
+  | '21'
+  | '22'
+  | '23'
+  | '24'
+  | '25'
+  | '26'
+  | '27'
+  | '28'
+  | '29'
+  | '30'
+  | '31'
+  | '32'
+  | '33'
+  | '34'
+  | '35'
+  | '36'
+  | '37'
+  | '38'
+  | '39'
+  | '40'
+  | '41'
+  | '42'
+  | '43'
+  | '44'
+  | '45'
+  | '46'
+  | '47'
+  | '48'
+  | '49'
+  | '50'
+  | '51'
+  | '52'
+  | '53'
+  | '54'
+  | '55'
+
+type CompleteTime = `${Hours}:${Minutes}`
+
+type WorkingSchedule = {
+  workingDays: Days[]
+  startHour: CompleteTime
+  finishHour: CompleteTime
+}
+
 type SessionInfo = {
   type: SessionType[]
   tags: string[]
   sessionPrice: number
-  // availableHours: ??
+  workingSchedule: WorkingSchedule
 }
 
 type Review = {
   user: BasicInfo
-  rating: number
+  rating: 1 | 2 | 3 | 4 | 5
   text: string
 }
 
@@ -39,6 +132,7 @@ type Language = {
 type Therapist = {
   basicInfo: BasicInfo & {
     languages: Language[]
+    specialty: string
   }
   location: LocationInfo
   sessionInfo: SessionInfo
@@ -58,4 +152,4 @@ type User = {
   }
 }
 
-export { Therapist, SessionType }
+export { Therapist, WorkingSchedule, Review, SessionType }

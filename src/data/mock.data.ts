@@ -1,34 +1,40 @@
 import { Therapist } from './types'
 
+const generateProfilePicture = (name: string) => {
+  const convertedName = name.replace(/\s/g, '+')
+  return `https://ui-avatars.com/api/?background=random&name=${convertedName}`
+}
+
 const mockTherapists: Therapist[] = [
   {
     basicInfo: {
       id: 'therapist1',
-      name: 'Jane Smith',
-      description: 'Specializes in cognitive-behavioral therapy.',
-      profilePicture: 'https://ui-avatars.com/api/?background=random&name=Jane+Smith',
+      name: 'Ana García',
+      description:
+        'Experienced therapist specializing in cognitive behavioral therapy and mindfulness. Ana has a passion for helping clients develop resilience and manage stress effectively.',
+      profilePicture: generateProfilePicture('Ana García'),
       languages: [
-        {
-          id: 'en',
-          name: 'english'
-        },
-        {
-          id: 'es',
-          name: 'spanish'
-        }
-      ]
+        { id: 'es', name: 'spanish' },
+        { id: 'en', name: 'english' }
+      ],
+      specialty: 'Cognitive Behavioral Therapy'
     },
     location: {
-      address: '123 Main St, Anytown, USA',
-      CP: '12345',
-      city: 'Anytown',
-      province: 'USA',
-      mapsUrl: 'https://www.google.com/maps/place/123+Main+St,+Anytown,+USA'
+      address: 'Calle Gran Vía, 24',
+      CP: '28013',
+      city: 'Madrid',
+      province: 'Madrid',
+      mapsUrl: 'https://maps.example.com/madrid1'
     },
     sessionInfo: {
       type: ['online', 'presential'],
-      sessionPrice: 150,
-      tags: ['gestalt', 'anxiety', 'trauma']
+      tags: ['CBT', 'Mindfulness', 'Stress Management'],
+      sessionPrice: 60,
+      workingSchedule: {
+        workingDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        startHour: '09:30',
+        finishHour: '17:45'
+      }
     },
     reviews: {
       totalRatings: 1,
@@ -36,13 +42,13 @@ const mockTherapists: Therapist[] = [
       reviews: [
         {
           user: {
-            id: 'reviewer1',
-            name: 'John Doe',
-            description: '',
-            profilePicture: ''
+            id: 'user1',
+            name: 'Carlos Ruiz',
+            description: 'Carlos is an IT professional who found great benefit in therapy sessions.',
+            profilePicture: generateProfilePicture('Carlos Ruiz')
           },
           rating: 5,
-          text: 'Excellent service!'
+          text: 'Ana helped me a lot with managing my anxiety. Highly recommended!'
         }
       ]
     }
@@ -50,45 +56,46 @@ const mockTherapists: Therapist[] = [
   {
     basicInfo: {
       id: 'therapist2',
-      name: 'Emily Johnson',
-      description: 'Expert in family therapy.',
-      profilePicture: 'https://ui-avatars.com/api/?background=random&name=Emily+Johnson',
+      name: 'Laura Fernández',
+      description:
+        'Laura is a clinical psychologist with a focus on trauma recovery and emotional regulation. She combines evidence-based practices with a compassionate approach.',
+      profilePicture: generateProfilePicture('Laura Fernández'),
       languages: [
-        {
-          id: 'en',
-          name: 'english'
-        },
-        {
-          id: 'fr',
-          name: 'french'
-        }
-      ]
+        { id: 'es', name: 'spanish' },
+        { id: 'it', name: 'italian' }
+      ],
+      specialty: 'Trauma Recovery'
     },
     location: {
-      address: '456 Elm St, Anytown, USA',
-      CP: '67890',
-      city: 'Anytown',
-      province: 'USA',
-      mapsUrl: 'https://www.google.com/maps/place/456+Elm+St,+Anytown,+USA'
+      address: 'Avenida de Andalucía, 14',
+      CP: '29006',
+      city: 'Málaga',
+      province: 'Málaga',
+      mapsUrl: 'https://maps.example.com/malaga1'
     },
     sessionInfo: {
-      type: ['online', 'presential'],
-      sessionPrice: 200,
-      tags: ['behaviorism', 'stress']
+      type: ['presential'],
+      tags: ['Trauma', 'Emotional Regulation'],
+      sessionPrice: 75,
+      workingSchedule: {
+        workingDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'],
+        startHour: '10:00',
+        finishHour: '18:30'
+      }
     },
     reviews: {
       totalRatings: 1,
-      average: 5,
+      average: 4,
       reviews: [
         {
           user: {
-            id: 'reviewer2',
-            name: 'Jane Smith',
-            description: '',
-            profilePicture: ''
+            id: 'user2',
+            name: 'Marta Sánchez',
+            description: 'Marta is an artist who has greatly improved her emotional well-being.',
+            profilePicture: generateProfilePicture('Marta Sánchez')
           },
-          rating: 5,
-          text: 'Very helpful!'
+          rating: 4,
+          text: "Laura's sessions have been a turning point in my recovery."
         }
       ]
     }
@@ -96,41 +103,46 @@ const mockTherapists: Therapist[] = [
   {
     basicInfo: {
       id: 'therapist3',
-      name: 'Michael Brown',
-      description: 'Specializes in sports psychology.',
-      profilePicture: 'https://ui-avatars.com/api/?background=random&name=Michael+Brown',
+      name: 'Javier Martínez',
+      description:
+        'Specializing in couples therapy, Javier helps partners navigate their relationships with improved communication and conflict resolution techniques.',
+      profilePicture: generateProfilePicture('Javier Martínez'),
       languages: [
-        {
-          id: 'en',
-          name: 'english'
-        }
-      ]
+        { id: 'es', name: 'spanish' },
+        { id: 'en', name: 'english' }
+      ],
+      specialty: 'Couples Therapy'
     },
     location: {
-      address: '789 Oak St, Anytown, USA',
-      CP: '23456',
-      city: 'Anytown',
-      province: 'USA',
-      mapsUrl: 'https://www.google.com/maps/place/789+Oak+St,+Anytown,+USA'
+      address: 'Carrer de Balmes, 35',
+      CP: '08007',
+      city: 'Barcelona',
+      province: 'Barcelona',
+      mapsUrl: 'https://maps.example.com/barcelona1'
     },
     sessionInfo: {
       type: ['online'],
-      sessionPrice: 175,
-      tags: ['psychoanalysis', 'mindfulness']
+      tags: ['Couples', 'Relationships'],
+      sessionPrice: 90,
+      workingSchedule: {
+        workingDays: ['Friday', 'Saturday', 'Sunday'],
+        startHour: '08:00',
+        finishHour: '16:00'
+      }
     },
     reviews: {
       totalRatings: 1,
-      average: 4.8,
+      average: 4,
       reviews: [
         {
           user: {
-            id: 'reviewer3',
-            name: "Michael's Client",
-            description: '',
-            profilePicture: ''
+            id: 'user3',
+            name: 'Juan Pérez',
+            description: 'Juan is a businessman who attended couples therapy with his partner.',
+            profilePicture: generateProfilePicture('Juan Pérez')
           },
-          rating: 4.8,
-          text: 'Great sessions!'
+          rating: 4,
+          text: 'Javier provided us with tools that truly strengthened our relationship.'
         }
       ]
     }
@@ -138,88 +150,93 @@ const mockTherapists: Therapist[] = [
   {
     basicInfo: {
       id: 'therapist4',
-      name: 'Olivia White',
-      description: 'Expert in child development.',
-      profilePicture: 'https://ui-avatars.com/api/?background=random&name=Olivia+White',
+      name: 'Lucía Rodríguez',
+      description:
+        'Lucía is a therapist with expertise in family therapy and child development. She works closely with families to address dynamics that impact their overall well-being.',
+      profilePicture: generateProfilePicture('Lucía Rodríguez'),
       languages: [
-        {
-          id: 'en',
-          name: 'english'
-        },
-        {
-          id: 'es',
-          name: 'spanish'
-        }
-      ]
+        { id: 'es', name: 'spanish' },
+        { id: 'fr', name: 'french' }
+      ],
+      specialty: 'Family Therapy'
     },
     location: {
-      address: '321 Pine St, Anytown, USA',
-      CP: '34567',
-      city: 'Anytown',
-      province: 'USA',
-      mapsUrl: 'https://www.google.com/maps/place/321+Pine+St,+Anytown,+USA'
+      address: 'Calle Mayor, 15',
+      CP: '50001',
+      city: 'Zaragoza',
+      province: 'Zaragoza',
+      mapsUrl: 'https://maps.example.com/zaragoza1'
     },
     sessionInfo: {
-      type: ['online'],
-      sessionPrice: 180,
-      tags: ['gestalt', 'anxiety', 'trauma']
+      type: ['presential'],
+      tags: ['Family', 'Child Development'],
+      sessionPrice: 80,
+      workingSchedule: {
+        workingDays: ['Wednesday', 'Thursday', 'Friday'],
+        startHour: '11:30',
+        finishHour: '19:30'
+      }
     },
     reviews: {
-      totalRatings: 18,
-      average: 4.9,
+      totalRatings: 1,
+      average: 4,
       reviews: [
         {
           user: {
-            id: 'reviewer4',
-            name: "Olivia's Parent",
-            description: '',
-            profilePicture: ''
+            id: 'user4',
+            name: 'Sofía López',
+            description: 'Sofía sought family therapy to improve relationships within her home.',
+            profilePicture: generateProfilePicture('Sofía Lopez')
           },
-          rating: 5,
-          text: 'Helpful and patient.'
+          rating: 4,
+          text: 'Lucía helped our family communicate better and resolve our issues.'
         }
-        // Continue adding reviews...
       ]
     }
   },
   {
     basicInfo: {
       id: 'therapist5',
-      name: 'Sarah Green',
-      description: 'Focuses on mindfulness and meditation.',
-      profilePicture: 'https://ui-avatars.com/api/?background=random&name=Sarah+Green',
+      name: 'Pedro Sánchez',
+      description:
+        'Pedro is an experienced therapist who focuses on anxiety and depression. He uses a mix of cognitive-behavioral and mindfulness techniques to help clients improve their mental health.',
+      profilePicture: generateProfilePicture('Pedro Fernández'),
       languages: [
-        {
-          id: 'it',
-          name: 'italian'
-        }
-      ]
+        { id: 'es', name: 'spanish' },
+        { id: 'en', name: 'english' }
+      ],
+      specialty: 'Anxiety and Depression'
     },
     location: {
-      address: '654 Maple St, Anytown, USA',
-      CP: '45678',
-      city: 'Anytown',
-      province: 'USA',
-      mapsUrl: 'https://www.google.com/maps/place/654+Maple+St,+Anytown,+USA'
+      address: 'Paseo de Gracia, 60',
+      CP: '08007',
+      city: 'Barcelona',
+      province: 'Barcelona',
+      mapsUrl: 'https://maps.example.com/barcelona2'
     },
     sessionInfo: {
-      type: ['presential'],
-      sessionPrice: 190,
-      tags: ['behaviorism', 'stress']
+      type: ['online', 'presential'],
+      tags: ['Anxiety', 'Depression', 'Mindfulness'],
+      sessionPrice: 70,
+      workingSchedule: {
+        workingDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'],
+        startHour: '10:30',
+        finishHour: '17:30'
+      }
     },
     reviews: {
       totalRatings: 1,
-      average: 4.95,
+      average: 5,
       reviews: [
         {
           user: {
-            id: 'reviewer5',
-            name: "Sarah's Student",
-            description: '',
-            profilePicture: ''
+            id: 'user5',
+            name: 'Luis Gómez',
+            description: "Luis overcame severe anxiety with Pedro's guidance and support.",
+            profilePicture: generateProfilePicture('Luis Gómez')
           },
-          rating: 4.95,
-          text: 'Life-changing experience!'
+          rating: 5,
+          text: "Pedro's approach was exactly what I needed to manage my anxiety."
         }
       ]
     }
@@ -227,41 +244,46 @@ const mockTherapists: Therapist[] = [
   {
     basicInfo: {
       id: 'therapist6',
-      name: 'James Black',
-      description: 'Specializes in trauma recovery.',
-      profilePicture: 'https://ui-avatars.com/api/?background=random&name=James+Black',
+      name: 'María López',
+      description:
+        'María specializes in stress management and burnout recovery, helping professionals regain balance in their lives through personalized therapy sessions.',
+      profilePicture: generateProfilePicture('María López'),
       languages: [
-        {
-          id: 'fr',
-          name: 'french'
-        }
-      ]
+        { id: 'es', name: 'spanish' },
+        { id: 'fr', name: 'french' }
+      ],
+      specialty: 'Stress Management'
     },
     location: {
-      address: '987 Birch St, Anytown, USA',
-      CP: '56789',
-      city: 'Anytown',
-      province: 'USA',
-      mapsUrl: 'https://www.google.com/maps/place/987+Birch+St,+Anytown,+USA'
+      address: 'Calle de Alcalá, 50',
+      CP: '28014',
+      city: 'Madrid',
+      province: 'Madrid',
+      mapsUrl: 'https://maps.example.com/madrid2'
     },
     sessionInfo: {
       type: ['presential'],
-      sessionPrice: 185,
-      tags: ['gestalt', 'anxiety', 'trauma']
+      tags: ['Stress', 'Burnout'],
+      sessionPrice: 65,
+      workingSchedule: {
+        workingDays: ['Saturday', 'Sunday'],
+        startHour: '09:00',
+        finishHour: '17:00'
+      }
     },
     reviews: {
       totalRatings: 1,
-      average: 4.85,
+      average: 4,
       reviews: [
         {
           user: {
-            id: 'reviewer6',
-            name: "James' Patient",
-            description: '',
-            profilePicture: ''
+            id: 'user6',
+            name: 'Elena Torres',
+            description: 'Elena works in finance and found relief from work-related stress.',
+            profilePicture: generateProfilePicture('Elena Torres')
           },
-          rating: 4.85,
-          text: 'Supportive and understanding.'
+          rating: 4,
+          text: "María's therapy sessions helped me cope with work stress effectively."
         }
       ]
     }
@@ -269,45 +291,47 @@ const mockTherapists: Therapist[] = [
   {
     basicInfo: {
       id: 'therapist7',
-      name: 'Anna Blue',
-      description: 'Expert in couples therapy.',
-      profilePicture: 'https://ui-avatars.com/api/?background=random&name=Anna+Blue',
+      name: 'Elena Morales',
+      description:
+        'Elena is a licensed therapist with expertise in grief counseling and life transitions. She provides a supportive space for clients to process loss and navigate significant life changes.',
+      profilePicture: generateProfilePicture('Elena Morales'),
       languages: [
-        {
-          id: 'en',
-          name: 'english'
-        },
-        {
-          id: 'it',
-          name: 'italian'
-        }
-      ]
+        { id: 'es', name: 'spanish' },
+        { id: 'en', name: 'english' }
+      ],
+      specialty: 'Grief Counseling'
     },
     location: {
-      address: '210 Ash St, Anytown, USA',
-      CP: '67890',
-      city: 'Anytown',
-      province: 'USA',
-      mapsUrl: 'https://www.google.com/maps/place/210+Ash+St,+Anytown,+USA'
+      address: 'Calle San Vicente, 32',
+      CP: '46002',
+      city: 'Valencia',
+      province: 'Valencia',
+      mapsUrl: 'https://maps.example.com/valencia1'
     },
     sessionInfo: {
-      type: ['presential'],
-      sessionPrice: 195,
-      tags: ['psychoanalysis', 'trauma']
+      type: ['online', 'presential'],
+      tags: ['Grief', 'Life Transitions'],
+      sessionPrice: 85,
+      workingSchedule: {
+        workingDays: ['Thursday', 'Friday', 'Saturday'],
+        startHour: '11:30',
+        finishHour: '19:00'
+      }
     },
     reviews: {
       totalRatings: 1,
-      average: 4.9,
+      average: 5,
       reviews: [
         {
           user: {
-            id: 'reviewer7',
-            name: "Anna's Couple",
-            description: '',
-            profilePicture: ''
+            id: 'user7',
+            name: 'Gabriel Díaz',
+            description:
+              "Gabriel sought counseling after a major life transition and found Elena's guidance invaluable.",
+            profilePicture: generateProfilePicture('Gabriel Díaz')
           },
-          rating: 4.9,
-          text: 'Made our relationship stronger.'
+          rating: 5,
+          text: "Elena's sessions were crucial in helping me cope with my grief."
         }
       ]
     }
@@ -315,41 +339,46 @@ const mockTherapists: Therapist[] = [
   {
     basicInfo: {
       id: 'therapist8',
-      name: 'Peter Red',
-      description: 'Specializes in stress management.',
-      profilePicture: 'https://ui-avatars.com/api/?background=random&name=Peter+Red',
+      name: 'Isabel Torres',
+      description:
+        'Isabel is a clinical psychologist focusing on eating disorders and body image issues. She empowers clients to build healthy relationships with food and their bodies.',
+      profilePicture: generateProfilePicture('Isabel Torres'),
       languages: [
-        {
-          id: 'en',
-          name: 'english'
-        }
-      ]
+        { id: 'es', name: 'spanish' },
+        { id: 'it', name: 'italian' }
+      ],
+      specialty: 'Eating Disorders'
     },
     location: {
-      address: '741 Cedar St, Anytown, USA',
-      CP: '78901',
-      city: 'Anytown',
-      province: 'USA',
-      mapsUrl: 'https://www.google.com/maps/place/741+Cedar+St,+Anytown,+USA'
+      address: 'Calle La Rambla, 45',
+      CP: '08002',
+      city: 'Barcelona',
+      province: 'Barcelona',
+      mapsUrl: 'https://maps.example.com/barcelona3'
     },
     sessionInfo: {
-      type: ['online', 'presential'],
-      sessionPrice: 200,
-      tags: ['gestalt', 'anxiety', 'trauma']
+      type: ['presential'],
+      tags: ['Eating Disorders', 'Body Image'],
+      sessionPrice: 100,
+      workingSchedule: {
+        workingDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        startHour: '09:00',
+        finishHour: '17:00'
+      }
     },
     reviews: {
       totalRatings: 1,
-      average: 4.95,
+      average: 4,
       reviews: [
         {
           user: {
-            id: 'reviewer8',
-            name: "Peter's Client",
-            description: '',
-            profilePicture: ''
+            id: 'user8',
+            name: 'Natalia Gómez',
+            description: "Natalia struggled with body image issues and found Isabel's approach incredibly supportive.",
+            profilePicture: generateProfilePicture('Natalia Gómez')
           },
-          rating: 4.95,
-          text: 'Helped manage my stress effectively.'
+          rating: 4,
+          text: 'Isabel helped me develop a much healthier relationship with food.'
         }
       ]
     }

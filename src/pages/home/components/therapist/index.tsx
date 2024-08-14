@@ -6,8 +6,8 @@ import React from 'react'
 import BasicCard from 'src/components/basicCard'
 import HorizontalContainer from 'src/components/custom/horizontalContainer'
 import Ionicons from '@expo/vector-icons/Ionicons'
-import AntDesign from '@expo/vector-icons/AntDesign'
 import Separator from 'src/components/separator'
+import StarIcon from 'src/components/icons/starIcon'
 
 const Therapist = ({ therapist }: ITherapistProps) => (
   <BasicCard hasShadow>
@@ -21,14 +21,14 @@ const Therapist = ({ therapist }: ITherapistProps) => (
       <Text fontWeight="bold">{therapist.basicInfo.name}</Text>
       <Separator />
       <View style={{ gap: theme.space.sm2 }}>
-        <HorizontalContainer verticalCenter>
+        <HorizontalContainer verticalCenter="center">
           <Ionicons name="location-outline" size={16} color={theme.colors.b600} />
           <Text size="s2" fontWeight="semi-bold" color="b600">
             {therapist.location.city}, {therapist.location.province}
           </Text>
         </HorizontalContainer>
-        <HorizontalContainer verticalCenter gap="xs">
-          <AntDesign name="star" size={24} color="#FFE0BA" />
+        <HorizontalContainer verticalCenter="center" gap="xs">
+          <StarIcon />
           <Text size="s2" color="b500">
             {therapist.reviews.average} |
           </Text>
