@@ -25,12 +25,15 @@ const TherapistsList = () => {
       <Text fontWeight="bold" style={{ paddingHorizontal: 8 }}>
         {filteredList.length} {filteredList.length > 1 ? 'founds' : 'found'}
       </Text>
-      <FlatList
-        data={filteredList}
-        keyExtractor={(therapist) => therapist.basicInfo.id}
-        renderItem={({ item }) => <TherapistCard therapist={item} onPress={() => handlePress(item)} />}
-        style={styles.list}
-      />
+      <View>
+        <FlatList
+          data={filteredList}
+          keyExtractor={(therapist) => therapist.basicInfo.id}
+          renderItem={({ item }) => <TherapistCard therapist={item} onPress={() => handlePress(item)} />}
+          style={styles.list}
+          scrollEnabled={false}
+        />
+      </View>
       <BasicModal isOpen={isOpen} closeModal={() => handleClose()}>
         {/* TODO: solve this */}
         <Text>This is a children example to see if the info overflows the modal, which will be an error, for sure</Text>

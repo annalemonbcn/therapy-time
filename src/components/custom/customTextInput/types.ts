@@ -13,3 +13,18 @@ interface IStyledButtonProps {
 }
 
 export { ICustomInputProps, IStyledButtonProps }
+
+type FormEntries = 'location'
+
+interface ICustomTextInputProps {
+  fieldName: FormEntries
+  placeholderText?: string
+  isRequired?: boolean
+  isSecured?: boolean
+  sendButton?: {
+    isInside: boolean
+    triggerAction: any
+  }
+}
+
+export { ICustomTextInputProps }
