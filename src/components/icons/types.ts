@@ -1,9 +1,9 @@
 import { Colors } from 'types'
 
-interface ILocationIconProps {
+interface IIconProps {
   size?: number
   count?: number
   color?: Colors
 }
 
-export { ILocationIconProps }
+export { IIconProps }

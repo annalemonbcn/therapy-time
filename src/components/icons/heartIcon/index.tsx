@@ -1,7 +1,7 @@
-import { IHeartIconProps } from './types'
+import { IIconProps } from '../types'
 import Feather from '@expo/vector-icons/Feather'
 
-const HeartIcon = ({ size = 24, count = 1, color = 'main' }: IHeartIconProps) => {
+const HeartIcon = ({ size = 24, count = 1, color = 'main' }: IIconProps) => {
   const renderIcons = () => {
     let icons = []
     for (let i = 0; i < count; i++) {

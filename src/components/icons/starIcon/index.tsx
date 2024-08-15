@@ -1,7 +1,7 @@
 import AntDesign from '@expo/vector-icons/AntDesign'
-import { IStarIconProps } from './types'
+import { IIconProps } from '../types'
 
-const StarIcon = ({ size = 24, count = 1, color = 'gold' }: IStarIconProps) => {
+const StarIcon = ({ size = 24, count = 1, color = 'gold' }: IIconProps) => {
   const renderIcons = () => {
     let icons = []
     for (let i = 0; i < count; i++) {

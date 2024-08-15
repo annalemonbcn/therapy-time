@@ -1,7 +1,7 @@
-import { ILocationIconProps } from './types'
+import { IIconProps } from '../types'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
-const LocationIcon = ({ size = 24, count = 1, color = 'main' }: ILocationIconProps) => {
+const LocationIcon = ({ size = 24, count = 1, color = 'main' }: IIconProps) => {
   const renderIcons = () => {
     let icons = []
     for (let i = 0; i < count; i++) {

@@ -9,7 +9,7 @@ import { theme } from 'theme'
 import WorkingTime from './components/workingTime'
 import Reviews from './components/reviews'
 import Button from 'src/components/custom/customButton'
-import styled from 'styled-components'
+import FeaturesList from './components/featuresList'
 
 const DoctorDetails = () => {
   const { therapist } = useDoctorDetails()
@@ -20,6 +20,7 @@ const DoctorDetails = () => {
         <TopNavigation />
         <TherapistCard therapist={therapist} imgSize={70} />
         <View style={styles.specs}>
+          <FeaturesList />
           <AboutMe description={therapist.basicInfo.description} />
           <WorkingTime workingTime={therapist.sessionInfo.workingSchedule} />
           <Reviews reviews={therapist.reviews.reviews} />

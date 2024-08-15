@@ -1,7 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons'
-import { ICloseIconProps } from './types'
+import { IIconProps } from '../types'
 
-const CloseIcon = ({ size = 24, count = 1, color = 'main' }: ICloseIconProps) => {
+const CloseIcon = ({ size = 24, count = 1, color = 'main' }: IIconProps) => {
   const renderIcons = () => {
     let icons = []
     for (let i = 0; i < count; i++) {
