@@ -1,13 +1,14 @@
 import { Therapist } from 'src/data/types'
 
-interface ITherapistProps {
+interface ITherapistCardProps {
   therapist: Therapist
   onPress?: () => void // -> TODO: ?
-  isLargeCard?: boolean
+  showReviews?: boolean
+  imgSize?: number
 }
 
 interface ISmallCardProps {
   therapist: Therapist
 }
 
-export { ITherapistProps, ISmallCardProps }
+export { ITherapistCardProps, ISmallCardProps }

@@ -25,6 +25,7 @@ type Colors =
   | 'blue'
   | 'paleBlue'
   | 'orange'
+  | 'gold'
 
 type FontWeight = 'regular' | 'semi-bold' | 'bold'
 

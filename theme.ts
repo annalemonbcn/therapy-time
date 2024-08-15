@@ -26,7 +26,8 @@ const colors = {
   lightPurple: '#ACA1CD',
   blue: '#1C64F2',
   paleBlue: '#89CCDB',
-  orange: '#F5AD7E'
+  orange: '#F5AD7E',
+  gold: '#FEB052'
 }
 
 const typography = {

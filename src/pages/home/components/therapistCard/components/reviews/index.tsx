@@ -1,11 +1,11 @@
 import Text from 'src/components/custom/customText'
 import HorizontalContainer from 'src/components/custom/horizontalContainer'
-import AntDesign from '@expo/vector-icons/AntDesign'
 import { ICardReviewsProps } from './types'
+import StarIcon from 'src/components/icons/starIcon'
 
 const CardReviews = ({ average, totalRatings }: ICardReviewsProps) => (
   <HorizontalContainer verticalCenter="center" gap="xs">
-    <AntDesign name="star" size={24} color="#FFE0BA" />
+    <StarIcon />
     <Text size="s2" color="b500">
       {average} |
     </Text>

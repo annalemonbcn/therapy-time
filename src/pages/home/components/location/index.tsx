@@ -1,9 +1,10 @@
 import { StyleSheet, View } from 'react-native'
 import Text from 'src/components/custom/customText'
 import HorizontalContainer from 'src/components/custom/horizontalContainer'
-import Ionicons from '@expo/vector-icons/Ionicons'
 import { theme } from 'theme'
 import { useUserContext } from 'src/context/UserProvider'
+import LocationIcon from 'src/components/icons/locationIcon'
+import ChevronIcon from 'src/components/icons/chevronIcon'
 
 const Location = () => {
   const { userLocation } = useUserContext()
@@ -16,11 +17,11 @@ const Location = () => {
         Location
       </Text>
       <HorizontalContainer verticalCenter="flex-end" gap="sm2">
-        <Ionicons name="location-sharp" size={22} color={theme.colors.main} />
+        <LocationIcon size={22} />
         <Text color="b700" fontWeight="semi-bold">
           {userLocation}
         </Text>
-        <Ionicons name="chevron-down" size={20} color={theme.colors.main} />
+        <ChevronIcon size={20} />
       </HorizontalContainer>
     </View>
   )
