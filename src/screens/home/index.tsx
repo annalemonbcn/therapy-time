@@ -10,8 +10,8 @@ const Home = () => (
   <PageWrapper>
     <ScrollView style={styles.pageContainer}>
       <Location />
-      <Heading />
-      <TherapistsList />
+      {/* <Heading />
+      <TherapistsList /> */}
     </ScrollView>
   </PageWrapper>
 )

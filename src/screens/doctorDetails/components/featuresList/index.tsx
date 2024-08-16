@@ -1,7 +1,6 @@
-import { View, Text } from 'react-native'
 import React from 'react'
 import HorizontalContainer from 'src/components/custom/horizontalContainer'
-import Feature from 'src/components/customModal/components/feature'
+import Feature from 'src/components/feature'
 import StarIcon from 'src/components/icons/starIcon'
 
 const FeaturesList = () => {

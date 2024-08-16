@@ -1,7 +1,7 @@
 import { Controller, useFormContext } from 'react-hook-form'
 import Text from '../customText'
 import { ICustomTextInputProps } from './types'
-import { LocationFormModel } from 'src/pages/locationScreen/components/locationForm/types'
+import { LocationFormModel } from 'src/screens/locationScreen/components/locationForm/types'
 import { StyledButton, StyledInput, StyledInputWrapper } from './styles'
 
 const ErrorText = ({ errorMessage }: { errorMessage: string }) => (

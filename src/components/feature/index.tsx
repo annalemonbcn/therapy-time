@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native'
 import { theme } from 'theme'
 import Text from 'src/components/custom/customText'
 import { FeatureProps, IconProps, SubtitleProps, TitleProps } from './types'
-import { getChildrenDisplayName, validateChildren } from './utils'
+import { getChildrenDisplayName, validateChildren } from '../utils'
 
 const Icon = ({ children }: IconProps) => <View style={styles.icon}>{children}</View>
 Icon.displayName = 'FeatureIcon'
