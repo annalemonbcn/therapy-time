@@ -1,24 +1,25 @@
 import Location from './components/location'
-import Heading from './components/heading'
 import TherapistsList from './components/therapistsList'
-import { ScrollView, StyleSheet, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import PageWrapper from 'src/components/custom/pageWrapper'
 import { getStatusBarHeight } from 'src/utils'
-import { ModalProvider } from 'src/context/useModalController'
+import HomeSearch from './components/search'
+import { theme } from 'theme'
 
 const Home = () => (
   <PageWrapper>
-    <ScrollView style={styles.pageContainer}>
+    <View style={styles.pageContainer}>
       <Location />
-      {/* <Heading />
-      <TherapistsList /> */}
-    </ScrollView>
+      <HomeSearch />
+      {/* <TherapistsList /> */}
+    </View>
   </PageWrapper>
 )
 
 const styles = StyleSheet.create({
   pageContainer: {
-    marginTop: getStatusBarHeight()
+    marginTop: getStatusBarHeight(),
+    gap: theme.space.md
   }
 })
 
