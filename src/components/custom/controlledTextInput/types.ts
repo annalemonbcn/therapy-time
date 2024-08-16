@@ -14,10 +14,8 @@ interface IStyledButtonProps {
 
 export { ICustomInputProps, IStyledButtonProps }
 
-type FormEntries = 'location'
-
 interface ICustomTextInputProps {
-  fieldName: FormEntries
+  fieldName: string
   placeholderText?: string
   isRequired?: boolean
   isSecured?: boolean

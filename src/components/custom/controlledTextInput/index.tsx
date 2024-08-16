@@ -20,9 +20,7 @@ const ControlledTextInput = ({
   const {
     control,
     formState: { errors }
-  } = useFormContext<LocationFormModel>()
-
-  const errorMessage = errors[fieldName]?.message || ''
+  } = useFormContext()
 
   const handleSendPress = () => {
     sendButton?.triggerAction()
@@ -43,7 +41,7 @@ const ControlledTextInput = ({
               value={value}
               secureTextEntry={isSecured}
             />
-            {errorMessage && <ErrorText errorMessage={errorMessage} />}
+            {errors[fieldName] && <ErrorText errorMessage={errors[fieldName].message as string} />}
             {sendButton && (
               <StyledButton onPress={handleSendPress} isInside={sendButton.isInside}>
                 Send
