@@ -1,8 +1,9 @@
 import { Controller, useFormContext } from 'react-hook-form'
 import Text from '../customText'
 import { ICustomTextInputProps } from './types'
-import { LocationFormModel } from 'src/screens/locationScreen/components/locationForm/types'
-import { StyledButton, StyledInput, StyledInputWrapper } from './styles'
+import { StyledButton, StyledInputWrapper, StyledInput, StyledInputContainer } from './styles'
+import SearchIcon from 'src/components/icons/searchIcon'
+import { theme } from 'theme'
 
 const ErrorText = ({ errorMessage }: { errorMessage: string }) => (
   <Text size="s2" color="darkRed" style={{ marginVertical: 8 }}>
@@ -15,11 +16,13 @@ const ControlledTextInput = ({
   placeholderText,
   isRequired = true,
   isSecured = false,
-  sendButton
+  sendButton,
+  iconType,
+  type
 }: ICustomTextInputProps) => {
   const {
     control,
-    formState: { errors }
+    formState: { errors, isDirty }
   } = useFormContext()
 
   const handleSendPress = () => {
@@ -33,22 +36,25 @@ const ControlledTextInput = ({
         required: isRequired ? 'This field is required' : undefined
       }}
       render={({ field: { value, onChange } }) => (
-        <>
-          <StyledInputWrapper>
+        <StyledInputContainer>
+          <StyledInputWrapper type={type}>
+            {iconType && <SearchIcon />}
             <StyledInput
               placeholder={placeholderText}
+              placeholderTextColor={theme.colors.b400}
               onChangeText={onChange}
               value={value}
               secureTextEntry={isSecured}
+              isTouched={isDirty}
             />
-            {errors[fieldName] && <ErrorText errorMessage={errors[fieldName].message as string} />}
-            {sendButton && (
-              <StyledButton onPress={handleSendPress} isInside={sendButton.isInside}>
-                Send
-              </StyledButton>
-            )}
           </StyledInputWrapper>
-        </>
+          {errors[fieldName] && <ErrorText errorMessage={errors[fieldName].message as string} />}
+          {sendButton && (
+            <StyledButton onPress={handleSendPress} isInside={sendButton.isInside}>
+              Send
+            </StyledButton>
+          )}
+        </StyledInputContainer>
       )}
       name={fieldName}
     />

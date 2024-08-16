@@ -14,15 +14,19 @@ interface IStyledButtonProps {
 
 export { ICustomInputProps, IStyledButtonProps }
 
+type IconType = 'primary' | 'secondary'
+
 interface ICustomTextInputProps {
   fieldName: string
   placeholderText?: string
   isRequired?: boolean
   isSecured?: boolean
+  type: IconType
+  iconType?: 'search'
   sendButton?: {
     isInside: boolean
     triggerAction: any
   }
 }
 
-export { ICustomTextInputProps }
+export { ICustomTextInputProps, IconType }
