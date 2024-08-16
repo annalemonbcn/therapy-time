@@ -1,7 +1,7 @@
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { LocationFormModel } from './types'
 import { useUserContext } from 'src/context/UserProvider'
-import CustomTextInput from 'src/components/custom/customTextInput'
+import ControlledTextInput from 'src/components/custom/controlledTextInput'
 
 const LocationForm = () => {
   const methods = useForm<LocationFormModel>()
@@ -13,7 +13,7 @@ const LocationForm = () => {
 
   return (
     <FormProvider {...methods}>
-      <CustomTextInput
+      <ControlledTextInput
         fieldName="location"
         placeholderText="Location"
         sendButton={{ isInside: false, triggerAction: handleSubmit(onSubmit) }}

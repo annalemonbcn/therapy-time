@@ -10,7 +10,7 @@ const ErrorText = ({ errorMessage }: { errorMessage: string }) => (
   </Text>
 )
 
-const CustomTextInput = ({
+const ControlledTextInput = ({
   fieldName,
   placeholderText,
   isRequired = true,
@@ -57,4 +57,4 @@ const CustomTextInput = ({
   )
 }
 
-export default CustomTextInput
+export default ControlledTextInput
