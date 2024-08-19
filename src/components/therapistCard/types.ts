@@ -2,8 +2,7 @@ import { Therapist } from 'src/data/types'
 
 interface ITherapistCardProps {
   therapist: Therapist
-  onPress?: () => void // -> TODO: ?
-  showReviews?: boolean
+  onPress?: () => void
   imgSize?: number
 }
 

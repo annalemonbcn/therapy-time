@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react'
 
 interface IBasicCardProps extends PropsWithChildren {
-  onPress?: any // --> TODO: ?
+  onPress?: any
 
   hasShadow?: boolean
 }

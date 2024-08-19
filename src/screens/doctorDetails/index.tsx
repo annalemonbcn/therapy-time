@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
 import PageWrapper from 'src/components/custom/pageWrapper'
 import { getStatusBarHeight } from 'src/utils'
 import TherapistCard from '../../components/therapistCard'
@@ -11,42 +11,39 @@ import Button from 'src/components/custom/customButton'
 import FeaturesList from './components/featuresList'
 import { DoctorDetailsProps } from './types'
 import NoData from './components/noData'
-import Text from 'src/components/custom/customText'
+import TopNavigation from 'src/components/topNavigation'
 
-// const DoctorDetails = ({ route }: DoctorDetailsProps) => {
-//   const { id } = route.params
+const DoctorDetails = ({ route }: DoctorDetailsProps) => {
+  const { id } = route.params
 
-//   const therapist = useDoctorDetails(id)
+  const therapist = useDoctorDetails(id)
 
-//   if (!therapist) return <NoData />
+  if (!therapist) return <NoData />
 
-//   return (
-//     <PageWrapper>
-//       <View style={styles.pageContainer}>
-//         {/* <TopNavigation /> */}
-//         <TherapistCard therapist={therapist} imgSize={70} />
-//         <View style={styles.specs}>
-//           <FeaturesList />
-//           <AboutMe description={therapist.basicInfo.description} />
-//           <WorkingTime workingTime={therapist.sessionInfo.workingSchedule} />
-//           <Reviews reviews={therapist.reviews.reviews} />
-//         </View>
-//         <View style={styles.buttonContainer}>
-//           <Button primary onPress={() => console.error('book appointment button pressed')}>
-//             Book appointment
-//           </Button>
-//         </View>
-//       </View>
-//     </PageWrapper>
-//   )
-// }
-
-const DoctorDetails = () => <Text>Doctor Details</Text>
+  return (
+    <PageWrapper>
+      <ScrollView contentContainerStyle={styles.pageContainer}>
+        <TopNavigation title='Details' />
+        <TherapistCard therapist={therapist} imgSize={70} />
+        <View style={styles.specs}>
+          <FeaturesList />
+          <AboutMe description={therapist.basicInfo.description} />
+          <WorkingTime workingTime={therapist.sessionInfo.workingSchedule} />
+          <Reviews reviews={therapist.reviews.reviews} />
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button primary onPress={() => console.error('book appointment button pressed')}>
+            Book appointment
+          </Button>
+        </View>
+      </ScrollView>
+    </PageWrapper>
+  )
+}
 
 const styles = StyleSheet.create({
   pageContainer: {
-    // marginTop: getStatusBarHeight(),
-    position: 'relative'
+    paddingTop: getStatusBarHeight()
   },
   specs: {
     gap: theme.space.md,

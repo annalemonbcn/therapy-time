@@ -11,7 +11,7 @@ import CardLocation from './components/location'
 import CardReviews from './components/reviews'
 import { toTitleCase } from 'src/utils'
 
-const TherapistCard = ({ therapist, onPress, showReviews = false, imgSize }: ITherapistCardProps) => (
+const TherapistCard = ({ therapist, onPress, imgSize }: ITherapistCardProps) => (
   <BasicCard hasShadow onPress={onPress}>
     <CardImage url={therapist.basicInfo.profilePicture} size={imgSize} />
     <View style={styles.infoContainer}>

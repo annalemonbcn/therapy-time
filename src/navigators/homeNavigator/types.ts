@@ -1,10 +1,10 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 
-type RootStackParamList = {
+type HomeRootStackParamList = {
   Home: undefined
   'Doctor Details': { id: string }
 }
-type HomeProps = NativeStackScreenProps<RootStackParamList, 'Home'>
+type HomeProps = NativeStackScreenProps<HomeRootStackParamList, 'Home'>
 type NavigationProp = HomeProps['navigation']
 
-export { RootStackParamList, NavigationProp }
+export { HomeRootStackParamList, NavigationProp }
