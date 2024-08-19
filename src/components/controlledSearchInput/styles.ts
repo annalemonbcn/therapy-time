@@ -1,19 +1,20 @@
 import { TextInput, View } from 'react-native'
 import styled from 'styled-components'
+import { IconType } from '../custom/controlledTextInput/types'
 import { theme } from 'theme'
-import Button from '../customButton'
-import { IconType, IStyledButtonProps } from './types'
 
 const StyledInputContainer = styled(View)`
   width: 100%;
-  position: relative;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 `
 
 const StyledInputWrapper = styled(View)<{ type: IconType }>`
+  flex: 2;
   flex-direction: row;
   gap: ${theme.space.sm}px;
 
-  width: 100%;
   border-radius: ${theme.borders.radius.sm}px;
   padding: ${theme.space.md}px ${theme.space.lg}px;
 
@@ -36,14 +37,4 @@ const StyledInput = styled(TextInput)<{ isTouched?: boolean }>`
   color: ${({ isTouched }) => (isTouched ? theme.colors.main : theme.colors.b400)};
 `
 
-const StyledButton = styled(Button)<IStyledButtonProps>`
-  ${({ isInside }) =>
-    isInside &&
-    `
-      position: absolute;
-      top: ${theme.space.sm2}px;
-      right: ${theme.space.sm}px;
-    `}
-`
-
-export { StyledInputContainer, StyledInputWrapper, StyledInput, StyledButton }
+export { StyledInputContainer, StyledInputWrapper, StyledInput }

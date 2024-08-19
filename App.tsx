@@ -5,6 +5,7 @@ import { useLoadInitialConfig } from 'src/hooks'
 import { UserProvider, useUserContext } from 'src/context/UserProvider'
 import LocationScreen from 'src/screens/locationScreen'
 import DoctorDetails from 'src/screens/doctorDetails'
+import { useFonts } from 'expo-font'
 
 const AppDisplay = () => {
   const { userLocation } = useUserContext()

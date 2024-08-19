@@ -18,15 +18,11 @@ const TherapistCard = ({ therapist, onPress, showReviews = false, imgSize }: ITh
       <CardName name={therapist.basicInfo.name} />
       <Separator />
       <View style={{ gap: theme.space.sm2 }}>
-        {!showReviews && (
-          <Text fontWeight="semi-bold" size="s2" color="b600">
-            {toTitleCase(therapist.basicInfo.specialty)}
-          </Text>
-        )}
+        <Text fontWeight="semi-bold" size="s2" color="b600">
+          {toTitleCase(therapist.basicInfo.specialty)}
+        </Text>
         <CardLocation location={`${therapist.location.city}, ${therapist.location.province}`} />
-        {showReviews && (
-          <CardReviews average={therapist.reviews.average} totalRatings={therapist.reviews.totalRatings} />
-        )}
+        <CardReviews average={therapist.reviews.average} totalRatings={therapist.reviews.totalRatings} />
       </View>
     </View>
   </BasicCard>

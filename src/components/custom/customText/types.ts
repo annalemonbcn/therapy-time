@@ -3,9 +3,9 @@ import { StyleProp, TextStyle } from 'react-native'
 import { Colors, FontSize, FontWeight } from 'types'
 
 interface ICustomTextProps extends PropsWithChildren {
-  color?: Colors
-  fontWeight?: FontWeight
   size?: FontSize
+  fontWeight?: FontWeight
+  color?: Colors
   textAlign?: 'auto' | 'left' | 'right' | 'center' | 'justify' | undefined
   style?: StyleProp<TextStyle> | undefined
 }

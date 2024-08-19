@@ -1,37 +1,12 @@
-type Colors =
-  | 'main'
-  | 'b0'
-  | 'b50'
-  | 'b100'
-  | 'b200'
-  | 'b300'
-  | 'b400'
-  | 'b500'
-  | 'b600'
-  | 'b700'
-  | 'b800'
-  | 'b900'
-  | 'teal'
-  | 'deepTeal'
-  | 'lightTeal'
-  | 'green'
-  | 'paleGreen'
-  | 'darkRed'
-  | 'pink'
-  | 'deepPink'
-  | 'lightPink'
-  | 'purple'
-  | 'lightPurple'
-  | 'blue'
-  | 'paleBlue'
-  | 'orange'
-  | 'gold'
+import { theme } from 'theme'
 
-type FontWeight = 'regular' | 'semi-bold' | 'bold'
+type Colors = keyof typeof theme.colors
 
-type FontSize = 's1' | 's11' | 's2' | 's3' | 's4' | 's5' | 's6'
+type FontWeight = keyof typeof theme.typography.fontWeight
 
-type Space = 'xs2' | 'xs' | 'sm2' | 'sm' | 'md' | 'lg' | 'xl' | 'xl2'
+type FontSize = keyof typeof theme.typography.fontSize
+
+type Space = keyof typeof theme.space
 
 type FlexCenter = 'center' | 'flex-start' | 'flex-end' | 'space-between'
 

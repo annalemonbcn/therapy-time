@@ -1,6 +1,6 @@
 import { FlatList, StyleSheet, View } from 'react-native'
 import { useGetFilteredTherapists } from './hooks'
-import TherapistCard from '../therapistCard'
+import TherapistCard from '../../../../components/therapistCard'
 import { theme } from 'theme'
 import Text from 'src/components/custom/customText'
 import { Therapist } from 'src/data/types'
