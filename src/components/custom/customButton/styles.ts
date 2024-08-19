@@ -33,7 +33,7 @@ const StyledTouchable = styled(TouchableOpacity)<ICustomButtonProps>`
 `
 
 const StyledText = styled(Text)<ButtonProps>`
-  font-family: ${theme.typography.fontWeight.bold};
+  font-family: ${theme.typography.fontWeight['semi-bold']};
 
   ${({ primary }) => primary && `color: ${theme.colors.b0}`}
   ${({ secondary }) => secondary && `color: ${theme.colors.main}`}

@@ -16,6 +16,7 @@ const BasicCard = ({ onPress, hasShadow, children }: IBasicCardProps) => {
 const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
+    alignItems: 'center',
     gap: theme.space.sm,
     backgroundColor: theme.colors.b0,
     padding: theme.space.md,

@@ -1,4 +1,4 @@
-import { Therapist } from './types'
+import { TagsEnum, Therapist } from './types'
 
 const generateProfilePicture = (name: string) => {
   const convertedName = name.replace(/\s/g, '+')
@@ -28,7 +28,7 @@ const mockTherapists: Therapist[] = [
     },
     sessionInfo: {
       type: ['online', 'presential'],
-      tags: ['CBT', 'Mindfulness', 'Stress Management'],
+      tags: [TagsEnum.Stress],
       sessionPrice: 60,
       workingSchedule: {
         workingDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
@@ -64,7 +64,7 @@ const mockTherapists: Therapist[] = [
         { id: 'es', name: 'spanish' },
         { id: 'it', name: 'italian' }
       ],
-      specialty: 'Trauma Recovery'
+      specialty: 'Bullying Management'
     },
     location: {
       address: 'Avenida de Andalucía, 14',
@@ -75,7 +75,7 @@ const mockTherapists: Therapist[] = [
     },
     sessionInfo: {
       type: ['presential'],
-      tags: ['Trauma', 'Emotional Regulation'],
+      tags: [TagsEnum.Bullying],
       sessionPrice: 75,
       workingSchedule: {
         workingDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'],
@@ -95,7 +95,7 @@ const mockTherapists: Therapist[] = [
             profilePicture: generateProfilePicture('Marta Sánchez')
           },
           rating: 4,
-          text: "Laura's sessions have been a turning point in my recovery."
+          text: 'Laura has helped my son manage the emotional response caused by bullying'
         }
       ]
     }
@@ -122,7 +122,7 @@ const mockTherapists: Therapist[] = [
     },
     sessionInfo: {
       type: ['online'],
-      tags: ['Couples', 'Relationships'],
+      tags: [TagsEnum.Couples],
       sessionPrice: 90,
       workingSchedule: {
         workingDays: ['Friday', 'Saturday', 'Sunday'],
@@ -169,7 +169,7 @@ const mockTherapists: Therapist[] = [
     },
     sessionInfo: {
       type: ['presential'],
-      tags: ['Family', 'Child Development'],
+      tags: [TagsEnum.Family],
       sessionPrice: 80,
       workingSchedule: {
         workingDays: ['Wednesday', 'Thursday', 'Friday'],
@@ -216,7 +216,7 @@ const mockTherapists: Therapist[] = [
     },
     sessionInfo: {
       type: ['online', 'presential'],
-      tags: ['Anxiety', 'Depression', 'Mindfulness'],
+      tags: [TagsEnum.Anxiety, TagsEnum.Depression],
       sessionPrice: 70,
       workingSchedule: {
         workingDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'],
@@ -263,7 +263,7 @@ const mockTherapists: Therapist[] = [
     },
     sessionInfo: {
       type: ['presential'],
-      tags: ['Stress', 'Burnout'],
+      tags: [TagsEnum.Stress],
       sessionPrice: 65,
       workingSchedule: {
         workingDays: ['Saturday', 'Sunday'],
@@ -310,7 +310,7 @@ const mockTherapists: Therapist[] = [
     },
     sessionInfo: {
       type: ['online', 'presential'],
-      tags: ['Grief', 'Life Transitions'],
+      tags: [TagsEnum.Grief],
       sessionPrice: 85,
       workingSchedule: {
         workingDays: ['Thursday', 'Friday', 'Saturday'],
@@ -358,7 +358,7 @@ const mockTherapists: Therapist[] = [
     },
     sessionInfo: {
       type: ['presential'],
-      tags: ['Eating Disorders', 'Body Image'],
+      tags: [TagsEnum.EatingDisorders],
       sessionPrice: 100,
       workingSchedule: {
         workingDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],

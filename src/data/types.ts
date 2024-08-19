@@ -108,9 +108,20 @@ type WorkingSchedule = {
   finishHour: CompleteTime
 }
 
+enum TagsEnum {
+  Stress = 'Stress',
+  Bullying = 'Bullying',
+  Couples = 'Couples',
+  Family = 'Family',
+  Anxiety = 'Anxiety',
+  Depression = 'Depression',
+  Grief = 'Grief',
+  EatingDisorders = 'Eating Disorders'
+}
+
 type SessionInfo = {
   type: SessionType[]
-  tags: string[]
+  tags: TagsEnum[]
   sessionPrice: number
   workingSchedule: WorkingSchedule
 }
@@ -143,13 +154,4 @@ type Therapist = {
   }
 }
 
-type User = {
-  basicInfo: BasicInfo
-  location: LocationInfo
-  reviews: {
-    totalRatings: number
-    reviews: Review[]
-  }
-}
-
-export { Therapist, WorkingSchedule, Review, SessionType }
+export { Therapist, WorkingSchedule, Review, SessionType, TagsEnum }
