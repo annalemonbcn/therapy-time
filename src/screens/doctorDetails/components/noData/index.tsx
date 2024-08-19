@@ -31,7 +31,7 @@ const NoData = () => {
 const styles = StyleSheet.create({
   pageContainer: {
     marginTop: 100,
-    gap: theme.space.xl
+    gap: theme.space.xl,
   },
   textContainer: {
     alignItems: 'center',

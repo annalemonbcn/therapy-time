@@ -1,5 +1,6 @@
-interface IDoctorDetailsProps {
-  id?: string
-}
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { RootStackParamList } from 'types'
 
-export { IDoctorDetailsProps }
+type DoctorDetailsProps = NativeStackScreenProps<RootStackParamList, 'Doctor Details'>
+
+export { DoctorDetailsProps }

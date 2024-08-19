@@ -8,6 +8,8 @@ import DoctorDetails from 'src/screens/doctorDetails'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { RootStackParamList } from 'types'
+import { theme } from 'theme'
+import { TouchableOpacity } from 'react-native'
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
@@ -17,13 +19,20 @@ const AppDisplay = () => {
   if (!userLocation) return <LocationScreen />
 
   return (
-    <Stack.Navigator initialRouteName="Home">
+    <Stack.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        headerTintColor: theme.colors.main,
+        headerBackTitleVisible: false
+      }}
+    >
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen
         name="Doctor Details"
         component={DoctorDetails}
-        initialParams={{ id: 'therapist5' }}
-        options={{ title: 'Details' }}
+        options={{
+          title: 'Details'
+        }}
       />
     </Stack.Navigator>
   )

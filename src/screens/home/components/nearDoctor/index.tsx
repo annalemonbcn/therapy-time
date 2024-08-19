@@ -3,17 +3,25 @@ import Text from 'src/components/custom/customText'
 import { useGetNearDoctor } from './hooks'
 import TherapistCard from 'src/components/therapistCard'
 import { useNavigation } from '@react-navigation/native'
-import { HomeScreenNavigationProp } from '../../types'
+import { NavigationProp } from '../../types'
 
 const NearDoctor = () => {
   const nearDoctor = useGetNearDoctor()
 
-  const navigation = useNavigation<HomeScreenNavigationProp>()
+  const navigation = useNavigation<NavigationProp>()
 
   return (
     <View>
       <Text fontWeight="bold">Nearest Doctor</Text>
-      <TherapistCard therapist={nearDoctor} showReviews={false} onPress={() => navigation.navigate('Doctor Details')} />
+      <TherapistCard
+        therapist={nearDoctor}
+        showReviews={false}
+        onPress={() =>
+          navigation.navigate('Doctor Details', {
+            id: 'therapist5'
+          })
+        }
+      />
     </View>
   )
 }
