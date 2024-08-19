@@ -3,7 +3,7 @@ import Text from 'src/components/custom/customText'
 import { useGetNearDoctor } from './hooks'
 import TherapistCard from 'src/components/therapistCard'
 import { useNavigation } from '@react-navigation/native'
-import { NavigationProp } from '../../types'
+import { NavigationProp } from '../../../../navigators/homeNavigator/types'
 
 const NearDoctor = () => {
   const nearDoctor = useGetNearDoctor()

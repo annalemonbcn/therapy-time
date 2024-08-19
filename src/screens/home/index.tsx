@@ -24,7 +24,7 @@ const Home = () => (
 
 const styles = StyleSheet.create({
   pageContainer: {
-    // marginTop: getStatusBarHeight(),
+    marginTop: getStatusBarHeight(),
     gap: theme.space.lg
   }
 })
