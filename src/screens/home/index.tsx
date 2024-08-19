@@ -7,6 +7,7 @@ import { theme } from 'theme'
 import StarredPost from './components/starredPost'
 import Categories from './components/categories'
 import NearDoctor from './components/nearDoctor'
+import HomeIcon from 'src/components/icons/homeIcon'
 
 const Home = () => (
   <PageWrapper>

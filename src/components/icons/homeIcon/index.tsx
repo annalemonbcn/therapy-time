@@ -1,6 +1,6 @@
 import AntDesign from '@expo/vector-icons/AntDesign'
-import { IIconProps } from '../types'
 import { theme } from 'theme'
+import { IIconProps } from '../types'
 
 const HomeIcon = ({ size = 24, count = 1, color = 'main' }: IIconProps) => {
   const renderIcons = () => {
@@ -10,6 +10,7 @@ const HomeIcon = ({ size = 24, count = 1, color = 'main' }: IIconProps) => {
     }
     return icons
   }
+
   return <>{renderIcons()}</>
 }
 

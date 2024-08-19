@@ -11,7 +11,7 @@ const AppDisplay = () => {
 
   if (!userLocation) return <LocationScreen />
 
-  return <BottomTabBar />
+  return <BottomTabBar  />
 }
 
 const App = () => {
