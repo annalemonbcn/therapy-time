@@ -10,14 +10,18 @@ import WorkingTime from './components/workingTime'
 import Reviews from './components/reviews'
 import Button from 'src/components/custom/customButton'
 import FeaturesList from './components/featuresList'
+import { IDoctorDetailsProps } from './types'
+import NoData from './components/noData'
 
-const DoctorDetails = () => {
-  const { therapist } = useDoctorDetails()
+const DoctorDetails = ({ id }: IDoctorDetailsProps) => {
+  const therapist = useDoctorDetails(id)
+
+  if (!therapist) return <NoData />
 
   return (
     <PageWrapper>
       <View style={styles.pageContainer}>
-        <TopNavigation />
+        {/* <TopNavigation /> */}
         <TherapistCard therapist={therapist} imgSize={70} />
         <View style={styles.specs}>
           <FeaturesList />

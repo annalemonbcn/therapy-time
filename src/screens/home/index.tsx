@@ -17,7 +17,6 @@ const Home = () => (
         <StarredPost />
         <Categories />
         <NearDoctor />
-        {/* <TherapistsList /> */}
       </View>
     </TouchableWithoutFeedback>
   </PageWrapper>
