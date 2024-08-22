@@ -3,7 +3,7 @@ import { Image, View, StyleSheet } from 'react-native'
 import Button from 'src/components/custom/customButton'
 import Text from 'src/components/custom/customText'
 import PageWrapper from 'src/components/custom/pageWrapper'
-import { HomeScreenNavigationProp } from 'src/navigators/homeNavigator/types'
+import { HomeScreenNavigationProp } from 'src/navigation/homeNavigator/types'
 import { getStatusBarHeight } from 'src/utils'
 import { theme } from 'theme'
 

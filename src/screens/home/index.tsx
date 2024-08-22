@@ -5,9 +5,8 @@ import { getStatusBarHeight } from 'src/utils'
 import HomeSearch from './components/search'
 import { theme } from 'theme'
 import StarredPost from './components/starredPost'
-import Categories from './components/categories'
+import CategoriesList from './components/categoriesList'
 import NearDoctor from './components/nearDoctor'
-import HomeIcon from 'src/components/icons/homeIcon'
 
 const Home = () => (
   <PageWrapper>
@@ -16,7 +15,7 @@ const Home = () => (
         <Location />
         <HomeSearch />
         <StarredPost />
-        <Categories />
+        <CategoriesList />
         <NearDoctor />
       </View>
     </TouchableWithoutFeedback>

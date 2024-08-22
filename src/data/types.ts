@@ -109,6 +109,7 @@ type WorkingSchedule = {
 }
 
 enum TagsEnum {
+  All = 'All',
   Stress = 'Stress',
   Bullying = 'Bullying',
   Couples = 'Couples',
@@ -118,6 +119,8 @@ enum TagsEnum {
   Grief = 'Grief',
   EatingDisorders = 'Eating Disorders'
 }
+
+const tagsArray: TagsEnum[] = Object.values(TagsEnum)
 
 type SessionInfo = {
   type: SessionType[]
@@ -154,4 +157,4 @@ type Therapist = {
   }
 }
 
-export { Therapist, WorkingSchedule, Review, SessionType, TagsEnum }
+export { Therapist, WorkingSchedule, Review, SessionType, TagsEnum, tagsArray }

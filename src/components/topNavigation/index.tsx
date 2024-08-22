@@ -4,7 +4,7 @@ import Text from 'src/components/custom/customText'
 import HorizontalContainer from 'src/components/custom/horizontalContainer'
 import ArrowIcon from 'src/components/icons/arrowIcon'
 import HeartIcon from 'src/components/icons/heartIcon'
-import { NavigationProp } from 'src/navigators/homeNavigator/types'
+import { NavigationProp } from 'src/navigation/homeNavigator/types'
 import { ITopNavigationProps } from './types'
 import { StyledContainer } from './styles'
 

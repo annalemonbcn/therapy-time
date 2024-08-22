@@ -4,7 +4,7 @@ import { useLoadInitialConfig } from 'src/hooks'
 import { UserProvider, useUserContext } from 'src/context/UserProvider'
 import LocationScreen from 'src/screens/locationScreen'
 import { NavigationContainer } from '@react-navigation/native'
-import BottomTabBar from 'src/navigators/bottomTabBar'
+import BottomTabBar from 'src/navigation/bottomTabBar'
 
 const AppDisplay = () => {
   const { userLocation } = useUserContext()

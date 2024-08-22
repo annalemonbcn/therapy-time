@@ -1,6 +1,6 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { HomeRootStackParamList } from 'src/navigation/homeNavigator/types'
 
-type DoctorDetailsProps = NativeStackScreenProps<HomeRootStackParamList, 'Doctor Details'>
+type DoctorsListProps = NativeStackScreenProps<HomeRootStackParamList, 'Doctors List'>
 
-export { DoctorDetailsProps }
+export { DoctorsListProps }

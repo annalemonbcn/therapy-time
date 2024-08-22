@@ -4,6 +4,7 @@ interface ITherapistCardProps {
   therapist: Therapist
   onPress?: () => void
   imgSize?: number
+  showReviews?: boolean
 }
 
 interface ISmallCardProps {

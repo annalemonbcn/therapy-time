@@ -6,7 +6,7 @@ import Profile from 'src/screens/profile'
 import LocationIcon from '../../components/icons/locationIcon'
 import UserIcon from '../../components/icons/userIcon'
 import HomeIcon from '../../components/icons/homeIcon'
-import HomeNavigator from 'src/navigators/homeNavigator'
+import HomeNavigator from 'src/navigation/homeNavigator'
 import StarIcon from 'src/components/icons/starIcon'
 import ActiveIcon from 'src/components/activeIcon'
 
