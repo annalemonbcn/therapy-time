@@ -1,19 +1,17 @@
 import { useEffect } from 'react'
 import * as SplashScreen from 'expo-splash-screen'
-import Home from './src/screens/home'
 import { useLoadInitialConfig } from 'src/hooks'
 import { UserProvider, useUserContext } from 'src/context/UserProvider'
 import LocationScreen from 'src/screens/locationScreen'
-import DoctorDetails from 'src/screens/doctorDetails'
-import { useFonts } from 'expo-font'
+import { NavigationContainer } from '@react-navigation/native'
+import BottomTabBar from 'src/navigation/bottomTabBar'
 
 const AppDisplay = () => {
   const { userLocation } = useUserContext()
 
   if (!userLocation) return <LocationScreen />
 
-  return <Home />
-  return <DoctorDetails />
+  return <BottomTabBar  />
 }
 
 const App = () => {
@@ -28,9 +26,11 @@ const App = () => {
   if (!loaded && !error) return null
 
   return (
-    <UserProvider>
-      <AppDisplay />
-    </UserProvider>
+    <NavigationContainer>
+      <UserProvider>
+        <AppDisplay />
+      </UserProvider>
+    </NavigationContainer>
   )
 }
 

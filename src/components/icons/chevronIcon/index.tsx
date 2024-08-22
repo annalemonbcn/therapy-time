@@ -1,8 +1,10 @@
 import { theme } from 'theme'
 import { IIconProps } from '../types'
 import Ionicons from '@expo/vector-icons/Ionicons'
+import { IChevronIconProps } from './types'
+import { StyledView } from './styles'
 
-const ChevronIcon = ({ size = 24, count = 1, color = 'main' }: IIconProps) => {
+const ChevronIcon = ({ size = 24, count = 1, color = 'main', direction = 'down' }: IChevronIconProps) => {
   const renderIcons = () => {
     let icons = []
     for (let i = 0; i < count; i++) {
@@ -11,7 +13,7 @@ const ChevronIcon = ({ size = 24, count = 1, color = 'main' }: IIconProps) => {
     return icons
   }
 
-  return <>{renderIcons()}</>
+  return <StyledView direction={direction}>{renderIcons()}</StyledView>
 }
 
 export default ChevronIcon

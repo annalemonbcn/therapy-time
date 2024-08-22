@@ -7,7 +7,7 @@ const useAnimated = () => {
   const fadeIn = () => {
     Animated.timing(cancelButtonOpacity, {
       toValue: 1,
-      duration: 300,
+      duration: 200,
       useNativeDriver: false,
       easing: Easing.ease
     }).start()
@@ -16,7 +16,7 @@ const useAnimated = () => {
   const fadeOut = () => {
     Animated.timing(cancelButtonOpacity, {
       toValue: 0,
-      duration: 300,
+      duration: 200,
       useNativeDriver: false,
       easing: Easing.ease
     }).start()

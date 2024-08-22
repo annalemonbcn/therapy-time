@@ -5,7 +5,7 @@ import { getStatusBarHeight } from 'src/utils'
 import HomeSearch from './components/search'
 import { theme } from 'theme'
 import StarredPost from './components/starredPost'
-import Categories from './components/categories'
+import CategoriesList from './components/categoriesList'
 import NearDoctor from './components/nearDoctor'
 
 const Home = () => (
@@ -15,9 +15,8 @@ const Home = () => (
         <Location />
         <HomeSearch />
         <StarredPost />
-        <Categories />
+        <CategoriesList />
         <NearDoctor />
-        {/* <TherapistsList /> */}
       </View>
     </TouchableWithoutFeedback>
   </PageWrapper>
@@ -25,7 +24,7 @@ const Home = () => (
 
 const styles = StyleSheet.create({
   pageContainer: {
-    marginTop: getStatusBarHeight(),
+    paddingTop: getStatusBarHeight(),
     gap: theme.space.lg
   }
 })

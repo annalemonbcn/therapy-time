@@ -1,7 +1,6 @@
-import { StyleSheet, View } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
 import PageWrapper from 'src/components/custom/pageWrapper'
 import { getStatusBarHeight } from 'src/utils'
-import TopNavigation from './components/topNavigation'
 import TherapistCard from '../../components/therapistCard'
 import { useDoctorDetails } from './hooks'
 import AboutMe from './components/aboutMe'
@@ -10,14 +9,21 @@ import WorkingTime from './components/workingTime'
 import Reviews from './components/reviews'
 import Button from 'src/components/custom/customButton'
 import FeaturesList from './components/featuresList'
+import { DoctorDetailsProps } from './types'
+import NoData from './components/noData'
+import TopNavigation from 'src/components/topNavigation'
 
-const DoctorDetails = () => {
-  const { therapist } = useDoctorDetails()
+const DoctorDetails = ({ route }: DoctorDetailsProps) => {
+  const { id } = route.params
+
+  const therapist = useDoctorDetails(id)
+
+  if (!therapist) return <NoData />
 
   return (
     <PageWrapper>
-      <View style={styles.pageContainer}>
-        <TopNavigation />
+      <ScrollView contentContainerStyle={styles.pageContainer}>
+        <TopNavigation title='Details' />
         <TherapistCard therapist={therapist} imgSize={70} />
         <View style={styles.specs}>
           <FeaturesList />
@@ -30,15 +36,14 @@ const DoctorDetails = () => {
             Book appointment
           </Button>
         </View>
-      </View>
+      </ScrollView>
     </PageWrapper>
   )
 }
 
 const styles = StyleSheet.create({
   pageContainer: {
-    marginTop: getStatusBarHeight(),
-    position: 'relative'
+    paddingTop: getStatusBarHeight()
   },
   specs: {
     gap: theme.space.md,

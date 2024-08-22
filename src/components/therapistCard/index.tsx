@@ -11,7 +11,7 @@ import CardLocation from './components/location'
 import CardReviews from './components/reviews'
 import { toTitleCase } from 'src/utils'
 
-const TherapistCard = ({ therapist, onPress, showReviews = false, imgSize }: ITherapistCardProps) => (
+const TherapistCard = ({ therapist, onPress, imgSize, showReviews = true }: ITherapistCardProps) => (
   <BasicCard hasShadow onPress={onPress}>
     <CardImage url={therapist.basicInfo.profilePicture} size={imgSize} />
     <View style={styles.infoContainer}>
@@ -22,7 +22,9 @@ const TherapistCard = ({ therapist, onPress, showReviews = false, imgSize }: ITh
           {toTitleCase(therapist.basicInfo.specialty)}
         </Text>
         <CardLocation location={`${therapist.location.city}, ${therapist.location.province}`} />
-        <CardReviews average={therapist.reviews.average} totalRatings={therapist.reviews.totalRatings} />
+        {showReviews && (
+          <CardReviews average={therapist.reviews.average} totalRatings={therapist.reviews.totalRatings} />
+        )}
       </View>
     </View>
   </BasicCard>

@@ -6,11 +6,14 @@ const BasicCard = ({ onPress, hasShadow, children }: IBasicCardProps) => {
   const baseStyles = [styles.card, styles.borders]
   const finalStyles = hasShadow ? [...baseStyles, theme.borders.shadow.basicShadow] : baseStyles
 
-  return (
-    <TouchableOpacity onPress={onPress}>
-      <View style={finalStyles}>{children}</View>
-    </TouchableOpacity>
-  )
+  if (onPress)
+    return (
+      <TouchableOpacity onPress={onPress}>
+        <View style={finalStyles}>{children}</View>
+      </TouchableOpacity>
+    )
+
+  return <View style={finalStyles}>{children}</View>
 }
 
 const styles = StyleSheet.create({
