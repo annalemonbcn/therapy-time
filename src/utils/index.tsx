@@ -1,8 +1,11 @@
 import Constants from 'expo-constants'
 import { mockTherapists } from 'src/data/mock.data'
 import { SessionType } from 'src/data/types'
+import { theme } from 'theme'
 
 const getStatusBarHeight = () => Constants.statusBarHeight
+
+const STATUS_BAR_HEIGHT = getStatusBarHeight() + theme.space.sm2
 
 const getFilteredTherapists = (sessionType: SessionType) =>
   mockTherapists.filter((therapist) => therapist.sessionInfo.type.includes(sessionType))
@@ -14,4 +17,4 @@ const toTitleCase = (str: string) => {
     .join(' ')
 }
 
-export { getStatusBarHeight, getFilteredTherapists, toTitleCase }
+export { getStatusBarHeight, STATUS_BAR_HEIGHT, getFilteredTherapists, toTitleCase }
