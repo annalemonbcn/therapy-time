@@ -6,13 +6,14 @@ import DoctorsDisplay from 'src/screens/doctorsDisplay'
 import { TagsEnum } from 'src/data/types'
 import { TouchableOpacity } from 'react-native'
 import ArrowIcon from 'src/components/icons/arrowIcon'
+import { theme } from 'theme'
 
 const Stack = createNativeStackNavigator<HomeRootStackParamList>()
 
 const HomeNavigator = () => (
   <Stack.Navigator
     initialRouteName="Home"
-    screenOptions={({ navigation, route }) => ({
+    screenOptions={({ navigation }) => ({
       headerLeft: ({ canGoBack }) => {
         if (!canGoBack) return null
         return (
@@ -21,7 +22,9 @@ const HomeNavigator = () => (
           </TouchableOpacity>
         )
       },
-      headerShadowVisible: false
+      headerShadowVisible: false,
+      backgroundColor: 'green',
+      headerStyle: { backgroundColor: theme.colors.b50 }
     })}
   >
     <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />

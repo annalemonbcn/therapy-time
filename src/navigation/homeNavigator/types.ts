@@ -3,7 +3,7 @@ import { TagsEnum } from 'src/data/types'
 
 type HomeRootStackParamList = {
   Home: undefined
-  'Doctors Display': { category: TagsEnum }
+  'Doctors Display': { category: TagsEnum; name?: string }
   'Doctor Details': { id: string }
 }
 type HomeProps = NativeStackScreenProps<HomeRootStackParamList, 'Home'>

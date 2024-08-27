@@ -7,6 +7,6 @@ const getFilteredTherapistsByCategory = (category: TagsEnum) => {
 }
 
 const getFilteredTherapistsByName = (query: string) =>
-  mockTherapists.filter((therapist) => therapist.basicInfo.name.toLowerCase().includes(query))
+  mockTherapists.filter((therapist) => therapist.basicInfo.name.toLowerCase().includes(query.toLowerCase()))
 
 export { getFilteredTherapistsByCategory, getFilteredTherapistsByName }

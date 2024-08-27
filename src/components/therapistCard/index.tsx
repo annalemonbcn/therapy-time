@@ -32,12 +32,11 @@ const TherapistCard = ({ therapist, onPress, imgSize, showReviews = true }: IThe
 
 const styles = StyleSheet.create({
   infoContainer: {
-    width: '100%',
+    flex: 1,
     gap: theme.space.xs
   },
   bottomTextsContainer: {
-    gap: theme.space.sm2,
-    backgroundColor: 'red'
+    gap: theme.space.sm2
   }
 })
 

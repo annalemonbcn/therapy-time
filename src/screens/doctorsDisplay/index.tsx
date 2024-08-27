@@ -1,33 +1,46 @@
-import { ScrollView, StyleSheet, View } from 'react-native'
+import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 import PageWrapper from 'src/components/custom/pageWrapper'
 import { theme } from 'theme'
 import { DoctorsDisplayProps } from './types'
 import { useMemo, useState } from 'react'
-import { getFilteredTherapistsByCategory } from './utils'
+import { getFilteredTherapistsByCategory, getFilteredTherapistsByName } from './utils'
 import TherapistsList from './components/therapistsList'
 import { TagsEnum } from 'src/data/types'
 import CategoriesList from 'src/components/categoriesList'
 import HorizontalContainer from 'src/components/custom/horizontalContainer'
 import Text from 'src/components/custom/customText'
+import { useNavigation } from '@react-navigation/native'
 
 const DoctorsDisplay = ({ route }: DoctorsDisplayProps) => {
   const { params } = route
 
   const [category, setCategory] = useState<TagsEnum>(params.category)
+  const [name, setName] = useState(params.name)
 
-  const filteredList = useMemo(() => getFilteredTherapistsByCategory(category), [category])
+  const filteredList = useMemo(() => {
+    if (name) return getFilteredTherapistsByName(name)
+    return getFilteredTherapistsByCategory(category)
+  }, [category, name])
+
+  const handleTagPress = (newCategory: TagsEnum) => {
+    setName(undefined)
+    setCategory(newCategory as TagsEnum)
+  }
 
   return (
     <PageWrapper>
       <ScrollView contentContainerStyle={styles.pageContainer}>
-        <CategoriesList
-          category={category}
-          onTagPress={(newCategory) => setCategory(newCategory as TagsEnum)}
-          allPrimary={false}
-        />
+        <CategoriesList category={category} onTagPress={handleTagPress} allPrimary={false} />
         <View style={styles.results}>
           <HorizontalContainer horizontalCenter="space-between">
             <Text fontWeight="bold">{filteredList.length} founds</Text>
+            {name && (
+              <TouchableOpacity onPress={() => setName(undefined)}>
+                <Text size="s2" color="b500">
+                  Reset
+                </Text>
+              </TouchableOpacity>
+            )}
           </HorizontalContainer>
           <View>
             <TherapistsList therapists={filteredList} />
