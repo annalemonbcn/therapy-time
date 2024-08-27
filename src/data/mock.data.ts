@@ -200,7 +200,7 @@ const mockTherapists: Therapist[] = [
       name: 'Pedro Sánchez',
       description:
         'Pedro is an experienced therapist who focuses on anxiety and depression. He uses a mix of cognitive-behavioral and mindfulness techniques to help clients improve their mental health.',
-      profilePicture: generateProfilePicture('Pedro Fernández'),
+      profilePicture: generateProfilePicture('Pedro Sánchez'),
       languages: [
         { id: 'es', name: 'spanish' },
         { id: 'en', name: 'english' }
