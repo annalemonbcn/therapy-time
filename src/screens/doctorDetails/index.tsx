@@ -11,7 +11,6 @@ import Button from 'src/components/custom/customButton'
 import FeaturesList from './components/featuresList'
 import { DoctorDetailsProps } from './types'
 import NoData from './components/noData'
-import TopNavigation from 'src/components/topNavigation'
 
 const DoctorDetails = ({ route }: DoctorDetailsProps) => {
   const { id } = route.params
@@ -23,7 +22,6 @@ const DoctorDetails = ({ route }: DoctorDetailsProps) => {
   return (
     <PageWrapper>
       <ScrollView contentContainerStyle={styles.pageContainer}>
-        <TopNavigation title='Details' />
         <TherapistCard therapist={therapist} imgSize={70} />
         <View style={styles.specs}>
           <FeaturesList />
@@ -43,7 +41,7 @@ const DoctorDetails = ({ route }: DoctorDetailsProps) => {
 
 const styles = StyleSheet.create({
   pageContainer: {
-    paddingTop: getStatusBarHeight()
+    paddingTop: theme.space.sm2
   },
   specs: {
     gap: theme.space.md,

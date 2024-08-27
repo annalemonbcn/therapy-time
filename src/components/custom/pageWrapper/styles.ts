@@ -9,7 +9,7 @@ const StyledPageWrapper = styled(View)<IPageWrapperProps>`
 
   padding-left: ${theme.space.lg}px;
   padding-right: ${theme.space.lg}px;
-  background-color: ${theme.colors.b0};
+  background-color: ${theme.colors.b50};
 `
 
 export { StyledPageWrapper }

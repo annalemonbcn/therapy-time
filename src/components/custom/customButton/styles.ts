@@ -5,7 +5,15 @@ import { ButtonProps, ICustomButtonProps } from './types'
 import Text from '../customText'
 
 const StyledTouchable = styled(TouchableOpacity)<ICustomButtonProps>`
+  min-width: 100px;
   padding: ${theme.space.md}px;
+
+  ${({ isTag }) =>
+    isTag &&
+    `
+      min-width: 80px;
+      padding: ${theme.space.sm}px;
+  `}
 
   justify-content: center;
   align-items: center;
@@ -34,6 +42,8 @@ const StyledTouchable = styled(TouchableOpacity)<ICustomButtonProps>`
 
 const StyledText = styled(Text)<ButtonProps>`
   font-family: ${theme.typography.fontWeight['semi-bold']};
+
+  ${({ isTag }) => isTag && `font-size: ${theme.typography.fontSize.s2}px`};
 
   ${({ primary }) => primary && `color: ${theme.colors.b0}`}
   ${({ secondary }) => secondary && `color: ${theme.colors.main}`}

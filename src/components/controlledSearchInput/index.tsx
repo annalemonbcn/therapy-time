@@ -8,7 +8,7 @@ import Button from '../custom/customButton'
 import { Animated } from 'react-native'
 import { useAnimated } from './hooks'
 
-const ControlledSearchInput = ({ fieldName, placeholderText, type }: ISearchInputProps) => {
+const ControlledSearchInput = ({ fieldName, placeholderText, type, triggerSend }: ISearchInputProps) => {
   const [isFocused, setIsFocused] = useState(false)
 
   const { cancelButtonOpacity, fadeIn, fadeOut } = useAnimated()
@@ -25,6 +25,7 @@ const ControlledSearchInput = ({ fieldName, placeholderText, type }: ISearchInpu
   }
 
   const handleBlur = () => {
+    reset()
     setIsFocused(false)
     fadeOut()
   }
@@ -44,6 +45,8 @@ const ControlledSearchInput = ({ fieldName, placeholderText, type }: ISearchInpu
               onFocus={handleFocus}
               onBlur={handleBlur}
               isTouched={isDirty}
+              autoCapitalize="none"
+              onSubmitEditing={() => triggerSend()}
             />
           </StyledInputWrapper>
           {isFocused && (

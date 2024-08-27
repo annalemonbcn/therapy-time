@@ -46,6 +46,7 @@ const ControlledTextInput = ({
               value={value}
               secureTextEntry={isSecured}
               isTouched={isDirty}
+              onSubmitEditing={handleSendPress}
             />
           </StyledInputWrapper>
           {errors[fieldName] && <ErrorText errorMessage={errors[fieldName].message as string} />}

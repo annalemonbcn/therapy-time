@@ -17,7 +17,7 @@ const TherapistCard = ({ therapist, onPress, imgSize, showReviews = true }: IThe
     <View style={styles.infoContainer}>
       <CardName name={therapist.basicInfo.name} />
       <Separator />
-      <View style={{ gap: theme.space.sm2 }}>
+      <View style={styles.bottomTextsContainer}>
         <Text fontWeight="semi-bold" size="s2" color="b600">
           {toTitleCase(therapist.basicInfo.specialty)}
         </Text>
@@ -32,8 +32,11 @@ const TherapistCard = ({ therapist, onPress, imgSize, showReviews = true }: IThe
 
 const styles = StyleSheet.create({
   infoContainer: {
-    width: '100%',
-    gap: theme.space.sm
+    flex: 1,
+    gap: theme.space.xs
+  },
+  bottomTextsContainer: {
+    gap: theme.space.sm2
   }
 })
 

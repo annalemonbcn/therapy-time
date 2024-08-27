@@ -1,11 +1,11 @@
 import Location from './components/location'
 import { Keyboard, StyleSheet, TouchableWithoutFeedback, View } from 'react-native'
 import PageWrapper from 'src/components/custom/pageWrapper'
-import { getStatusBarHeight } from 'src/utils'
+import { STATUS_BAR_HEIGHT } from 'src/utils'
 import HomeSearch from './components/search'
 import { theme } from 'theme'
 import StarredPost from './components/starredPost'
-import CategoriesList from './components/categoriesList'
+import CategoriesSection from './components/categoriesSection'
 import NearDoctor from './components/nearDoctor'
 
 const Home = () => (
@@ -15,7 +15,7 @@ const Home = () => (
         <Location />
         <HomeSearch />
         <StarredPost />
-        <CategoriesList />
+        <CategoriesSection />
         <NearDoctor />
       </View>
     </TouchableWithoutFeedback>
@@ -24,7 +24,7 @@ const Home = () => (
 
 const styles = StyleSheet.create({
   pageContainer: {
-    paddingTop: getStatusBarHeight(),
+    paddingTop: STATUS_BAR_HEIGHT,
     gap: theme.space.lg
   }
 })

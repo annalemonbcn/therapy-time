@@ -110,14 +110,14 @@ type WorkingSchedule = {
 
 enum TagsEnum {
   All = 'All',
-  Stress = 'Stress',
+  Anxiety = 'Anxiety',
   Bullying = 'Bullying',
   Couples = 'Couples',
-  Family = 'Family',
-  Anxiety = 'Anxiety',
   Depression = 'Depression',
+  EatingDisorders = 'Eating Disorders',
+  Family = 'Family',
   Grief = 'Grief',
-  EatingDisorders = 'Eating Disorders'
+  Stress = 'Stress'
 }
 
 const tagsArray: TagsEnum[] = Object.values(TagsEnum)
