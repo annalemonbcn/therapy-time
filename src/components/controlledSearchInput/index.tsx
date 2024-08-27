@@ -25,6 +25,7 @@ const ControlledSearchInput = ({ fieldName, placeholderText, type, triggerSend }
   }
 
   const handleBlur = () => {
+    reset()
     setIsFocused(false)
     fadeOut()
   }

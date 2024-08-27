@@ -4,9 +4,12 @@ import { ITherapistsListProps } from './types'
 import TherapistCard from 'src/components/therapistCard'
 import { Therapist } from 'src/data/types'
 import { theme } from 'theme'
+import { useNavigation } from '@react-navigation/native'
+import { NavigationProp } from 'src/navigation/homeNavigator/types'
 
 const TherapistsList = ({ therapists }: ITherapistsListProps) => {
-  const handleItemPress = (item: Therapist) => console.error(`Item ${item.basicInfo.id} clicked`)
+  const navigation = useNavigation<NavigationProp>()
+  const handleItemPress = (item: Therapist) => navigation.navigate('Doctor Details', { id: item.basicInfo.id })
 
   return (
     <FlatList
