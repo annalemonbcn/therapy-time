@@ -9,17 +9,15 @@ const TherapistsList = ({ therapists }: ITherapistsListProps) => {
   const handleItemPress = (item: Therapist) => console.error(`Item ${item.basicInfo.id} clicked`)
 
   return (
-    <View>
-      <FlatList
-        data={therapists}
-        keyExtractor={(therapist) => therapist.basicInfo.id}
-        renderItem={({ item }) => (
-          <TherapistCard therapist={item} onPress={() => handleItemPress(item)} showReviews={true} />
-        )}
-        style={styles.list}
-        scrollEnabled={false}
-      />
-    </View>
+    <FlatList
+      data={therapists}
+      keyExtractor={(therapist) => therapist.basicInfo.id}
+      renderItem={({ item }) => (
+        <TherapistCard therapist={item} onPress={() => handleItemPress(item)} showReviews={true} />
+      )}
+      style={styles.list}
+      scrollEnabled={false}
+    />
   )
 }
 

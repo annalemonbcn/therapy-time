@@ -1,14 +1,16 @@
 import { ScrollView, StyleSheet, View } from 'react-native'
 import PageWrapper from 'src/components/custom/pageWrapper'
 import { theme } from 'theme'
-import { DoctorsListProps } from './types'
+import { DoctorsDisplayProps } from './types'
 import { useMemo, useState } from 'react'
 import { getFilteredTherapistsByCategory } from './utils'
 import TherapistsList from './components/therapistsList'
 import { TagsEnum } from 'src/data/types'
 import CategoriesList from 'src/components/categoriesList'
+import HorizontalContainer from 'src/components/custom/horizontalContainer'
+import Text from 'src/components/custom/customText'
 
-const DoctorsList = ({ route }: DoctorsListProps) => {
+const DoctorsDisplay = ({ route }: DoctorsDisplayProps) => {
   const { params } = route
 
   const [category, setCategory] = useState<TagsEnum>(params.category)
@@ -23,7 +25,14 @@ const DoctorsList = ({ route }: DoctorsListProps) => {
           onTagPress={(newCategory) => setCategory(newCategory as TagsEnum)}
           allPrimary={false}
         />
-        <TherapistsList therapists={filteredList} />
+        <View style={styles.results}>
+          <HorizontalContainer horizontalCenter="space-between">
+            <Text fontWeight="bold">{filteredList.length} founds</Text>
+          </HorizontalContainer>
+          <View>
+            <TherapistsList therapists={filteredList} />
+          </View>
+        </View>
       </ScrollView>
     </PageWrapper>
   )
@@ -32,7 +41,10 @@ const DoctorsList = ({ route }: DoctorsListProps) => {
 const styles = StyleSheet.create({
   pageContainer: {
     paddingTop: theme.space.sm
+  },
+  results: {
+    marginTop: theme.space.xl
   }
 })
 
-export default DoctorsList
+export default DoctorsDisplay

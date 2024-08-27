@@ -12,10 +12,10 @@ const CategoriesSection = () => {
   const navigation = useNavigation<NavigationProp>()
 
   const handleTagPress = (item: TagsEnum) => {
-    navigation.navigate('Doctors List', { category: item })
+    navigation.navigate('Doctors Display', { category: item })
   }
 
-  const handleSeeAllPress = () => navigation.navigate('Doctors List', { category: TagsEnum.All })
+  const handleSeeAllPress = () => navigation.navigate('Doctors Display', { category: TagsEnum.All })
 
   return (
     <>
