@@ -1,6 +1,5 @@
 import { ScrollView, StyleSheet, View } from 'react-native'
 import PageWrapper from 'src/components/custom/pageWrapper'
-import { getStatusBarHeight } from 'src/utils'
 import TherapistCard from '../../components/therapistCard'
 import { useDoctorDetails } from './hooks'
 import AboutMe from './components/aboutMe'
@@ -11,6 +10,8 @@ import Button from 'src/components/custom/customButton'
 import FeaturesList from './components/featuresList'
 import { DoctorDetailsProps } from './types'
 import NoData from './components/noData'
+import { useNavigation } from '@react-navigation/native'
+import { NavigationProp } from 'src/navigation/homeNavigator/types'
 
 const DoctorDetails = ({ route }: DoctorDetailsProps) => {
   const { id } = route.params
@@ -18,6 +19,8 @@ const DoctorDetails = ({ route }: DoctorDetailsProps) => {
   const therapist = useDoctorDetails(id)
 
   if (!therapist) return <NoData />
+
+  const navigation = useNavigation<NavigationProp>()
 
   return (
     <PageWrapper>
@@ -30,7 +33,7 @@ const DoctorDetails = ({ route }: DoctorDetailsProps) => {
           <Reviews reviews={therapist.reviews.reviews} />
         </View>
         <View style={styles.buttonContainer}>
-          <Button primary onPress={() => console.error('book appointment button pressed')}>
+          <Button primary onPress={() => navigation.navigate('Appointment')}>
             Book appointment
           </Button>
         </View>

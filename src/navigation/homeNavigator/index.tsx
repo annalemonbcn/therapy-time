@@ -7,6 +7,7 @@ import { TagsEnum } from 'src/data/types'
 import { TouchableOpacity } from 'react-native'
 import ArrowIcon from 'src/components/icons/arrowIcon'
 import { theme } from 'theme'
+import Appointment from 'src/screens/appointment'
 
 const Stack = createNativeStackNavigator<HomeRootStackParamList>()
 
@@ -38,6 +39,7 @@ const HomeNavigator = () => (
       options={{ title: 'Doctors List' }}
     />
     <Stack.Screen name="Doctor Details" component={DoctorDetails} />
+    <Stack.Screen name="Appointment" component={Appointment} />
   </Stack.Navigator>
 )
 
