@@ -5,6 +5,7 @@ interface ICustomButtonProps extends PropsWithChildren {
   primary?: boolean
   secondary?: boolean
   isTag?: boolean
+  isDisabled?: boolean
 }
 
 type ButtonProps = Omit<ICustomButtonProps, 'onPress'>

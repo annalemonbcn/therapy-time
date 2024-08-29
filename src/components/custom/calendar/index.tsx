@@ -3,9 +3,13 @@ import { Calendar, DateData } from 'react-native-calendars'
 import { TODAY, useGetMarkedDays } from './hooks'
 import { theme } from 'theme'
 import { StyleSheet, View } from 'react-native'
+import { useFormContext } from 'react-hook-form'
+import { BookingFormShape } from 'src/screens/appointment/types'
 
 const CustomCalendar = ({ saturdaysDisabled = false }: ICustomCalendarProps) => {
-  const { markedDates, setDate } = useGetMarkedDays({ saturdaysDisabled })
+  const { markedDates } = useGetMarkedDays({ saturdaysDisabled })
+
+  const { setValue } = useFormContext<BookingFormShape>()
 
   const headerProps = {
     arrowColor: theme.colors.main,
@@ -18,7 +22,7 @@ const CustomCalendar = ({ saturdaysDisabled = false }: ICustomCalendarProps) => 
     <View style={styles.container}>
       <Calendar
         onDayPress={(day: DateData) => {
-          setDate(day.dateString)
+          setValue('day', day.dateString)
         }}
         markedDates={markedDates}
         firstDay={1}
@@ -37,7 +41,7 @@ const CustomCalendar = ({ saturdaysDisabled = false }: ICustomCalendarProps) => 
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: theme.space.md
+    marginTop: theme.space.sm
   },
   calendar: {
     borderRadius: theme.borders.radius.md,

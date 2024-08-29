@@ -1,11 +1,15 @@
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
+import { useFormContext } from 'react-hook-form'
+import { BookingFormShape } from 'src/screens/appointment/types'
 import { theme } from 'theme'
 
 export const TODAY = new Date().toISOString().split('T')[0]
-const END_DAY = '2030-12-31'
+const currentYear = new Date().getFullYear()
+const END_DAY = `${currentYear}-12-31`
 
 const useGetMarkedDays = ({ saturdaysDisabled }: { saturdaysDisabled: boolean }) => {
-  const [date, setDate] = useState(TODAY)
+  const { getValues, setValue } = useFormContext<BookingFormShape>()
+  const defaultDate = getValues('day')
 
   const isWeekend = (date: Date) => {
     const day = date.getDay()
@@ -34,7 +38,7 @@ const useGetMarkedDays = ({ saturdaysDisabled }: { saturdaysDisabled: boolean })
     const disabledDays = getDisabledDays(TODAY, END_DAY)
 
     return {
-      [date]: {
+      [defaultDate]: {
         selected: true,
         selectedColor: theme.colors.main,
         selectedTextColor: theme.colors.b0,
@@ -42,11 +46,9 @@ const useGetMarkedDays = ({ saturdaysDisabled }: { saturdaysDisabled: boolean })
       },
       ...disabledDays
     }
-  }, [date])
+  }, [defaultDate])
 
   return {
-    date,
-    setDate,
     markedDates
   }
 }
