@@ -38,6 +38,13 @@ const StyledTouchable = styled(TouchableOpacity)<ICustomButtonProps>`
     `
     )
   }}
+
+  ${({ disabled }) =>
+    disabled &&
+    `
+      opacity: 0.4;
+      pointer-events: none;
+    `}
 `
 
 const StyledText = styled(Text)<ButtonProps>`

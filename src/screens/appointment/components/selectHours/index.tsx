@@ -7,10 +7,7 @@ import { useFormContext } from 'react-hook-form'
 import { BookingFormShape } from '../../types'
 
 const SelectHours = () => {
-  const { reset, watch } = useFormContext<BookingFormShape>()
-
-  const watchHour = watch('day')
-  console.log('watchHour', watchHour)
+  const { reset } = useFormContext<BookingFormShape>()
 
   return (
     <View style={styles.container}>

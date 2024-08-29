@@ -8,8 +8,8 @@ const currentYear = new Date().getFullYear()
 const END_DAY = `${currentYear}-12-31`
 
 const useGetMarkedDays = ({ saturdaysDisabled }: { saturdaysDisabled: boolean }) => {
-  const { getValues, setValue } = useFormContext<BookingFormShape>()
-  const defaultDate = getValues('day')
+  const { watch } = useFormContext<BookingFormShape>()
+  const defaultDate = watch('day')
 
   const isWeekend = (date: Date) => {
     const day = date.getDay()
