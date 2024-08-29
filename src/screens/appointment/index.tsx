@@ -8,8 +8,12 @@ import { BookingFormShape } from './types'
 import Button from 'src/components/custom/customButton'
 import { TODAY } from 'src/components/custom/calendar/hooks'
 import Toast from 'react-native-root-toast'
+import BookingModal from './components/availableHoursList/components/bookingModal'
+import { useState } from 'react'
 
 const Appointment = () => {
+  const [modalVisible, setModalVisible] = useState(false)
+
   const methods = useForm<BookingFormShape>({
     defaultValues: {
       day: TODAY,
@@ -29,25 +33,32 @@ const Appointment = () => {
         textStyle: { fontWeight: '500' },
         opacity: 1
       })
+      return false
     }
+
+    return true
   }
 
   const onSubmit: SubmitHandler<BookingFormShape> = (data) => {
-    checkData(data)
+    const isValid = checkData(data)
 
-    console.log('data', data)
+    if (!isValid) return
 
-    // TODO: if ok, register date at:
-    // - user
-    // - therapist
+    setModalVisible(true)
+
+    // TODO: if ok:
+    // 1. open modal
+    // 2. register date at:
+    //   - user
+    //   - therapist
   }
 
   const isDisabled = false
 
   return (
     <PageWrapper>
-      <View style={styles.pageContainer}>
-        <FormProvider {...methods}>
+      <FormProvider {...methods}>
+        <View style={styles.pageContainer}>
           <CalendarWrapper />
           <SelectHours />
           <View style={styles.buttonContainer}>
@@ -55,8 +66,9 @@ const Appointment = () => {
               Confirm
             </Button>
           </View>
-        </FormProvider>
-      </View>
+        </View>
+        {modalVisible && <BookingModal modalVisible={modalVisible} setModalVisible={setModalVisible} />}
+      </FormProvider>
     </PageWrapper>
   )
 }

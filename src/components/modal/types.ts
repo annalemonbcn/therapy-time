@@ -1,9 +1,13 @@
 import { PropsWithChildren } from 'react'
-import { Therapist } from 'src/data/types'
 
 interface IBasicModalProps extends PropsWithChildren {
-  isOpen: boolean
-  closeModal: any // -> TODO: ?
+  modalVisible: boolean
+  setModalVisible: React.Dispatch<React.SetStateAction<boolean>>
+  showCloseButton?: boolean
 }
 
-export { IBasicModalProps }
+interface IHeaderProps {
+  setModalVisible: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export { IBasicModalProps, IHeaderProps }
