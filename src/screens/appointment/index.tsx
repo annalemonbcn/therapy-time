@@ -1,14 +1,16 @@
 import { View, StyleSheet } from 'react-native'
+import CustomCalendar from 'src/components/custom/calendar'
 import Text from 'src/components/custom/customText'
 import PageWrapper from 'src/components/custom/pageWrapper'
 import { theme } from 'theme'
-import CustomCalendar from './components/calendar'
 
 const Appointment = () => {
   return (
     <PageWrapper>
       <View style={styles.pageContainer}>
-        <Text>Appointment</Text>
+        <Text size="s4" fontWeight="semi-bold">
+          Select Date
+        </Text>
         <CustomCalendar saturdaysDisabled={false} />
       </View>
     </PageWrapper>
@@ -17,7 +19,7 @@ const Appointment = () => {
 
 const styles = StyleSheet.create({
   pageContainer: {
-    paddingTop: theme.space.sm2
+    paddingTop: theme.space.md
   }
 })
 
