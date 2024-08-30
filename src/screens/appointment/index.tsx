@@ -4,14 +4,17 @@ import { theme } from 'theme'
 import CalendarWrapper from './components/calendarWrapper'
 import SelectHours from './components/selectHours'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
-import { BookingFormShape } from './types'
+import { AppointmentProps, BookingFormShape } from './types'
 import Button from 'src/components/custom/customButton'
 import { TODAY } from 'src/components/custom/calendar/hooks'
 import Toast from 'react-native-root-toast'
 import BookingModal from './components/availableHoursList/components/bookingModal'
 import { useState } from 'react'
 
-const Appointment = () => {
+const Appointment = ({ route }: AppointmentProps) => {
+  // const params = route.params
+  // console.log('params', params)
+
   const [modalVisible, setModalVisible] = useState(false)
 
   const methods = useForm<BookingFormShape>({

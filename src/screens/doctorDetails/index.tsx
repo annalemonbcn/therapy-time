@@ -33,7 +33,7 @@ const DoctorDetails = ({ route }: DoctorDetailsProps) => {
           <Reviews reviews={therapist.reviews.reviews} />
         </View>
         <View style={styles.buttonContainer}>
-          <Button primary onPress={() => navigation.navigate('Appointment')}>
+          <Button primary onPress={() => navigation.navigate('Appointment', { doctorName: therapist.basicInfo.name })}>
             Book appointment
           </Button>
         </View>

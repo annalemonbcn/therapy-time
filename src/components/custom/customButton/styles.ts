@@ -49,6 +49,7 @@ const StyledTouchable = styled(TouchableOpacity)<ICustomButtonProps>`
 
 const StyledText = styled(Text)<ButtonProps>`
   font-family: ${theme.typography.fontWeight['semi-bold']};
+  font-size: ${({ textFontSize }) => (textFontSize ? textFontSize : theme.typography.fontSize.s3)};
 
   ${({ isTag }) => isTag && `font-size: ${theme.typography.fontSize.s2}px`};
 
