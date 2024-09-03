@@ -4,11 +4,20 @@ import { theme } from 'theme'
 import { useFormContext } from 'react-hook-form'
 import { BookingFormShape, RouteProp } from '../../types'
 import { useAvailableHoursList } from './hooks'
+import Text from 'src/components/custom/customText'
 
 const AvailableHoursList = () => {
   const { watch } = useFormContext<BookingFormShape>()
 
   const hoursArr = useAvailableHoursList()
+
+  if (hoursArr.length === 0)
+    return (
+      <View style={styles.textContainer}>
+        <Text>There are no appointments available for today.</Text>
+        <Text>Please, select another date.</Text>
+      </View>
+    )
 
   return (
     <View style={styles.container}>
@@ -26,6 +35,9 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     rowGap: theme.space.md,
     justifyContent: 'space-between'
+  },
+  textContainer: {
+    marginTop: theme.space.md
   }
 })
 
