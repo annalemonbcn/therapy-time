@@ -4,8 +4,6 @@ import { Days } from 'src/data/types'
 import { BookingFormShape } from 'src/screens/appointment/types'
 import { theme } from 'theme'
 
-export const TODAY = new Date().toISOString().split('T')[0]
-
 // const useGetMarkedDays = ({ saturdaysDisabled }: { saturdaysDisabled: boolean }) => {
 //   const { watch } = useFormContext<BookingFormShape>()
 //   const defaultDate = watch('day')

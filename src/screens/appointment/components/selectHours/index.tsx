@@ -5,10 +5,12 @@ import AvailableHoursList from '../availableHoursList'
 import HorizontalContainer from 'src/components/custom/horizontalContainer'
 import { useFormContext } from 'react-hook-form'
 import { BookingFormShape, RouteProp } from '../../types'
-import { TODAY } from 'src/components/custom/calendar/hooks'
+import { useDefaultDay } from '../../hooks'
 
 const SelectHours = () => {
   const { reset } = useFormContext<BookingFormShape>()
+
+  const defaultDay = useDefaultDay()
 
   return (
     <View style={styles.container}>
@@ -16,7 +18,7 @@ const SelectHours = () => {
         <Text size="s4" fontWeight="semi-bold">
           Select Hour
         </Text>
-        <TouchableOpacity onPress={() => reset({ day: TODAY, hour: '' })}>
+        <TouchableOpacity onPress={() => reset({ day: defaultDay, hour: '' })}>
           <Text size="s2" color="b500">
             Cancel
           </Text>

@@ -1,10 +1,11 @@
 import { ICustomCalendarProps } from './types'
 import { Calendar, DateData } from 'react-native-calendars'
-import { TODAY, useAvailableDays } from './hooks'
+import { useAvailableDays } from './hooks'
 import { theme } from 'theme'
 import { StyleSheet, View } from 'react-native'
 import { useFormContext } from 'react-hook-form'
 import { BookingFormShape } from 'src/screens/appointment/types'
+import { TODAY_DATE } from 'src/utils/time'
 
 const CustomCalendar = ({ workingDays }: ICustomCalendarProps) => {
   const availableDays = useAvailableDays({ workingDays })
@@ -27,7 +28,7 @@ const CustomCalendar = ({ workingDays }: ICustomCalendarProps) => {
         disabledByDefault={true}
         markedDates={availableDays}
         firstDay={1}
-        minDate={TODAY}
+        minDate={TODAY_DATE}
         disableAllTouchEventsForDisabledDays={true}
         hideDayNames={true}
         style={[theme.borders.shadow.basicShadow, styles.calendar]}

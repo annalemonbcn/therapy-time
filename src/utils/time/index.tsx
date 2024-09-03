@@ -1,4 +1,7 @@
-const generateHours = ({
+import { Days } from 'src/data/types'
+
+export const TODAY_DATE = new Date().toISOString().split('T')[0]
+export const generateHours = ({
   startHour,
   finishHour,
   selectedDay,
@@ -64,4 +67,40 @@ const generateHours = ({
   return timeRange
 }
 
-export { generateHours }
+const getTargetDate = (dayOfWeek: string | undefined): string => {
+  if (!dayOfWeek) return ''
+
+  const dayMap: { [key: string]: number } = {
+    Sunday: 0,
+    Monday: 1,
+    Tuesday: 2,
+    Wednesday: 3,
+    Thursday: 4,
+    Friday: 5,
+    Saturday: 6
+  }
+
+  const currentDate = new Date()
+
+  const currentDay = currentDate.getDay()
+
+  const targetOffset = dayMap[dayOfWeek] - currentDay
+  const targetDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + targetOffset)
+
+  const year = targetDate.getFullYear()
+  const month = String(targetDate.getMonth() + 1).padStart(2, '0')
+  const day = String(targetDate.getDate()).padStart(2, '0')
+
+  return `${year}-${month}-${day}`
+}
+
+export const setDefaultDay = (workingDays: Days[]) => {
+  const today = new Date()
+  const todayName = today.toLocaleDateString('en-US', { weekday: 'long' }) as Days
+
+  if (workingDays.includes(todayName)) {
+    return TODAY_DATE
+  }
+
+  return getTargetDate(workingDays.at(0))
+}
