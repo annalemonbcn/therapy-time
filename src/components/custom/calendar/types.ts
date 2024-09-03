@@ -1,5 +1,7 @@
+import { Days } from 'src/data/types'
+
 interface ICustomCalendarProps {
-  saturdaysDisabled?: boolean
+  workingDays: Days[]
 }
 
 export { ICustomCalendarProps }
