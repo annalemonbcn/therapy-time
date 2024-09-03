@@ -23,7 +23,7 @@ const CheckAppointment = ({ setModalVisible, handleConfirm }: ICheckAppointmentP
             {getValues('day')} {getValues('hour')}
           </Text>
         </View>
-        <HorizontalContainer horizontalCenter="center" paddingVertical="lg">
+        <HorizontalContainer horizontalCenter="center">
           <Button onPress={() => setModalVisible(false)}>Back</Button>
           <Button onPress={() => handleConfirm()} primary>
             Confirm
@@ -46,7 +46,7 @@ const ConfirmAppointment = ({ setModalVisible }: IConfirmAppointmentProps) => {
             Congratulations!
           </Text>
           <Text color="b500" size="s2">
-            Your appointment with {params?.doctorName} is confirmed for June 30, 2023, at 10:00 AM.
+            Your appointment with {params?.therapistId} is confirmed for June 30, 2023, at 10:00 AM.
           </Text>
         </View>
         <View>
