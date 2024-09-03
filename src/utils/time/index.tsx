@@ -1,5 +1,3 @@
-import { TODAY } from 'src/components/custom/calendar/hooks'
-
 const generateHours = ({
   startHour,
   finishHour,
@@ -17,15 +15,11 @@ const generateHours = ({
   let timeRange: string[] = []
 
   if (currentDate.toDateString() === selectedDate.toDateString()) {
-    console.log('Selected day matches today')
-
-    const actualTime =
-      currentDate.getHours().toString().padStart(2, '0') + ':' + currentDate.getMinutes().toString().padStart(2, '0')
     const end = new Date(currentDate)
     end.setHours(parseInt(finishHour.split(':')[0]), parseInt(finishHour.split(':')[1]), 59, 999)
 
     let current = new Date(currentDate.getTime())
-    current.setMinutes(Math.ceil(current.getMinutes() / 60) * 60) // Round up to nearest hour
+    current.setMinutes(Math.ceil(current.getMinutes() / 30) * 30)
 
     while (current <= end) {
       const formattedTime = `${current.getHours().toString().padStart(2, '0')}:${current

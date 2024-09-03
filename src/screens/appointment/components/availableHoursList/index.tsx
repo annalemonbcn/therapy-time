@@ -22,7 +22,9 @@ const AvailableHoursList = () => {
   return (
     <View style={styles.container}>
       {hoursArr.map((hour, idx) => (
-        <HourTag key={idx} hour={hour} isSelected={hour === watch('hour')} />
+        <View key={idx} style={{ width: '25%' }}>
+          <HourTag hour={hour} isSelected={hour === watch('hour')} />
+        </View>
       ))}
     </View>
   )
@@ -33,7 +35,8 @@ const styles = StyleSheet.create({
     marginTop: theme.space.md,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: theme.space.md,
+    rowGap: theme.space.md,
+    columnGap: theme.space.sm,
     justifyContent: 'flex-start'
   },
   textContainer: {

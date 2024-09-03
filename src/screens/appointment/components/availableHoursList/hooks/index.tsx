@@ -15,7 +15,7 @@ const useAvailableHoursList = () => {
     }
   } = therapist
 
-  //TODO: get the excluded hours and pass it to generateHours
+  //TODO: get the excluded hours and pass it to generateHours -> excluded hours will be booked hours
   const excludedHours: string[] = []
 
   const { getValues } = useFormContext<BookingFormShape>()

@@ -1,12 +1,12 @@
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, ScrollView } from 'react-native'
 import PageWrapper from 'src/components/custom/pageWrapper'
 import { theme } from 'theme'
 import CalendarWrapper from './components/calendarWrapper'
 import SelectHours from './components/selectHours'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
-import { AppointmentProps, BookingFormShape } from './types'
+import { BookingFormShape } from './types'
 import Button from 'src/components/custom/customButton'
-import { TODAY, useAvailableDays } from 'src/components/custom/calendar/hooks'
+import { TODAY } from 'src/components/custom/calendar/hooks'
 import Toast from 'react-native-root-toast'
 import BookingModal from './components/availableHoursList/components/bookingModal'
 import { useState } from 'react'
@@ -59,7 +59,7 @@ const Appointment = () => {
   return (
     <PageWrapper>
       <FormProvider {...methods}>
-        <View style={styles.pageContainer}>
+        <ScrollView contentContainerStyle={styles.pageContainer}>
           <CalendarWrapper />
           <SelectHours />
           <View style={styles.buttonContainer}>
@@ -67,7 +67,7 @@ const Appointment = () => {
               Confirm
             </Button>
           </View>
-        </View>
+        </ScrollView>
         {modalVisible && <BookingModal modalVisible={modalVisible} setModalVisible={setModalVisible} />}
       </FormProvider>
     </PageWrapper>
