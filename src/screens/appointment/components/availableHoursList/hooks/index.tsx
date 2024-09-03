@@ -15,9 +15,13 @@ const useAvailableHoursList = () => {
     }
   } = therapist
 
-  const excludedHours = ['14:30', '15:30', '16:30']
+  //TODO: get the excluded hours and pass it to generateHours
+  const excludedHours: string[] = []
 
-  return generateHours({ startHour, finishHour, excludedHours })
+  const { getValues } = useFormContext<BookingFormShape>()
+  const selectedDay = getValues('day')
+
+  return generateHours({ startHour, finishHour, selectedDay, excludedHours })
 }
 
 export { useAvailableHoursList }

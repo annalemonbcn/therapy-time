@@ -33,8 +33,8 @@ const styles = StyleSheet.create({
     marginTop: theme.space.md,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    rowGap: theme.space.md,
-    justifyContent: 'space-between'
+    gap: theme.space.md,
+    justifyContent: 'flex-start'
   },
   textContainer: {
     marginTop: theme.space.md
