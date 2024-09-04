@@ -10,6 +10,7 @@ import HorizontalContainer from 'src/components/custom/horizontalContainer'
 import { ICheckAppointmentProps, Stage } from './types'
 import { useRoute } from '@react-navigation/native'
 import { useModalContext } from 'src/context/ModalProvider'
+import { getDoctorNameById } from 'src/utils/doctors'
 
 const CheckAppointment = ({ handleConfirm }: ICheckAppointmentProps) => {
   const { getValues } = useFormContext<BookingFormShape>()
@@ -49,7 +50,7 @@ const ConfirmAppointment = () => {
             Congratulations!
           </Text>
           <Text color="b500" size="s2">
-            Your appointment with {params?.therapistId} is confirmed for June 30, 2023, at 10:00 AM.
+            Your appointment with {getDoctorNameById(params?.therapistId)} is confirmed for June 30, 2023, at 10:00 AM.
           </Text>
         </View>
         <View>

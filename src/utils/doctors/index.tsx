@@ -1,9 +1,10 @@
 import { mockTherapists } from 'src/data/mock.data'
 
-const getDoctorDetails = (id: string) => {
-  const selectedTherapist = mockTherapists.find((therapist) => therapist.basicInfo.id === id)
+const getDoctorDetails = (id: string) => mockTherapists.find((therapist) => therapist.basicInfo.id === id)
 
-  return selectedTherapist
+const getDoctorNameById = (id: string) => {
+  const selectedDoctor = getDoctorDetails(id)
+  return selectedDoctor?.basicInfo.name
 }
 
-export { getDoctorDetails }
+export { getDoctorDetails, getDoctorNameById }
