@@ -8,6 +8,12 @@ const StyledView = styled(View)<IChevronIconProps>`
     `
       transform: rotate(90deg)
     `}
+
+  ${({ direction }) =>
+    direction === 'up' &&
+    `
+      transform: rotate(180deg)
+    `}
 `
 
 export { StyledView }

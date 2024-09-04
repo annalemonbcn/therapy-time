@@ -8,6 +8,7 @@ import { TouchableOpacity } from 'react-native'
 import ArrowIcon from 'src/components/icons/arrowIcon'
 import { theme } from 'theme'
 import Appointment from 'src/screens/appointment'
+import ChangeLocationScreen from 'src/screens/changeLocationScreen'
 
 const Stack = createNativeStackNavigator<HomeRootStackParamList>()
 
@@ -29,6 +30,7 @@ const HomeNavigator = () => (
     })}
   >
     <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+    <Stack.Screen name="Change Location" component={ChangeLocationScreen} options={{ headerShown: false }} />
     <Stack.Screen
       name="Doctors Display"
       component={DoctorsDisplay}
