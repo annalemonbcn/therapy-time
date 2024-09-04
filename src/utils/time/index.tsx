@@ -1,6 +1,71 @@
 import { Days } from 'src/data/types'
 
 export const TODAY_DATE = new Date().toISOString().split('T')[0]
+
+const setUp = ({ startHour, finishHour }: { startHour: string; finishHour: string }) => {
+  const currentDate = new Date()
+
+  const start = new Date(currentDate)
+  start.setHours(parseInt(startHour.split(':')[0]), parseInt(startHour.split(':')[1]), 0, 0)
+
+  const end = new Date(currentDate)
+  end.setHours(parseInt(finishHour.split(':')[0]), parseInt(finishHour.split(':')[1]), 59, 999)
+
+  return { start, end }
+}
+
+const calculateDuration = ({ start, end }: { start: Date; end: Date }) => {
+  const diffMs = Math.abs(end.getTime() - start.getTime())
+  return Math.floor(diffMs / (1000 * 60 * 60))
+}
+
+const generateTimeSlots = ({
+  current,
+  diffHours,
+  excludedSet
+}: {
+  current: Date
+  diffHours: number
+  excludedSet: Set<string>
+}) => {
+  let timeRange: string[] = []
+
+  for (let i = 0; i <= diffHours; i++) {
+    const formattedTime = `${current.getHours().toString().padStart(2, '0')}:${current
+      .getMinutes()
+      .toString()
+      .padStart(2, '0')}`
+
+    if (!excludedSet.has(formattedTime)) {
+      timeRange.push(formattedTime)
+    }
+
+    current.setMinutes(current.getMinutes() + 60)
+  }
+
+  return timeRange
+}
+
+const generateTimeRange = ({
+  startHour,
+  finishHour,
+  excludedHours = []
+}: {
+  startHour: string
+  finishHour: string
+  excludedHours?: string[]
+}) => {
+  const { start, end } = setUp({ startHour, finishHour })
+
+  const diffHours = calculateDuration({ start, end })
+
+  const excludedSet = new Set(excludedHours?.map((h) => `${h}`))
+
+  let current = new Date(start.getTime())
+
+  return generateTimeSlots({ current, diffHours, excludedSet })
+}
+
 export const generateHours = ({
   startHour,
   finishHour,
@@ -12,59 +77,15 @@ export const generateHours = ({
   selectedDay: string
   excludedHours?: string[]
 }) => {
-  const currentDate = new Date()
-  const selectedDate = new Date(selectedDay)
+  const currentDate = new Date().toDateString()
+  const selectedDate = new Date(selectedDay).toDateString()
 
-  let timeRange: string[] = []
-
-  if (currentDate.toDateString() === selectedDate.toDateString()) {
-    const end = new Date(currentDate)
-    end.setHours(parseInt(finishHour.split(':')[0]), parseInt(finishHour.split(':')[1]), 59, 999)
-
-    let current = new Date(currentDate.getTime())
-    current.setMinutes(Math.ceil(current.getMinutes() / 30) * 30)
-
-    while (current <= end) {
-      const formattedTime = `${current.getHours().toString().padStart(2, '0')}:${current
-        .getMinutes()
-        .toString()
-        .padStart(2, '0')}`
-
-      if (!excludedHours.includes(formattedTime)) {
-        timeRange.push(formattedTime)
-      }
-
-      current.setMinutes(current.getMinutes() + 60)
-    }
-  } else {
-    const start = new Date(currentDate)
-    start.setHours(parseInt(startHour.split(':')[0]), parseInt(startHour.split(':')[1]), 0, 0)
-
-    const end = new Date(currentDate)
-    end.setHours(parseInt(finishHour.split(':')[0]), parseInt(finishHour.split(':')[1]), 59, 999)
-
-    const diffMs = Math.abs(end.getTime() - start.getTime())
-    const diffHours = Math.floor(diffMs / (1000 * 60 * 60))
-
-    const excludedSet = new Set(excludedHours?.map((h) => `${h}`))
-
-    let current = new Date(start.getTime())
-
-    for (let i = 0; i <= diffHours; i++) {
-      const formattedTime = `${current.getHours().toString().padStart(2, '0')}:${current
-        .getMinutes()
-        .toString()
-        .padStart(2, '0')}`
-
-      if (!excludedSet.has(formattedTime)) {
-        timeRange.push(formattedTime)
-      }
-
-      current.setMinutes(current.getMinutes() + 60)
-    }
+  if (currentDate === selectedDate) {
+    console.log('same day')
+    return []
   }
 
-  return timeRange
+  return generateTimeRange({ startHour, finishHour, excludedHours })
 }
 
 const getTargetDate = (dayOfWeek: string | undefined): string => {
