@@ -6,6 +6,7 @@ type HomeRootStackParamList = {
   'Doctors Display': { category: TagsEnum; name?: string }
   'Doctor Details': { id: string }
   Appointment: { therapistId: string }
+  'Change Location': undefined
 }
 type HomeProps = NativeStackScreenProps<HomeRootStackParamList, 'Home'>
 type NavigationProp = HomeProps['navigation']

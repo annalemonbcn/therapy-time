@@ -1,17 +1,12 @@
 import { Image, StyleSheet, TextInput, View } from 'react-native'
 import Button from 'src/components/custom/customButton'
-import CustomInput from 'src/components/custom/customInput'
 import Text from 'src/components/custom/customText'
 import PageWrapper from 'src/components/custom/pageWrapper'
 import { useUserContext } from 'src/context/UserProvider'
 import { theme } from 'theme'
 import LocationForm from './components/locationForm'
 
-export type LocationFormType = {
-  locationValue: string
-}
-
-const LocationScreen = () => {
+const AllowLocationScreen = () => {
   const { setUserLocation } = useUserContext()
 
   // TODO: mock behavior
@@ -26,7 +21,7 @@ const LocationScreen = () => {
             Allow your location
           </Text>
           <Text size="s3" textAlign="center">
-            We will need your location to give you better experience.
+            We will need your location to have a better experience.
           </Text>
         </View>
         <View style={styles.buttonsContainer}>
@@ -67,4 +62,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default LocationScreen
+export default AllowLocationScreen
