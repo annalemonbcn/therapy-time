@@ -1,6 +1,7 @@
 import { Days } from 'src/data/types'
 
 export const TODAY_DATE = new Date().toISOString().split('T')[0]
+export const TODAY_NAME = new Date().toLocaleDateString('en-US', { weekday: 'long' })
 
 const setUp = ({
   startHour,
