@@ -33,7 +33,7 @@ const mockTherapists: Therapist[] = [
       workingSchedule: {
         workingDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
         startHour: '09:30',
-        finishHour: '17:45'
+        finishHour: '17:30'
       }
     },
     reviews: {
@@ -80,7 +80,7 @@ const mockTherapists: Therapist[] = [
       workingSchedule: {
         workingDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'],
         startHour: '10:00',
-        finishHour: '18:30'
+        finishHour: '18:00'
       }
     },
     reviews: {

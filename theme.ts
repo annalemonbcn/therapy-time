@@ -19,6 +19,7 @@ const colors = {
   green: '#93C19E',
   paleGreen: '#DEF7E4',
   darkRed: '#771D1D',
+  toastRed: '#DF4232',
   pink: '#DEB6B5',
   deepPink: '#DC9497',
   lightPink: '#FDE8E8',

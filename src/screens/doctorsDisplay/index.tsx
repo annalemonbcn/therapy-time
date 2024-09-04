@@ -9,7 +9,7 @@ import { TagsEnum } from 'src/data/types'
 import CategoriesList from 'src/components/categoriesList'
 import HorizontalContainer from 'src/components/custom/horizontalContainer'
 import Text from 'src/components/custom/customText'
-import { useNavigation } from '@react-navigation/native'
+import DoctorsDisplaySearch from './components/doctorsDisplaySearch'
 
 const DoctorsDisplay = ({ route }: DoctorsDisplayProps) => {
   const { params } = route
@@ -27,9 +27,15 @@ const DoctorsDisplay = ({ route }: DoctorsDisplayProps) => {
     setCategory(newCategory as TagsEnum)
   }
 
+  const handleSearch = (name: string) => {
+    setName(name)
+    setCategory(TagsEnum.All)
+  }
+
   return (
     <PageWrapper>
       <ScrollView contentContainerStyle={styles.pageContainer}>
+        <DoctorsDisplaySearch handleSearch={handleSearch} />
         <CategoriesList category={category} onTagPress={handleTagPress} allPrimary={false} />
         <View style={styles.results}>
           <HorizontalContainer horizontalCenter="space-between">
@@ -53,10 +59,11 @@ const DoctorsDisplay = ({ route }: DoctorsDisplayProps) => {
 
 const styles = StyleSheet.create({
   pageContainer: {
-    paddingTop: theme.space.sm
+    paddingTop: theme.space.sm,
+    gap: theme.space.md
   },
   results: {
-    marginTop: theme.space.xl
+    marginTop: theme.space.sm
   }
 })
 

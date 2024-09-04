@@ -1,8 +1,6 @@
 import { ScrollView, StyleSheet, View } from 'react-native'
 import PageWrapper from 'src/components/custom/pageWrapper'
-import { getStatusBarHeight } from 'src/utils'
 import TherapistCard from '../../components/therapistCard'
-import { useDoctorDetails } from './hooks'
 import AboutMe from './components/aboutMe'
 import { theme } from 'theme'
 import WorkingTime from './components/workingTime'
@@ -11,13 +9,18 @@ import Button from 'src/components/custom/customButton'
 import FeaturesList from './components/featuresList'
 import { DoctorDetailsProps } from './types'
 import NoData from './components/noData'
+import { useNavigation } from '@react-navigation/native'
+import { NavigationProp } from 'src/navigation/homeNavigator/types'
+import { getDoctorDetails } from 'src/utils/doctors'
 
 const DoctorDetails = ({ route }: DoctorDetailsProps) => {
   const { id } = route.params
 
-  const therapist = useDoctorDetails(id)
+  const therapist = getDoctorDetails(id)
 
   if (!therapist) return <NoData />
+
+  const navigation = useNavigation<NavigationProp>()
 
   return (
     <PageWrapper>
@@ -30,7 +33,7 @@ const DoctorDetails = ({ route }: DoctorDetailsProps) => {
           <Reviews reviews={therapist.reviews.reviews} />
         </View>
         <View style={styles.buttonContainer}>
-          <Button primary onPress={() => console.error('book appointment button pressed')}>
+          <Button primary onPress={() => navigation.navigate('Appointment', { therapistId: therapist.basicInfo.id })}>
             Book appointment
           </Button>
         </View>

@@ -5,13 +5,14 @@ import { UserProvider, useUserContext } from 'src/context/UserProvider'
 import LocationScreen from 'src/screens/locationScreen'
 import { NavigationContainer } from '@react-navigation/native'
 import BottomTabBar from 'src/navigation/bottomTabBar'
+import { RootSiblingParent } from 'react-native-root-siblings'
 
 const AppDisplay = () => {
   const { userLocation } = useUserContext()
 
   if (!userLocation) return <LocationScreen />
 
-  return <BottomTabBar  />
+  return <BottomTabBar />
 }
 
 const App = () => {
@@ -26,11 +27,13 @@ const App = () => {
   if (!loaded && !error) return null
 
   return (
-    <NavigationContainer>
-      <UserProvider>
-        <AppDisplay />
-      </UserProvider>
-    </NavigationContainer>
+    <RootSiblingParent>
+      <NavigationContainer>
+        <UserProvider>
+          <AppDisplay />
+        </UserProvider>
+      </NavigationContainer>
+    </RootSiblingParent>
   )
 }
 

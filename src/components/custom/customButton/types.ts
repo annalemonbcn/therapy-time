@@ -1,10 +1,13 @@
-import { PropsWithChildren } from 'react'
+import { TouchableOpacityProps } from 'react-native'
+import { FontSize } from 'types'
 
-interface ICustomButtonProps extends PropsWithChildren {
+type ICustomButtonProps = TouchableOpacityProps & {
+  children: React.ReactNode
   onPress: () => void
   primary?: boolean
   secondary?: boolean
   isTag?: boolean
+  textFontSize?: FontSize
 }
 
 type ButtonProps = Omit<ICustomButtonProps, 'onPress'>
