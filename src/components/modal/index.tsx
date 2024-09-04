@@ -3,26 +3,21 @@ import { IBasicModalProps, IHeaderProps } from './types'
 import { theme } from 'theme'
 import CloseIcon from '../icons/closeIcon'
 
-const Header = ({ setModalVisible }: IHeaderProps) => (
-  <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
+const Header = ({ closeModal }: IHeaderProps) => (
+  <TouchableWithoutFeedback onPress={() => closeModal()}>
     <View style={styles.header}>
       <CloseIcon />
     </View>
   </TouchableWithoutFeedback>
 )
 
-const BasicModal = ({ modalVisible, setModalVisible, showCloseButton = true, children }: IBasicModalProps) => {
+const BasicModal = ({ isModalOpen, closeModal, showCloseButton = true, children }: IBasicModalProps) => {
   return (
     <View style={styles.centeredView}>
-      <Modal
-        animationType="none"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
-      >
+      <Modal animationType="none" transparent={true} visible={isModalOpen} onRequestClose={() => closeModal()}>
         <View style={[styles.centeredView, styles.backdrop]}>
           <View style={[theme.borders.shadow.basicShadow, styles.modalView]}>
-            {showCloseButton && <Header setModalVisible={setModalVisible} />}
+            {showCloseButton && <Header closeModal={closeModal} />}
             {children}
           </View>
         </View>

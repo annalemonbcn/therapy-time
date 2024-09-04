@@ -1,20 +1,16 @@
 import Text from 'src/components/custom/customText'
 import CustomCalendar from 'src/components/custom/calendar'
-import { View } from 'react-native'
 import { useRoute } from '@react-navigation/native'
 import { RouteProp } from '../../types'
-import { getDoctorDetails } from 'src/utils/doctors'
-import { Therapist } from 'src/data/types'
+import { getDoctorSessionInfo } from 'src/utils/doctors'
 
 const CalendarWrapper = () => {
   const { params } = useRoute<RouteProp>()
 
-  const therapist = getDoctorDetails(params.therapistId) as Therapist
+  const sessionInfo = getDoctorSessionInfo(params.therapistId)
   const {
-    sessionInfo: {
-      workingSchedule: { workingDays }
-    }
-  } = therapist
+    workingSchedule: { workingDays }
+  } = sessionInfo
 
   return (
     <>

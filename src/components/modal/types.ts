@@ -1,13 +1,13 @@
 import { PropsWithChildren } from 'react'
 
 interface IBasicModalProps extends PropsWithChildren {
-  modalVisible: boolean
-  setModalVisible: React.Dispatch<React.SetStateAction<boolean>>
+  isModalOpen: boolean
+  closeModal: () => void
   showCloseButton?: boolean
 }
 
 interface IHeaderProps {
-  setModalVisible: React.Dispatch<React.SetStateAction<boolean>>
+  closeModal: () => void
 }
 
 export { IBasicModalProps, IHeaderProps }
