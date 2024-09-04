@@ -2,13 +2,48 @@ import { Days } from 'src/data/types'
 
 export const TODAY_DATE = new Date().toISOString().split('T')[0]
 
-const setUp = ({ startHour, finishHour }: { startHour: string; finishHour: string }) => {
-  const currentDate = new Date()
+const setUp = ({
+  startHour,
+  finishHour,
+  currentDate = new Date()
+}: {
+  startHour: string
+  finishHour: string
+  currentDate?: Date
+}) => {
+  const [hours, minutes] = startHour.split(':').map(Number)
 
-  const start = new Date(currentDate)
-  start.setHours(parseInt(startHour.split(':')[0]), parseInt(startHour.split(':')[1]), 0, 0)
+  const isHalfHourInterval = minutes % 30 === 0 && minutes !== 0
 
-  const end = new Date(currentDate)
+  const currentHours = currentDate.getHours()
+  const currentMinutes = currentDate.getMinutes()
+
+  const intervalBase = isHalfHourInterval ? 30 : 60
+
+  let startHourValue = hours
+
+  if (currentHours > hours || (currentHours === hours && currentMinutes >= minutes)) {
+    const totalMinutesSinceMidnight = currentHours * 60 + currentMinutes
+    const roundedUpMinutes = Math.ceil(totalMinutesSinceMidnight / intervalBase) * intervalBase
+
+    const newStartHours = Math.floor(roundedUpMinutes / 60)
+    const newStartMinutes = roundedUpMinutes % 60
+
+    if (newStartHours <= parseInt(finishHour.split(':')[0])) {
+      startHourValue = newStartHours
+
+      if (isHalfHourInterval && newStartMinutes !== 30) {
+        startHourValue++
+      }
+    }
+  }
+
+  const startMinuteValue = isHalfHourInterval ? 30 : 0
+
+  const start = new Date(currentDate ?? new Date())
+  start.setHours(startHourValue, startMinuteValue, 0, 0)
+
+  const end = new Date(currentDate ?? new Date())
   end.setHours(parseInt(finishHour.split(':')[0]), parseInt(finishHour.split(':')[1]), 59, 999)
 
   return { start, end }
@@ -49,13 +84,23 @@ const generateTimeSlots = ({
 const generateTimeRange = ({
   startHour,
   finishHour,
+  selectedDay,
   excludedHours = []
 }: {
   startHour: string
   finishHour: string
+  selectedDay: string
+
   excludedHours?: string[]
 }) => {
-  const { start, end } = setUp({ startHour, finishHour })
+  const currentDate = new Date()
+  const selectedDate = new Date(selectedDay)
+
+  const { start, end } = setUp({
+    startHour,
+    finishHour,
+    currentDate: selectedDate
+  })
 
   const diffHours = calculateDuration({ start, end })
 
@@ -77,15 +122,24 @@ export const generateHours = ({
   selectedDay: string
   excludedHours?: string[]
 }) => {
-  const currentDate = new Date().toDateString()
-  const selectedDate = new Date(selectedDay).toDateString()
+  const currentDate = new Date()
+  const selectedDate = new Date(selectedDay)
 
-  if (currentDate === selectedDate) {
-    console.log('same day')
-    return []
+  if (currentDate.toDateString() === selectedDate.toDateString()) {
+    const { start, end } = setUp({
+      startHour,
+      finishHour,
+      currentDate
+    })
+
+    const diffHours = calculateDuration({ start, end })
+    const excludedSet = new Set(excludedHours?.map((h) => `${h}`))
+    let current = new Date(start.getTime())
+
+    return generateTimeSlots({ current, diffHours, excludedSet })
   }
 
-  return generateTimeRange({ startHour, finishHour, excludedHours })
+  return generateTimeRange({ startHour, finishHour, selectedDay, excludedHours })
 }
 
 const getTargetDate = (dayOfWeek: string | undefined): string => {
