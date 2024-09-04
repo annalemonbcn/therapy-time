@@ -4,18 +4,17 @@ import { theme } from 'theme'
 import CalendarWrapper from './components/calendarWrapper'
 import SelectHours from './components/selectHours'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
-import { AppointmentProps, BookingFormShape } from './types'
+import { BookingFormShape } from './types'
 import Button from 'src/components/custom/customButton'
-import Toast from 'react-native-root-toast'
 import BookingModal from './components/availableHoursList/components/bookingModal'
-import { useEffect, useState } from 'react'
 import { useDefaultDay } from './hooks'
 import { checkData } from './utils'
+import { ModalProvider, useModalContext } from 'src/context/ModalProvider'
+import Toast from 'react-native-root-toast'
 
-const Appointment = () => {
+const AppointmentDisplay = () => {
   const defaultDay = useDefaultDay()
-
-  const [modalVisible, setModalVisible] = useState(false)
+  const { isOpen, openModal } = useModalContext()
 
   const methods = useForm<BookingFormShape>({
     defaultValues: {
@@ -27,9 +26,18 @@ const Appointment = () => {
 
   const onSubmit: SubmitHandler<BookingFormShape> = (data) => {
     const isValid = checkData(data)
-    if (!isValid) return
+    if (!isValid) {
+      Toast.show('It is required to select a date and time', {
+        position: -200,
+        backgroundColor: theme.colors.toastRed,
+        textColor: theme.colors.b0,
+        textStyle: { fontWeight: '500' },
+        opacity: 1
+      })
+      return
+    }
 
-    setModalVisible(true)
+    openModal()
 
     // TODO: if ok:
     // 1. open modal
@@ -50,11 +58,19 @@ const Appointment = () => {
             </Button>
           </View>
         </ScrollView>
-        {modalVisible && <BookingModal modalVisible={modalVisible} setModalVisible={setModalVisible} />}
+        {isOpen && <BookingModal />}
       </FormProvider>
     </PageWrapper>
   )
 }
+
+const Appointment = () => (
+  <ModalProvider>
+    <AppointmentDisplay />
+  </ModalProvider>
+)
+
+export default Appointment
 
 const styles = StyleSheet.create({
   pageContainer: {
@@ -64,5 +80,3 @@ const styles = StyleSheet.create({
     marginVertical: theme.space.lg
   }
 })
-
-export default Appointment

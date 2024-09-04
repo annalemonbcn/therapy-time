@@ -7,11 +7,13 @@ import { Image, StyleSheet, View } from 'react-native'
 import { theme } from 'theme'
 import Button from 'src/components/custom/customButton'
 import HorizontalContainer from 'src/components/custom/horizontalContainer'
-import { IBookingModalProps, ICheckAppointmentProps, IConfirmAppointmentProps, Stage } from './types'
+import { ICheckAppointmentProps, Stage } from './types'
 import { useRoute } from '@react-navigation/native'
+import { useModalContext } from 'src/context/ModalProvider'
 
-const CheckAppointment = ({ setModalVisible, handleConfirm }: ICheckAppointmentProps) => {
+const CheckAppointment = ({ handleConfirm }: ICheckAppointmentProps) => {
   const { getValues } = useFormContext<BookingFormShape>()
+  const { closeModal } = useModalContext()
 
   return (
     <>
@@ -24,7 +26,7 @@ const CheckAppointment = ({ setModalVisible, handleConfirm }: ICheckAppointmentP
           </Text>
         </View>
         <HorizontalContainer horizontalCenter="center">
-          <Button onPress={() => setModalVisible(false)}>Back</Button>
+          <Button onPress={() => closeModal()}>Back</Button>
           <Button onPress={() => handleConfirm()} primary>
             Confirm
           </Button>
@@ -34,8 +36,9 @@ const CheckAppointment = ({ setModalVisible, handleConfirm }: ICheckAppointmentP
   )
 }
 
-const ConfirmAppointment = ({ setModalVisible }: IConfirmAppointmentProps) => {
+const ConfirmAppointment = () => {
   const { params } = useRoute<RouteProp>()
+  const { closeModal } = useModalContext()
 
   return (
     <>
@@ -50,7 +53,7 @@ const ConfirmAppointment = ({ setModalVisible }: IConfirmAppointmentProps) => {
           </Text>
         </View>
         <View>
-          <Button onPress={() => setModalVisible(false)} primary>
+          <Button onPress={() => closeModal()} primary>
             Done
           </Button>
         </View>
@@ -59,7 +62,9 @@ const ConfirmAppointment = ({ setModalVisible }: IConfirmAppointmentProps) => {
   )
 }
 
-const BookingModal = ({ modalVisible, setModalVisible }: IBookingModalProps) => {
+const BookingModal = () => {
+  const { isOpen, closeModal } = useModalContext()
+
   const [stage, setStage] = useState<Stage>('check_appointment')
   const { getValues } = useFormContext<BookingFormShape>()
 
@@ -74,11 +79,9 @@ const BookingModal = ({ modalVisible, setModalVisible }: IBookingModalProps) => 
   }
 
   return (
-    <BasicModal modalVisible={modalVisible} setModalVisible={setModalVisible} showCloseButton={false}>
-      {stage === 'check_appointment' && (
-        <CheckAppointment setModalVisible={setModalVisible} handleConfirm={handleConfirm} />
-      )}
-      {stage === 'confirm_appointment' && <ConfirmAppointment setModalVisible={setModalVisible} />}
+    <BasicModal isModalOpen={isOpen} closeModal={closeModal} showCloseButton={false}>
+      {stage === 'check_appointment' && <CheckAppointment handleConfirm={handleConfirm} />}
+      {stage === 'confirm_appointment' && <ConfirmAppointment />}
     </BasicModal>
   )
 }
