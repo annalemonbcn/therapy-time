@@ -157,4 +157,4 @@ type Therapist = {
   }
 }
 
-export { Therapist, WorkingSchedule, Days, Review, SessionType, TagsEnum, tagsArray }
+export { Therapist, WorkingSchedule, Days, Review, SessionInfo, SessionType, TagsEnum, tagsArray }

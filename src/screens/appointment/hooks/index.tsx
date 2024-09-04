@@ -1,18 +1,15 @@
 import { useRoute } from '@react-navigation/native'
 import { RouteProp } from '../types'
-import { getDoctorDetails } from 'src/utils/doctors'
-import { Therapist } from 'src/data/types'
+import { getDoctorSessionInfo } from 'src/utils/doctors'
 import { setDefaultDay } from 'src/utils/time'
 
 const useDefaultDay = () => {
   const { params } = useRoute<RouteProp>()
 
-  const therapist = getDoctorDetails(params.therapistId) as Therapist
+  const sessionInfo = getDoctorSessionInfo(params.therapistId)
   const {
-    sessionInfo: {
-      workingSchedule: { workingDays }
-    }
-  } = therapist
+    workingSchedule: { workingDays }
+  } = sessionInfo
 
   return setDefaultDay(workingDays)
 }
