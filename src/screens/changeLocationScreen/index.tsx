@@ -1,28 +1,39 @@
-import { Image, View, StyleSheet } from 'react-native'
+import { Image, View, StyleSheet, Dimensions } from 'react-native'
 import Text from 'src/components/custom/customText'
 import PageWrapper from 'src/components/custom/pageWrapper'
-import { useUserContext } from 'src/context/UserProvider'
 import { theme } from 'theme'
 import ChangeLocationForm from './components/changeLocationForm'
+import Button from 'src/components/custom/customButton'
+import { useNavigation } from '@react-navigation/native'
+import { NavigationProp } from 'src/navigation/homeNavigator/types'
 
-const ChangeLocationScreen = () => (
-  <PageWrapper centerVertically>
-    <View style={styles.pageContainer}>
-      <Image source={require('assets/location.png')} />
-      <View style={styles.titleContainer}>
-        <Text size="s5" fontWeight="semi-bold">
-          Change your location
-        </Text>
-        <Text size="s3" textAlign="center">
-          Set a new location to have a better experience.
-        </Text>
+const ChangeLocationScreen = () => {
+  const navigation = useNavigation<NavigationProp>()
+
+  return (
+    <PageWrapper centerVertically>
+      <View style={styles.pageContainer}>
+        <Image source={require('assets/location.png')} />
+        <View style={styles.titleContainer}>
+          <Text size="s5" fontWeight="semi-bold">
+            Change your location
+          </Text>
+          <Text size="s3" textAlign="center">
+            Set a new location to have a better experience.
+          </Text>
+        </View>
+        <View style={styles.manualLocationContainer}>
+          <ChangeLocationForm />
+        </View>
       </View>
-      <View style={styles.manualLocationContainer}>
-        <ChangeLocationForm />
+      <View style={styles.cancelContainer}>
+        <Button onPress={() => navigation.goBack()} textFontSize="s2">
+          Cancel
+        </Button>
       </View>
-    </View>
-  </PageWrapper>
-)
+    </PageWrapper>
+  )
+}
 
 const styles = StyleSheet.create({
   pageContainer: {
@@ -39,7 +50,15 @@ const styles = StyleSheet.create({
     width: '100%',
     marginTop: theme.space.sm2,
     alignItems: 'center',
-    gap: theme.space.md
+    gap: theme.space.md,
+    position: 'relative'
+  },
+  cancelContainer: {
+    alignSelf: 'flex-end',
+    position: 'absolute',
+    bottom: 10,
+    right: 0,
+    left: 0
   }
 })
 
