@@ -5,15 +5,14 @@ import { theme } from 'theme'
 import { useUserContext } from 'src/context/UserProvider'
 import LocationIcon from 'src/components/icons/locationIcon'
 import ChevronIcon from 'src/components/icons/chevronIcon'
-import { useNavigation } from '@react-navigation/native'
-import { NavigationProp } from 'src/navigation/homeNavigator/types'
+import { useNavigate } from 'src/hooks'
 
 const LocationDisplay = () => {
   const { userLocation } = useUserContext()
 
   if (!userLocation) console.error('No user location')
 
-  const navigation = useNavigation<NavigationProp>()
+    const navigation = useNavigate()
 
   return (
     <View style={styles.container}>

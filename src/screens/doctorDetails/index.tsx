@@ -9,9 +9,8 @@ import Button from 'src/components/custom/customButton'
 import FeaturesList from './components/featuresList'
 import { DoctorDetailsProps } from './types'
 import NoData from './components/noData'
-import { useNavigation } from '@react-navigation/native'
-import { NavigationProp } from 'src/navigation/homeNavigator/types'
 import { getDoctorDetails } from 'src/utils/doctors'
+import { useNavigate } from 'src/hooks'
 
 const DoctorDetails = ({ route }: DoctorDetailsProps) => {
   const { id } = route.params
@@ -20,7 +19,7 @@ const DoctorDetails = ({ route }: DoctorDetailsProps) => {
 
   if (!therapist) return <NoData />
 
-  const navigation = useNavigation<NavigationProp>()
+  const navigation = useNavigate()
 
   return (
     <PageWrapper>
