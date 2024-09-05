@@ -51,7 +51,8 @@ const mockTherapists: Therapist[] = [
           text: 'Ana helped me a lot with managing my anxiety. Highly recommended!'
         }
       ]
-    }
+    },
+    bookings: []
   },
   {
     basicInfo: {
@@ -98,7 +99,8 @@ const mockTherapists: Therapist[] = [
           text: 'Laura has helped my son manage the emotional response caused by bullying'
         }
       ]
-    }
+    },
+    bookings: []
   },
   {
     basicInfo: {
@@ -145,7 +147,8 @@ const mockTherapists: Therapist[] = [
           text: 'Javier provided us with tools that truly strengthened our relationship.'
         }
       ]
-    }
+    },
+    bookings: []
   },
   {
     basicInfo: {
@@ -192,7 +195,8 @@ const mockTherapists: Therapist[] = [
           text: 'Lucía helped our family communicate better and resolve our issues.'
         }
       ]
-    }
+    },
+    bookings: []
   },
   {
     basicInfo: {
@@ -239,7 +243,8 @@ const mockTherapists: Therapist[] = [
           text: "Pedro's approach was exactly what I needed to manage my anxiety."
         }
       ]
-    }
+    },
+    bookings: []
   },
   {
     basicInfo: {
@@ -286,7 +291,8 @@ const mockTherapists: Therapist[] = [
           text: "María's therapy sessions helped me cope with work stress effectively."
         }
       ]
-    }
+    },
+    bookings: []
   },
   {
     basicInfo: {
@@ -334,7 +340,8 @@ const mockTherapists: Therapist[] = [
           text: "Elena's sessions were crucial in helping me cope with my grief."
         }
       ]
-    }
+    },
+    bookings: []
   },
   {
     basicInfo: {
@@ -381,7 +388,8 @@ const mockTherapists: Therapist[] = [
           text: 'Isabel helped me develop a much healthier relationship with food.'
         }
       ]
-    }
+    },
+    bookings: []
   }
 ]
 
