@@ -35,6 +35,7 @@ const ChangeLocationScreen = () => {
   )
 }
 
+
 const styles = StyleSheet.create({
   pageContainer: {
     width: '100%',
