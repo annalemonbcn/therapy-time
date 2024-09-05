@@ -325,21 +325,9 @@ const mockTherapists: Therapist[] = [
       }
     },
     reviews: {
-      totalRatings: 1,
-      average: 5,
-      reviews: [
-        {
-          user: {
-            id: 'user7',
-            name: 'Gabriel Díaz',
-            description:
-              "Gabriel sought counseling after a major life transition and found Elena's guidance invaluable.",
-            profilePicture: generateProfilePicture('Gabriel Díaz')
-          },
-          rating: 5,
-          text: "Elena's sessions were crucial in helping me cope with my grief."
-        }
-      ]
+      totalRatings: 0,
+      average: undefined,
+      reviews: []
     },
     bookings: []
   },

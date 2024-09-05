@@ -6,7 +6,6 @@ import AllowLocationScreen from 'src/screens/allowLocationScreen'
 import { NavigationContainer } from '@react-navigation/native'
 import BottomTabBar from 'src/navigation/bottomTabBar'
 import { RootSiblingParent } from 'react-native-root-siblings'
-import ChangeLocationScreen from 'src/screens/changeLocationScreen'
 
 const AppDisplay = () => {
   const { userLocation } = useUserContext()
