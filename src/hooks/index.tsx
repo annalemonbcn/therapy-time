@@ -1,6 +1,6 @@
-import { useEffect } from 'react'
 import { Inter_700Bold, Inter_400Regular, useFonts, Inter_600SemiBold } from '@expo-google-fonts/inter'
-import * as SplashScreen from 'expo-splash-screen'
+import { useNavigation } from '@react-navigation/native'
+import { NavigationProp } from 'src/navigation/homeNavigator/types'
 
 const useLoadInitialConfig = () => {
   const [loaded, error] = useFonts({
@@ -12,4 +12,6 @@ const useLoadInitialConfig = () => {
   return { loaded, error }
 }
 
-export { useLoadInitialConfig }
+const useNavigate = () => useNavigation<NavigationProp>()
+
+export { useLoadInitialConfig, useNavigate }

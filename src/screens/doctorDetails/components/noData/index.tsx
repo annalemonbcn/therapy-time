@@ -1,14 +1,12 @@
-import { useNavigation } from '@react-navigation/native'
 import { Image, View, StyleSheet } from 'react-native'
 import Button from 'src/components/custom/customButton'
 import Text from 'src/components/custom/customText'
 import PageWrapper from 'src/components/custom/pageWrapper'
-import { HomeScreenNavigationProp } from 'src/navigation/homeNavigator/types'
-import { getStatusBarHeight } from 'src/utils'
+import { useNavigate } from 'src/hooks'
 import { theme } from 'theme'
 
 const NoData = () => {
-  const navigation = useNavigation<HomeScreenNavigationProp>()
+  const navigation = useNavigate()
 
   return (
     <PageWrapper>
@@ -18,7 +16,9 @@ const NoData = () => {
         </View>
         <View style={styles.textContainer}>
           <Text fontWeight="semi-bold">Oops... No therapists to show</Text>
-          <Text textAlign="center" style={{ paddingHorizontal: 25}}>The therapist you're looking for does not seem to exist.</Text>
+          <Text textAlign="center" style={{ paddingHorizontal: 25 }}>
+            The therapist you're looking for does not seem to exist.
+          </Text>
         </View>
         <Button onPress={() => navigation.goBack()} primary>
           Back
@@ -31,7 +31,7 @@ const NoData = () => {
 const styles = StyleSheet.create({
   pageContainer: {
     marginTop: 100,
-    gap: theme.space.xl,
+    gap: theme.space.xl
   },
   textContainer: {
     alignItems: 'center',

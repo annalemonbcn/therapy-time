@@ -2,14 +2,13 @@ import { View } from 'react-native'
 import Text from 'src/components/custom/customText'
 import { useGetNearDoctor } from './hooks'
 import TherapistCard from 'src/components/therapistCard'
-import { useNavigation } from '@react-navigation/native'
 import HorizontalContainer from 'src/components/custom/horizontalContainer'
-import { NavigationProp } from 'src/navigation/homeNavigator/types'
+import { useNavigate } from 'src/hooks'
 
 const NearDoctor = () => {
   const nearDoctor = useGetNearDoctor()
 
-  const navigation = useNavigation<NavigationProp>()
+  const navigation = useNavigate()
 
   return (
     <View>

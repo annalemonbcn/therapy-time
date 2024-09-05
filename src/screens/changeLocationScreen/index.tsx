@@ -1,14 +1,13 @@
-import { Image, View, StyleSheet, Dimensions } from 'react-native'
+import { Image, View, StyleSheet } from 'react-native'
 import Text from 'src/components/custom/customText'
 import PageWrapper from 'src/components/custom/pageWrapper'
 import { theme } from 'theme'
 import ChangeLocationForm from './components/changeLocationForm'
 import Button from 'src/components/custom/customButton'
-import { useNavigation } from '@react-navigation/native'
-import { NavigationProp } from 'src/navigation/homeNavigator/types'
+import { useNavigate } from 'src/hooks'
 
 const ChangeLocationScreen = () => {
-  const navigation = useNavigation<NavigationProp>()
+  const navigation = useNavigate()
 
   return (
     <PageWrapper centerVertically>
@@ -34,7 +33,6 @@ const ChangeLocationScreen = () => {
     </PageWrapper>
   )
 }
-
 
 const styles = StyleSheet.create({
   pageContainer: {

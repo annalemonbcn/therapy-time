@@ -1,14 +1,11 @@
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { SearchFormModel } from './types'
 import ControlledSearchInput from 'src/components/controlledSearchInput'
-import { mockTherapists } from 'src/data/mock.data'
-import { useEffect } from 'react'
-import { useNavigation } from '@react-navigation/native'
-import { NavigationProp } from 'src/navigation/homeNavigator/types'
 import { TagsEnum } from 'src/data/types'
+import { useNavigate } from 'src/hooks'
 
 const HomeSearch = () => {
-  const navigation = useNavigation<NavigationProp>()
+  const navigation = useNavigate()
 
   const methods = useForm<SearchFormModel>()
   const { handleSubmit } = methods

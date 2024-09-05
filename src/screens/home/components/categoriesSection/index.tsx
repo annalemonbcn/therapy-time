@@ -1,15 +1,13 @@
-import { useNavigation } from '@react-navigation/native'
-import { FlatList, View, StyleSheet, TouchableOpacity } from 'react-native'
+import { StyleSheet, TouchableOpacity } from 'react-native'
 import CategoriesList from 'src/components/categoriesList'
-import Button from 'src/components/custom/customButton'
 import Text from 'src/components/custom/customText'
 import HorizontalContainer from 'src/components/custom/horizontalContainer'
-import { tagsArray, TagsEnum } from 'src/data/types'
-import { NavigationProp } from 'src/navigation/homeNavigator/types'
+import { TagsEnum } from 'src/data/types'
+import { useNavigate } from 'src/hooks'
 import { theme } from 'theme'
 
 const CategoriesSection = () => {
-  const navigation = useNavigation<NavigationProp>()
+  const navigation = useNavigate()
 
   const handleTagPress = (item: TagsEnum) => {
     navigation.navigate('Doctors Display', { category: item })

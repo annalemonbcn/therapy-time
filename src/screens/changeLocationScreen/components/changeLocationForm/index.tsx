@@ -2,10 +2,9 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { LocationFormModel } from './types'
 import { useUserContext } from 'src/context/UserProvider'
 import ControlledTextInput from 'src/components/custom/controlledTextInput'
-import { useNavigation } from '@react-navigation/native'
-import { NavigationProp } from 'src/navigation/homeNavigator/types'
 import Toast from 'react-native-root-toast'
 import { theme } from 'theme'
+import { useNavigate } from 'src/hooks'
 
 const ChangeLocationForm = () => {
   const methods = useForm<LocationFormModel>()
@@ -13,7 +12,7 @@ const ChangeLocationForm = () => {
 
   const { setUserLocation } = useUserContext()
 
-  const navigation = useNavigation<NavigationProp>()
+  const navigation = useNavigate()
 
   const onSubmit: SubmitHandler<LocationFormModel> = ({ location }) => {
     try {
