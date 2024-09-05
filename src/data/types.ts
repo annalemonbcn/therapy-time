@@ -159,7 +159,7 @@ type Therapist = {
   sessionInfo: SessionInfo
   reviews: {
     totalRatings: number
-    average: number
+    average: number | undefined
     reviews: Review[]
   }
   bookings: TherapistBooking[]
