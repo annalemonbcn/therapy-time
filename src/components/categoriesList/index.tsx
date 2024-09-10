@@ -4,28 +4,26 @@ import Button from 'src/components/custom/customButton'
 import { theme } from 'theme'
 import { ICategoriesListProps } from './types'
 
-const CategoriesList = ({ category, onTagPress, allPrimary = true }: ICategoriesListProps) => {
-  return (
-    <FlatList
-      data={tagsArray}
-      renderItem={({ item }) => (
-        <View style={styles.item}>
-          <Button
-            onPress={() => onTagPress(item)}
-            isTag
-            primary={allPrimary || category === item}
-            secondary={!allPrimary && category !== item}
-          >
-            {item}
-          </Button>
-        </View>
-      )}
-      keyExtractor={(item) => item}
-      horizontal
-      showsHorizontalScrollIndicator={false}
-    />
-  )
-}
+const CategoriesList = ({ category, onTagPress, allPrimary = true }: ICategoriesListProps) => (
+  <FlatList
+    data={tagsArray}
+    renderItem={({ item }) => (
+      <View style={styles.item}>
+        <Button
+          onPress={() => onTagPress(item)}
+          isTag
+          primary={allPrimary || category === item}
+          secondary={!allPrimary && category !== item}
+        >
+          {item}
+        </Button>
+      </View>
+    )}
+    keyExtractor={(item) => item}
+    horizontal
+    showsHorizontalScrollIndicator={false}
+  />
+)
 
 const styles = StyleSheet.create({
   item: {
