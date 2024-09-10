@@ -2,7 +2,7 @@ import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 import PageWrapper from 'src/components/custom/pageWrapper'
 import { theme } from 'theme'
 import { DoctorsDisplayProps } from './types'
-import { useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { getFilteredTherapistsByCategory, getFilteredTherapistsByName } from './utils'
 import TherapistsList from './components/therapistsList'
 import { TagsEnum } from 'src/data/types'
@@ -10,26 +10,34 @@ import CategoriesList from 'src/components/categoriesList'
 import HorizontalContainer from 'src/components/custom/horizontalContainer'
 import Text from 'src/components/custom/customText'
 import DoctorsDisplaySearch from './components/doctorsDisplaySearch'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from 'src/store'
+import { filterByCategory, filterByName } from 'src/features/therapists/therapistsSlice'
 
 const DoctorsDisplay = ({ route }: DoctorsDisplayProps) => {
-  const { params } = route
+  const dispatch = useDispatch()
+  const therapists = useSelector((state: RootState) => state.therapists.filteredTherapists)
 
-  const [category, setCategory] = useState<TagsEnum>(params.category)
-  const [name, setName] = useState(params.name)
+  const [category, setCategory] = useState<TagsEnum>(route.params.category)
 
-  const filteredList = useMemo(() => {
-    if (name) return getFilteredTherapistsByName(name)
-    return getFilteredTherapistsByCategory(category)
-  }, [category, name])
+  useEffect(() => {
+    const { params } = route
+    if (category) {
+      dispatch(filterByCategory(category))
+    }
+    if (params.name) {
+      dispatch(filterByName(params.name))
+    }
+  }, [route.params, category, dispatch])
 
   const handleTagPress = (newCategory: TagsEnum) => {
-    setName(undefined)
-    setCategory(newCategory as TagsEnum)
+    dispatch(filterByName(''))
+    setCategory(newCategory)
   }
 
   const handleSearch = (name: string) => {
-    setName(name)
     setCategory(TagsEnum.All)
+    dispatch(filterByName(name))
   }
 
   return (
@@ -39,9 +47,9 @@ const DoctorsDisplay = ({ route }: DoctorsDisplayProps) => {
         <CategoriesList category={category} onTagPress={handleTagPress} allPrimary={false} />
         <View style={styles.results}>
           <HorizontalContainer horizontalCenter="space-between">
-            <Text fontWeight="bold">{filteredList.length} founds</Text>
-            {name && (
-              <TouchableOpacity onPress={() => setName(undefined)}>
+            <Text fontWeight="bold">{therapists.length} founds</Text>
+            {route.params.name && (
+              <TouchableOpacity onPress={() => dispatch(filterByName(''))}>
                 <Text size="s2" color="b500">
                   Reset
                 </Text>
@@ -49,7 +57,7 @@ const DoctorsDisplay = ({ route }: DoctorsDisplayProps) => {
             )}
           </HorizontalContainer>
           <View>
-            <TherapistsList therapists={filteredList} />
+            <TherapistsList therapists={therapists} />
           </View>
         </View>
       </ScrollView>

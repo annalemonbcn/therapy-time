@@ -24,9 +24,16 @@ export const therapistsSlice = createSlice({
       } else {
         state.filteredTherapists = state.therapists.filter((therapist) => therapist.sessionInfo.tags.includes(category))
       }
+    },
+    filterByName: (state, action: PayloadAction<string>) => {
+      const name = action.payload
+
+      state.filteredTherapists = state.therapists.filter((therapist) =>
+        therapist.basicInfo.name.toLowerCase().includes(name.toLowerCase())
+      )
     }
   }
 })
 
-export const { filterByCategory } = therapistsSlice.actions
+export const { filterByCategory, filterByName } = therapistsSlice.actions
 export default therapistsSlice.reducer
