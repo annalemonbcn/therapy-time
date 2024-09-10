@@ -6,6 +6,8 @@ import AllowLocationScreen from 'src/screens/allowLocationScreen'
 import { NavigationContainer } from '@react-navigation/native'
 import BottomTabBar from 'src/navigation/bottomTabBar'
 import { RootSiblingParent } from 'react-native-root-siblings'
+import { Provider } from 'react-redux'
+import { store } from 'src/store'
 
 const AppDisplay = () => {
   const { userLocation } = useUserContext()
@@ -28,11 +30,13 @@ const App = () => {
 
   return (
     <RootSiblingParent>
-      <NavigationContainer>
-        <UserProvider>
-          <AppDisplay />
-        </UserProvider>
-      </NavigationContainer>
+      <Provider store={store}>
+        <NavigationContainer>
+          <UserProvider>
+            <AppDisplay />
+          </UserProvider>
+        </NavigationContainer>
+      </Provider>
     </RootSiblingParent>
   )
 }

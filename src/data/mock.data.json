@@ -1,5 +1,5 @@
 {
-  "mockTherapists": [
+  "therapists": [
     {
       "basicInfo": {
         "id": "therapist1",
