@@ -4,10 +4,13 @@ import TherapistCard from 'src/components/therapistCard'
 import { Therapist } from 'src/data/types'
 import { theme } from 'theme'
 import { useNavigate } from 'src/hooks'
+import { getTherapistDbKey } from './utils'
 
 const TherapistsList = ({ therapists }: ITherapistsListProps) => {
   const navigation = useNavigate()
-  const handleItemPress = (item: Therapist) => navigation.navigate('Doctor Details', { id: item.basicInfo.id })
+  const handleItemPress = (item: Therapist) => {
+    navigation.navigate('Doctor Details', { id: getTherapistDbKey(item.basicInfo.id) })
+  }
 
   return (
     <FlatList

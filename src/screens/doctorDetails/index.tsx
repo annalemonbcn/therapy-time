@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, View } from 'react-native'
+import { ActivityIndicator, ScrollView, StyleSheet, View } from 'react-native'
 import PageWrapper from 'src/components/custom/pageWrapper'
 import TherapistCard from '../../components/therapistCard'
 import AboutMe from './components/aboutMe'
@@ -15,11 +15,12 @@ import { useGetDoctorDetails } from './hooks'
 const DoctorDetails = ({ route }: DoctorDetailsProps) => {
   const { id } = route.params
 
-  const therapist = useGetDoctorDetails(id)
-
-  if (!therapist) return <NoData />
+  const { data: therapist, isLoading } = useGetDoctorDetails(id)
 
   const navigation = useNavigate()
+
+  if (isLoading) return <ActivityIndicator />
+  if (!therapist) return <NoData />
 
   return (
     <PageWrapper>

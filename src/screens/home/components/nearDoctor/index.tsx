@@ -4,6 +4,7 @@ import { useGetNearDoctor } from './hooks'
 import TherapistCard from 'src/components/therapistCard'
 import HorizontalContainer from 'src/components/custom/horizontalContainer'
 import { useNavigate } from 'src/hooks'
+import { getTherapistDbKey } from 'src/screens/doctorsDisplay/components/therapistsList/utils'
 
 const NearDoctor = () => {
   const nearDoctor = useGetNearDoctor()
@@ -24,7 +25,7 @@ const NearDoctor = () => {
         showReviews={false}
         onPress={() =>
           navigation.navigate('Doctor Details', {
-            id: 'therapist5'
+            id: getTherapistDbKey(nearDoctor.basicInfo.id)
           })
         }
       />
