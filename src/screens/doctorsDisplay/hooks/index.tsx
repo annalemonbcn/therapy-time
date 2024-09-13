@@ -25,11 +25,13 @@ const filterByCategory = (therapists: Therapist[], category: TagsEnum) =>
 const filterByName = (therapists: Therapist[], query: string) =>
   therapists.filter((therapist) => therapist.basicInfo.name.toLowerCase().includes(query.toLowerCase()))
 
-const useFilterTherapists = (therapists: Therapist[], category: TagsEnum) => {
+const useFilterTherapists = (therapists: Therapist[], category: TagsEnum, query?: string) => {
   const filteredTherapists = useMemo(() => {
+    if (query) return filterByName(therapists, query)
+
     if (category === TagsEnum.All) return therapists
     return filterByCategory(therapists, category)
-  }, [therapists, category])
+  }, [therapists, category, query])
 
   return filteredTherapists
 }
