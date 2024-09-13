@@ -11,7 +11,10 @@ const useGetDoctorDetails = (id: string) => {
     return data
   }, [data, isLoading, isSuccess])
 
-  return therapist
+  return {
+    data: therapist,
+    isLoading
+  }
 }
 
 export { useGetDoctorDetails }
