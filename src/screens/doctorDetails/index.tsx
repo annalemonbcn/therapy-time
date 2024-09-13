@@ -9,13 +9,13 @@ import Button from 'src/components/custom/customButton'
 import FeaturesList from './components/featuresList'
 import { DoctorDetailsProps } from './types'
 import NoData from './components/noData'
-import { getDoctorDetails } from 'src/utils/doctors'
 import { useNavigate } from 'src/hooks'
+import { useGetDoctorDetails } from './hooks'
 
 const DoctorDetails = ({ route }: DoctorDetailsProps) => {
   const { id } = route.params
 
-  const therapist = getDoctorDetails(id)
+  const therapist = useGetDoctorDetails(id)
 
   if (!therapist) return <NoData />
 
