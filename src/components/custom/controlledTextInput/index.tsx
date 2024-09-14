@@ -8,6 +8,7 @@ import { StyledButton, StyledInputWrapper, StyledInput, StyledInputContainer } f
 import SearchIcon from 'src/components/icons/searchIcon'
 import EmailIcon from 'src/components/icons/emailIcon'
 import PasswordIcon from 'src/components/icons/passwordIcon'
+import UserIcon from 'src/components/icons/userIcon'
 
 const ErrorText = ({ errorMessage }: { errorMessage: string }) => (
   <Text size="s2" color="darkRed" style={{ marginVertical: 8 }}>
@@ -18,7 +19,8 @@ const ErrorText = ({ errorMessage }: { errorMessage: string }) => (
 const iconMap = {
   email: EmailIcon,
   password: PasswordIcon,
-  search: SearchIcon
+  search: SearchIcon,
+  user: UserIcon
 }
 const renderIcon = (icon: Icon) => {
   const IconComponent = iconMap[icon]

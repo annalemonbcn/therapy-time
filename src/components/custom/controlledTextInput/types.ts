@@ -15,7 +15,7 @@ interface IStyledButtonProps {
 export { ICustomInputProps, IStyledButtonProps }
 
 type IconType = 'primary' | 'secondary'
-type Icon = 'search' | 'email' | 'password'
+type Icon = 'search' | 'email' | 'password' | 'user'
 
 interface ICustomTextInputProps {
   fieldName: string
