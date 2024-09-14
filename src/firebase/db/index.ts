@@ -1,0 +1,1 @@
+export const URL_FIREBASE = 'https://therapytime-8ea56-default-rtdb.europe-west1.firebasedatabase.app/'

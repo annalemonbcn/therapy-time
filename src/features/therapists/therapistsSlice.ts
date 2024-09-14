@@ -12,6 +12,7 @@ const initialState: ITherapistsState = {
   filteredTherapists: mockTherapists
 }
 
+//TODO: delete ?
 export const therapistsSlice = createSlice({
   name: 'therapists',
   initialState,

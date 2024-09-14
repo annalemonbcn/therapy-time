@@ -24,7 +24,7 @@ const NearDoctor = () => {
         showReviews={false}
         onPress={() =>
           navigation.navigate('Doctor Details', {
-            id: 'therapist5'
+            id: nearDoctor.basicInfo.id
           })
         }
       />
