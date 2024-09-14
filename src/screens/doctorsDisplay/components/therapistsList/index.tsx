@@ -7,7 +7,9 @@ import { useNavigate } from 'src/hooks'
 
 const TherapistsList = ({ therapists }: ITherapistsListProps) => {
   const navigation = useNavigate()
-  const handleItemPress = (item: Therapist) => navigation.navigate('Doctor Details', { id: item.basicInfo.id })
+  const handleItemPress = (item: Therapist) => {
+    navigation.navigate('Doctor Details', { id: item.basicInfo.id })
+  }
 
   return (
     <FlatList

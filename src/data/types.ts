@@ -170,4 +170,4 @@ type User = {
   bookings: UserBooking[]
 }
 
-export { Therapist, WorkingSchedule, Days, Review, SessionInfo, SessionType, TagsEnum, tagsArray, User }
+export { Therapist, WorkingSchedule, Days, Review, SessionInfo, SessionType, TagsEnum, tagsArray, User, UserBooking }
