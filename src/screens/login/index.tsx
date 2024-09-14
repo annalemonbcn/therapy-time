@@ -1,11 +1,15 @@
-import { Image, StyleSheet, View } from 'react-native'
+import { Image, StyleSheet, TouchableWithoutFeedback, View } from 'react-native'
 import { theme } from 'theme'
 import Text from 'src/components/custom/customText'
 import PageWrapper from 'src/components/custom/pageWrapper'
 import { getStatusBarHeight } from 'src/utils'
 import LoginForm from './components/loginForm'
+import { AuthNavigationProp, LoginProps } from 'src/navigation/authNavigator/types'
+import { useNavigation } from '@react-navigation/native'
 
 const LoginScreen = () => {
+  const navigation = useNavigation<AuthNavigationProp>()
+
   return (
     <PageWrapper>
       <View style={styles.pageContainer}>
@@ -20,17 +24,21 @@ const LoginScreen = () => {
         </View>
         <LoginForm />
         <View>
-          <Text size="s2" color="blue">
-            Forgot password?
-          </Text>
+          <TouchableWithoutFeedback onPress={() => navigation.navigate('forgotPassword')}>
+            <Text size="s2" color="blue">
+              Forgot password?
+            </Text>
+          </TouchableWithoutFeedback>
         </View>
         <View style={styles.signUpContainer}>
           <Text size="s2" color="b500">
             Don't have an account yet?
           </Text>
-          <Text size="s2" color="blue">
-            Sign up
-          </Text>
+          <TouchableWithoutFeedback onPress={() => navigation.navigate('signUp')}>
+            <Text size="s2" color="blue">
+              Sign up
+            </Text>
+          </TouchableWithoutFeedback>
         </View>
       </View>
     </PageWrapper>

@@ -24,7 +24,7 @@ const ForgotPasswordForm = () => {
         />
         <View style={styles.buttonsContainer}>
           <Button primary onPress={handleSubmit(onSubmit)}>
-            Send Code
+            Send Email
           </Button>
         </View>
       </View>

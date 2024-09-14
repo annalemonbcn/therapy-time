@@ -8,6 +8,8 @@ import BottomTabBar from 'src/navigation/bottomTabBar'
 import { RootSiblingParent } from 'react-native-root-siblings'
 import { Provider } from 'react-redux'
 import { store } from 'src/store'
+import LoginScreen from 'src/screens/login'
+import AuthNavigator from 'src/navigation/authNavigator'
 
 const AppDisplay = () => {
   const { userLocation } = useUserContext()
@@ -33,7 +35,8 @@ const App = () => {
       <Provider store={store}>
         <NavigationContainer>
           <UserProvider>
-            <AppDisplay />
+            <AuthNavigator />
+            {/* <AppDisplay /> */}
           </UserProvider>
         </NavigationContainer>
       </Provider>

@@ -1,8 +1,8 @@
 import { Image, View, StyleSheet } from 'react-native'
 import Text from 'src/components/custom/customText'
 import PageWrapper from 'src/components/custom/pageWrapper'
-import { getStatusBarHeight } from 'src/utils'
 import { theme } from 'theme'
+import ForgotPasswordForm from './components/forgotPasswordForm'
 
 const ForgotPasswordScreen = () => (
   <PageWrapper>
@@ -13,10 +13,10 @@ const ForgotPasswordScreen = () => (
           Forget Password?
         </Text>
         <Text size="s2" textAlign="center" color="b500">
-          Enter your Email, we will send you a verification code.
+          Enter your Email, we will send you an email to reset your password.
         </Text>
       </View>
-      {/* <LoginForm /> */}
+      <ForgotPasswordForm />
     </View>
   </PageWrapper>
 )
@@ -25,7 +25,6 @@ export default ForgotPasswordScreen
 
 const styles = StyleSheet.create({
   pageContainer: {
-    marginTop: getStatusBarHeight() + theme.space.xl2,
     width: '100%',
     alignItems: 'center',
     gap: theme.space.xl,

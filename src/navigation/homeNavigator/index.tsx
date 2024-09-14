@@ -25,7 +25,6 @@ const HomeNavigator = () => (
         )
       },
       headerShadowVisible: false,
-      backgroundColor: 'green',
       headerStyle: { backgroundColor: theme.colors.b50 }
     })}
   >
@@ -35,9 +34,6 @@ const HomeNavigator = () => (
       name="Doctors Display"
       component={DoctorsDisplay}
       initialParams={{ category: TagsEnum.All }}
-      // options={({ route }) => ({
-      //   title: `${route.params.category} Doctors`
-      // })}
       options={{ title: 'Doctors List' }}
     />
     <Stack.Screen name="Doctor Details" component={DoctorDetails} />
