@@ -8,7 +8,7 @@ const useGetDoctorDetails = (id: string) => {
 
   const therapist = useMemo(() => {
     if (isLoading || !isSuccess) return undefined
-    return data
+    return data.at(0)
   }, [data, isLoading, isSuccess])
 
   return {

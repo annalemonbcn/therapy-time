@@ -9,8 +9,9 @@ export const therapistsApi = createApi({
     getTherapists: builder.query<Therapist[], void>({
       query: () => '/therapists.json'
     }),
-    getTherapistById: builder.query<Therapist, string>({
-      query: (id) => `therapists/${id}.json`
+    getTherapistById: builder.query<Therapist[], string>({
+      query: (id) => `therapists.json?orderBy="basicInfo/id"&equalTo="${id}"`,
+      transformResponse: (res: any) => Object.values(res)
     })
   })
 })
