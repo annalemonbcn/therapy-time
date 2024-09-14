@@ -11,6 +11,7 @@ const StyledInputContainer = styled(View)`
 
 const StyledInputWrapper = styled(View)<{ type: IconType }>`
   flex-direction: row;
+  align-items: center;
   gap: ${theme.space.sm}px;
 
   width: 100%;
@@ -34,6 +35,7 @@ const StyledInputWrapper = styled(View)<{ type: IconType }>`
 
 const StyledInput = styled(TextInput)<{ isTouched?: boolean }>`
   color: ${({ isTouched }) => (isTouched ? theme.colors.main : theme.colors.b400)};
+  flex: 2;
 `
 
 const StyledButton = styled(Button)<IStyledButtonProps>`

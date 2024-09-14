@@ -15,6 +15,7 @@ interface IStyledButtonProps {
 export { ICustomInputProps, IStyledButtonProps }
 
 type IconType = 'primary' | 'secondary'
+type Icon = 'search' | 'email' | 'password'
 
 interface ICustomTextInputProps {
   fieldName: string
@@ -22,11 +23,11 @@ interface ICustomTextInputProps {
   isRequired?: boolean
   isSecured?: boolean
   type: IconType
-  iconType?: 'search'
+  icon?: Icon
   sendButton?: {
     isInside: boolean
     triggerAction: any
   }
 }
 
-export { ICustomTextInputProps, IconType }
+export { ICustomTextInputProps, IconType, Icon }
