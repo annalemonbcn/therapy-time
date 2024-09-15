@@ -1,17 +1,51 @@
-import { StyleSheet, View } from 'react-native'
-import React from 'react'
-import CustomInput from 'src/components/custom/customInput'
+import { ActivityIndicator, StyleSheet, View } from 'react-native'
+import React, { useEffect } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { LoginFormModel } from './types'
 import ControlledTextInput from 'src/components/custom/controlledTextInput'
 import { theme } from 'theme'
 import Button from 'src/components/custom/customButton'
+import { useLoginMutation } from 'src/services/auth'
+import { useDispatch } from 'react-redux'
+import { setTokenId } from 'src/features/user/userSlice'
+import { Notifier, NotifierComponents } from 'react-native-notifier'
 
 const LoginForm = () => {
-  const methods = useForm<LoginFormModel>()
+  const methods = useForm<LoginFormModel>({
+    defaultValues: {
+      email: 'test3@test.com',
+      password: '12345678a'
+    }
+  })
   const { handleSubmit } = methods
 
-  const onSubmit: SubmitHandler<LoginFormModel> = (data) => console.log('data', data)
+  const [triggerLogin, { data, isLoading, isSuccess, error }] = useLoginMutation()
+  const dispatch = useDispatch()
+
+  const onSubmit: SubmitHandler<LoginFormModel> = (formData) => {
+    triggerLogin(formData)
+  }
+
+  // TODO: check for errors
+  useEffect(() => {
+    if (isSuccess && data) {
+      try {
+        dispatch(setTokenId(data.idToken))
+        Notifier.showNotification({
+          title: 'Success',
+          description: 'Welcome back!',
+          Component: NotifierComponents.Alert,
+          componentProps: {
+            alertType: 'success'
+          }
+        })
+      } catch (error) {
+        console.error('Error', error)
+      }
+    }
+  }, [isSuccess, data, dispatch])
+
+  if (isLoading) return <ActivityIndicator />
 
   return (
     <FormProvider {...methods}>

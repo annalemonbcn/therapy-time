@@ -4,6 +4,12 @@ type BasicInfo = {
   description: string
   profilePicture: string
 }
+type UserBasicInfo = {
+  id: string
+  name: string
+  email: string
+  profilePicture?: string
+}
 
 type LocationInfo = {
   address: string
@@ -166,7 +172,7 @@ type Therapist = {
 }
 
 type User = {
-  basicInfo: BasicInfo
+  basicInfo: UserBasicInfo
   bookings: UserBooking[]
 }
 

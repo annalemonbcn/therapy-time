@@ -1,15 +1,52 @@
-import { StyleSheet, View } from 'react-native'
+import { ActivityIndicator, Easing, StyleSheet, View } from 'react-native'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { SignUpFormModel } from './types'
 import { theme } from 'theme'
 import ControlledTextInput from 'src/components/custom/controlledTextInput'
 import Button from 'src/components/custom/customButton'
+import { useRegisterMutation } from 'src/services/auth'
+import { useDispatch } from 'react-redux'
+import { setTokenId } from 'src/features/user/userSlice'
+import { useEffect, useState } from 'react'
+import { Notifier, NotifierComponents } from 'react-native-notifier'
 
 const SignUpForm = () => {
-  const methods = useForm<SignUpFormModel>()
+  const methods = useForm<SignUpFormModel>({
+    defaultValues: {
+      name: 'Anna',
+      email: 'test3@test.com',
+      password: '12345678a'
+    }
+  })
   const { handleSubmit } = methods
 
-  const onSubmit: SubmitHandler<SignUpFormModel> = (data) => console.log('data', data)
+  const [triggerRegister, { data, isLoading, isSuccess, error }] = useRegisterMutation()
+  const dispatch = useDispatch()
+
+  const onSubmit: SubmitHandler<SignUpFormModel> = (formData) => {
+    triggerRegister(formData)
+  }
+
+  // TODO: check for errors
+  useEffect(() => {
+    if (isSuccess && data) {
+      try {
+        dispatch(setTokenId(data.idToken))
+        Notifier.showNotification({
+          title: 'Success',
+          description: 'User registered succesfully',
+          Component: NotifierComponents.Alert,
+          componentProps: {
+            alertType: 'success'
+          }
+        })
+      } catch (error) {
+        console.error('Error', error)
+      }
+    }
+  }, [isSuccess, data, dispatch])
+
+  if (isLoading) return <ActivityIndicator />
 
   return (
     <FormProvider {...methods}>
