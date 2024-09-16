@@ -30,6 +30,7 @@ const ForgotPasswordForm = () => {
             alertType: 'success'
           }
         })
+        // TODO: redirect to login screen
       } catch (error) {
         console.error('Error', error)
       }

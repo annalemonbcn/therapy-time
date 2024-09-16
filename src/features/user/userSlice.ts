@@ -25,9 +25,12 @@ export const userSlice = createSlice({
     },
     setUserLocation: (state, action: PayloadAction<string>) => {
       state.user.basicInfo.location = action.payload
+    },
+    resetTokenId: (state) => {
+      state.user.basicInfo.tokenId = ''
     }
   }
 })
 
-export const { setUserBasicInfo, setUserLocation } = userSlice.actions
+export const { setUserBasicInfo, setUserLocation, resetTokenId } = userSlice.actions
 export default userSlice.reducer
