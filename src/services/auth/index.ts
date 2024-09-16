@@ -13,6 +13,13 @@ type SignUpResponse = {
 type LoginResponse = SignUpResponse & {
   registered?: boolean
 }
+type PasswordRecoveryRequest = {
+  requestType: string
+  email: string
+}
+type PasswordRecoveryResponse = {
+  email: string
+}
 
 export const authApi = createApi({
   reducerPath: 'authApi',
@@ -31,8 +38,15 @@ export const authApi = createApi({
         method: 'POST',
         body: credentials
       })
+    }),
+    passwordRecovery: builder.mutation<PasswordRecoveryResponse, PasswordRecoveryRequest>({
+      query: (request) => ({
+        url: `accounts:sendOobCode?key=${API_KEY}`,
+        method: 'POST',
+        body: request
+      })
     })
   })
 })
 
-export const { useLoginMutation, useRegisterMutation } = authApi
+export const { useLoginMutation, useRegisterMutation, usePasswordRecoveryMutation } = authApi

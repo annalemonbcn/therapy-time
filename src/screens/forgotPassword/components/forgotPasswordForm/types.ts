@@ -1,5 +1,5 @@
 type ForgotPasswordFormModel = {
-  password: string
+  email: string
 }
 
 export { ForgotPasswordFormModel }
