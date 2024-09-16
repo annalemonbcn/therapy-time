@@ -6,14 +6,13 @@ import ControlledTextInput from 'src/components/custom/controlledTextInput'
 import Button from 'src/components/custom/customButton'
 import { useRegisterMutation } from 'src/services/auth'
 import { useDispatch } from 'react-redux'
-import { setTokenId } from 'src/features/user/userSlice'
+import { setUserBasicInfo } from 'src/features/user/userSlice'
 import { useEffect, useState } from 'react'
 import { Notifier, NotifierComponents } from 'react-native-notifier'
 
 const SignUpForm = () => {
   const methods = useForm<SignUpFormModel>({
     defaultValues: {
-      name: 'Anna',
       email: 'test3@test.com',
       password: '12345678a'
     }
@@ -31,7 +30,7 @@ const SignUpForm = () => {
   useEffect(() => {
     if (isSuccess && data) {
       try {
-        dispatch(setTokenId(data.idToken))
+        dispatch(setUserBasicInfo({ uuid: data.localId, email: data.email as string }))
         Notifier.showNotification({
           title: 'Success',
           description: 'User registered succesfully',
@@ -51,7 +50,6 @@ const SignUpForm = () => {
   return (
     <FormProvider {...methods}>
       <View style={styles.formContainer}>
-        <ControlledTextInput fieldName="name" placeholderText="Your Name" type="secondary" icon="user" isRequired />
         <ControlledTextInput fieldName="email" placeholderText="Your Email" type="secondary" icon="email" isRequired />
         <ControlledTextInput
           fieldName="password"

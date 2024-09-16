@@ -7,7 +7,7 @@ import { theme } from 'theme'
 import Button from 'src/components/custom/customButton'
 import { useLoginMutation } from 'src/services/auth'
 import { useDispatch } from 'react-redux'
-import { setTokenId } from 'src/features/user/userSlice'
+import { setUserBasicInfo } from 'src/features/user/userSlice'
 import { Notifier, NotifierComponents } from 'react-native-notifier'
 
 const LoginForm = () => {
@@ -30,7 +30,7 @@ const LoginForm = () => {
   useEffect(() => {
     if (isSuccess && data) {
       try {
-        dispatch(setTokenId(data.idToken))
+        dispatch(setUserBasicInfo({ uuid: data.localId, email: data.email as string }))
         Notifier.showNotification({
           title: 'Success',
           description: 'Welcome back!',

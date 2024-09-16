@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import * as SplashScreen from 'expo-splash-screen'
 import { useLoadInitialConfig } from 'src/hooks'
 import { UserProvider, useUserContext } from 'src/context/UserProvider'
@@ -20,9 +20,10 @@ export const AppDisplay = () => {
 }
 
 const MainNavigator = () => {
-  const userToken = useSelector((state: RootState) => state.user.tokenId)
+  const user = useSelector((state: RootState) => state.user.user.basicInfo.uuid)
+  const userEmail = useSelector((state: RootState) => state.user.user.basicInfo.email)
 
-  return <>{userToken ? <AppDisplay /> : <AuthNavigator />}</>
+  return <>{user ? <AppDisplay /> : <AuthNavigator />}</>
 }
 
 const App = () => {

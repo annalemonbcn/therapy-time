@@ -1,5 +1,4 @@
 type SignUpFormModel = {
-  name: string
   email: string
   password: string
 }

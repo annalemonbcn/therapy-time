@@ -5,9 +5,9 @@ type BasicInfo = {
   profilePicture: string
 }
 type UserBasicInfo = {
-  id: string
-  name: string
+  uuid: string
   email: string
+  name?: string
   profilePicture?: string
 }
 
