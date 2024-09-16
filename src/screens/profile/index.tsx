@@ -7,17 +7,28 @@ import { RootState } from 'src/store'
 import { theme } from 'theme'
 import ProfilePicture from './components/profilePicture'
 import { resetTokenId } from 'src/features/user/userSlice'
+import { ModalProvider, useModalContext } from 'src/context/ModalProvider'
+import { Notifier, NotifierComponents } from 'react-native-notifier'
 
-const ProfileScreen = () => {
+const ProfileDisplay = () => {
   const { name, location, profilePicture, tokenId } = useSelector((state: RootState) => state.user.user.basicInfo)
   const dispatch = useDispatch()
 
+  // TODO: handle error
   const handleLogout = () => {
-    dispatch(resetTokenId())
-  }
-
-  if (name) {
-    console.warn('Open modal to set name')
+    try {
+      dispatch(resetTokenId())
+      Notifier.showNotification({
+        title: 'Success',
+        description: 'Log Out successful. See you soon!',
+        Component: NotifierComponents.Alert,
+        componentProps: {
+          alertType: 'success'
+        }
+      })
+    } catch (error) {
+      console.error('Error', error)
+    }
   }
 
   return (
@@ -31,11 +42,12 @@ const ProfileScreen = () => {
       </View>
       <View>
         <Text>Change password</Text>
+        <Text>Change name</Text>
         <Text>View bookings</Text>
       </View>
       <View style={styles.logoutContainer}>
         <TouchableWithoutFeedback onPress={() => handleLogout()}>
-          <Text size="s2" color="blue">
+          <Text size="s2" color="blue" fontWeight='semi-bold'>
             Log Out
           </Text>
         </TouchableWithoutFeedback>
@@ -43,6 +55,12 @@ const ProfileScreen = () => {
     </PageWrapper>
   )
 }
+
+const ProfileScreen = () => (
+  <ModalProvider>
+    <ProfileDisplay />
+  </ModalProvider>
+)
 
 export default ProfileScreen
 

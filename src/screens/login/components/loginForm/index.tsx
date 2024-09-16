@@ -1,5 +1,4 @@
 import { ActivityIndicator, StyleSheet, View } from 'react-native'
-import React, { useEffect } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { LoginFormModel } from './types'
 import ControlledTextInput from 'src/components/custom/controlledTextInput'
@@ -10,6 +9,7 @@ import { useDispatch } from 'react-redux'
 import { setUserBasicInfo } from 'src/features/user/userSlice'
 import { Notifier, NotifierComponents } from 'react-native-notifier'
 
+// TODO: delete defaultValues
 const LoginForm = () => {
   const methods = useForm<LoginFormModel>({
     defaultValues: {
@@ -19,31 +19,33 @@ const LoginForm = () => {
   })
   const { handleSubmit } = methods
 
-  const [triggerLogin, { data, isLoading, isSuccess, error }] = useLoginMutation()
+  const [triggerLogin, { isLoading }] = useLoginMutation()
   const dispatch = useDispatch()
 
-  const onSubmit: SubmitHandler<LoginFormModel> = (formData) => {
-    triggerLogin(formData)
-  }
-
   // TODO: check for errors
-  useEffect(() => {
-    if (isSuccess && data) {
-      try {
-        dispatch(setUserBasicInfo({ uuid: data.localId, email: data.email as string, tokenId: data.idToken }))
-        Notifier.showNotification({
-          title: 'Success',
-          description: 'Welcome back!',
-          Component: NotifierComponents.Alert,
-          componentProps: {
-            alertType: 'success'
-          }
+  const onSubmit: SubmitHandler<LoginFormModel> = async (formData) => {
+    try {
+      const { data, error } = await triggerLogin(formData)
+      console.log('data', data)
+      dispatch(
+        setUserBasicInfo({
+          uuid: data?.localId as string,
+          email: data?.email as string,
+          tokenId: data?.idToken as string
         })
-      } catch (error) {
-        console.error('Error', error)
-      }
+      )
+      Notifier.showNotification({
+        title: 'Success',
+        description: 'Welcome back!',
+        Component: NotifierComponents.Alert,
+        componentProps: {
+          alertType: 'success'
+        }
+      })
+    } catch (error) {
+      console.error('Error', error)
     }
-  }, [isSuccess, data, dispatch])
+  }
 
   if (isLoading) return <ActivityIndicator />
 

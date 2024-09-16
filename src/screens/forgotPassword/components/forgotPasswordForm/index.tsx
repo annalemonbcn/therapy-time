@@ -12,30 +12,25 @@ const ForgotPasswordForm = () => {
   const methods = useForm<ForgotPasswordFormModel>()
   const { handleSubmit } = methods
 
-  const [triggerRecovery, { data, isLoading, isSuccess }] = usePasswordRecoveryMutation()
-
-  const onSubmit: SubmitHandler<ForgotPasswordFormModel> = (formData) => {
-    triggerRecovery({ email: formData.email, requestType: 'PASSWORD_RESET' })
-  }
+  const [triggerRecovery, { isLoading }] = usePasswordRecoveryMutation()
 
   // TODO: check for errors
-  useEffect(() => {
-    if (isSuccess) {
-      try {
-        Notifier.showNotification({
-          title: 'Email sent',
-          description: 'A password reset email has been sent',
-          Component: NotifierComponents.Alert,
-          componentProps: {
-            alertType: 'success'
-          }
-        })
-        // TODO: redirect to login screen
-      } catch (error) {
-        console.error('Error', error)
-      }
+
+  const onSubmit: SubmitHandler<ForgotPasswordFormModel> = (formData) => {
+    try {
+      triggerRecovery({ email: formData.email, requestType: 'PASSWORD_RESET' })
+      Notifier.showNotification({
+        title: 'Email sent',
+        description: 'A password reset email has been sent',
+        Component: NotifierComponents.Alert,
+        componentProps: {
+          alertType: 'success'
+        }
+      })
+    } catch (error) {
+      console.error('Error', error)
     }
-  }, [isSuccess, data])
+  }
 
   if (isLoading) return <ActivityIndicator />
 

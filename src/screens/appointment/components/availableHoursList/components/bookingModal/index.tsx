@@ -21,7 +21,7 @@ const CheckAppointment = ({ handleConfirm }: ICheckAppointmentProps) => {
       <Image source={require('assets/check_booking.png')} />
       <View style={styles.container}>
         <View style={styles.textContainer}>
-          <Text textAlign="center">You are about to make a reservation for the indicated day and time:</Text>
+          <Text textAlign="center">You are about to make a booking for the indicated day and time:</Text>
           <Text color="b500" textAlign="center" fontWeight="semi-bold">
             {getValues('day')} {getValues('hour')}
           </Text>

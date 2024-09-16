@@ -19,4 +19,21 @@ type PasswordRecoveryResponse = {
   email: string
 }
 
-export { SignUpResponse, LoginResponse, PasswordRecoveryRequest, PasswordRecoveryResponse }
+type UpdateNameRequest = {
+  idToken: string
+  displayName: string
+  returnSecureToken: boolean
+}
+
+type GetUserDataRequest = {
+  idToken: string
+}
+
+export {
+  SignUpResponse,
+  LoginResponse,
+  PasswordRecoveryRequest,
+  PasswordRecoveryResponse,
+  UpdateNameRequest,
+  GetUserDataRequest
+}
