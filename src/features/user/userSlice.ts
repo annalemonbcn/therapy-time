@@ -1,26 +1,30 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { User, UserBooking } from 'src/data/types'
+import { User } from 'src/data/types'
 
-export interface IUserState {
-  user: User | undefined
+interface IUserState {
+  user: User
 }
 
 const initialState: IUserState = {
-  user: undefined
+  user: {
+    basicInfo: {
+      uuid: '',
+      email: ''
+    },
+    bookings: []
+  }
 }
 
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setBooking: (state, action: PayloadAction<UserBooking>) => {
-      const booking = action.payload
-
-      if (!state.user) {
-        throw new Error('Cannot add booking: User is undefined') // TODO: move this check in the action creator
-      }
-
-      state.user.bookings = [...state.user.bookings, booking]
+    setUserBasicInfo: (state, action: PayloadAction<{ uuid: string; email: string }>) => {
+      state.user.basicInfo.uuid = action.payload.uuid
+      state.user.basicInfo.email = action.payload.email
     }
   }
 })
+
+export const { setUserBasicInfo } = userSlice.actions
+export default userSlice.reducer

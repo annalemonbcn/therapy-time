@@ -10,7 +10,7 @@ import BookingModal from './components/availableHoursList/components/bookingModa
 import { useDefaultDay } from './hooks'
 import { checkData } from './utils'
 import { ModalProvider, useModalContext } from 'src/context/ModalProvider'
-import Toast from 'react-native-root-toast'
+import { Notifier, NotifierComponents } from 'react-native-notifier'
 
 const AppointmentDisplay = () => {
   const defaultDay = useDefaultDay()
@@ -27,12 +27,13 @@ const AppointmentDisplay = () => {
   const onSubmit: SubmitHandler<BookingFormShape> = (data) => {
     const isValid = checkData(data)
     if (!isValid) {
-      Toast.show('It is required to select a date and time', {
-        position: -200,
-        backgroundColor: theme.colors.toastRed,
-        textColor: theme.colors.b0,
-        textStyle: { fontWeight: '500' },
-        opacity: 1
+      Notifier.showNotification({
+        title: 'Error',
+        description: 'It is required to select a date and time',
+        Component: NotifierComponents.Alert,
+        componentProps: {
+          alertType: 'error'
+        }
       })
       return
     }
