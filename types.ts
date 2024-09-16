@@ -11,17 +11,14 @@ type Space = keyof typeof theme.space
 
 type FlexCenter = 'center' | 'flex-start' | 'flex-end' | 'space-between'
 
-export { Colors, FontSize, FontWeight, Space, FlexCenter }
+type BorderRadius = keyof typeof theme.borders.radius
+
+export { Colors, FontSize, FontWeight, Space, FlexCenter, BorderRadius }
 
 type RootTabParamList = {
   TabHome: undefined
   TabMap: undefined
   TabProfile: undefined
-}
-
-type RootStackParamList = {
-  Home: undefined
-  'Doctor Details': { id: string }
 }
 
 export { RootTabParamList }

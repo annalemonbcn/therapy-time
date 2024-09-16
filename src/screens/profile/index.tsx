@@ -11,7 +11,7 @@ import { ModalProvider, useModalContext } from 'src/context/ModalProvider'
 import { Notifier, NotifierComponents } from 'react-native-notifier'
 
 const ProfileDisplay = () => {
-  const { name, location, profilePicture, tokenId } = useSelector((state: RootState) => state.user.user.basicInfo)
+  const { name, location } = useSelector((state: RootState) => state.user.user.basicInfo)
   const dispatch = useDispatch()
 
   // TODO: handle error
@@ -34,7 +34,9 @@ const ProfileDisplay = () => {
   return (
     <PageWrapper justifyContent="space-between">
       <View style={styles.pageContainer}>
-        <ProfilePicture />
+        <ModalProvider>
+          <ProfilePicture />
+        </ModalProvider>
         <View style={styles.nameContainer}>
           <Text fontWeight="bold">{name ? name : 'No name yet'}</Text>
           <Text size="s2">{location}</Text>
@@ -47,7 +49,7 @@ const ProfileDisplay = () => {
       </View>
       <View style={styles.logoutContainer}>
         <TouchableWithoutFeedback onPress={() => handleLogout()}>
-          <Text size="s2" color="blue" fontWeight='semi-bold'>
+          <Text size="s2" color="blue" fontWeight="semi-bold">
             Log Out
           </Text>
         </TouchableWithoutFeedback>
