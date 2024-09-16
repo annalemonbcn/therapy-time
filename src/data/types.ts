@@ -6,9 +6,11 @@ type BasicInfo = {
 }
 type UserBasicInfo = {
   uuid: string
+  tokenId: string
   email: string
   name?: string
   profilePicture?: string
+  location: string
 }
 
 type LocationInfo = {

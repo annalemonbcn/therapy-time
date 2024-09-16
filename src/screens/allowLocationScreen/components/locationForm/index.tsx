@@ -1,15 +1,16 @@
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { LocationFormModel } from './types'
-import { useUserContext } from 'src/context/UserProvider'
 import ControlledTextInput from 'src/components/custom/controlledTextInput'
+import { useDispatch } from 'react-redux'
+import { setUserLocation } from 'src/features/user/userSlice'
 
 const LocationForm = () => {
   const methods = useForm<LocationFormModel>()
   const { handleSubmit } = methods
 
-  const { setUserLocation } = useUserContext()
+  const dispatch = useDispatch()
 
-  const onSubmit: SubmitHandler<LocationFormModel> = (data) => setUserLocation(data.location)
+  const onSubmit: SubmitHandler<LocationFormModel> = (data) => dispatch(setUserLocation(data.location))
 
   return (
     <FormProvider {...methods}>

@@ -1,21 +1,22 @@
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { LocationFormModel } from './types'
-import { useUserContext } from 'src/context/UserProvider'
 import ControlledTextInput from 'src/components/custom/controlledTextInput'
 import { useNavigate } from 'src/hooks'
 import { Notifier, NotifierComponents } from 'react-native-notifier'
+import { useDispatch } from 'react-redux'
+import { setUserLocation } from 'src/features/user/userSlice'
 
 const ChangeLocationForm = () => {
   const methods = useForm<LocationFormModel>()
   const { handleSubmit } = methods
 
-  const { setUserLocation } = useUserContext()
+  const dispatch = useDispatch()
 
   const navigation = useNavigate()
 
   const onSubmit: SubmitHandler<LocationFormModel> = ({ location }) => {
     try {
-      setUserLocation(location)
+      dispatch(setUserLocation(location))
       navigation.navigate('Home')
     } catch (error) {
       console.error('Error', error)

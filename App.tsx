@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import * as SplashScreen from 'expo-splash-screen'
 import { useLoadInitialConfig } from 'src/hooks'
-import { UserProvider, useUserContext } from 'src/context/UserProvider'
 import AllowLocationScreen from 'src/screens/allowLocationScreen'
 import { NavigationContainer } from '@react-navigation/native'
 import BottomTabBar from 'src/navigation/bottomTabBar'
@@ -12,7 +11,7 @@ import { NotifierWrapper } from 'react-native-notifier'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 export const AppDisplay = () => {
-  const { userLocation } = useUserContext()
+  const userLocation = useSelector((state: RootState) => state.user.user.basicInfo.location)
 
   if (!userLocation) return <AllowLocationScreen />
 
@@ -20,8 +19,7 @@ export const AppDisplay = () => {
 }
 
 const MainNavigator = () => {
-  const user = useSelector((state: RootState) => state.user.user.basicInfo.uuid)
-  const userEmail = useSelector((state: RootState) => state.user.user.basicInfo.email)
+  const user = useSelector((state: RootState) => state.user.user.basicInfo.tokenId)
 
   return <>{user ? <AppDisplay /> : <AuthNavigator />}</>
 }
@@ -42,9 +40,7 @@ const App = () => {
       <NotifierWrapper>
         <Provider store={store}>
           <NavigationContainer>
-            <UserProvider>
-              <MainNavigator />
-            </UserProvider>
+            <MainNavigator />
           </NavigationContainer>
         </Provider>
       </NotifierWrapper>
