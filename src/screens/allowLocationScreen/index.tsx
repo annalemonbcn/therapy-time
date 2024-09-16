@@ -1,16 +1,17 @@
-import { Image, StyleSheet, TextInput, View } from 'react-native'
+import { Image, StyleSheet, View } from 'react-native'
 import Button from 'src/components/custom/customButton'
 import Text from 'src/components/custom/customText'
 import PageWrapper from 'src/components/custom/pageWrapper'
-import { useUserContext } from 'src/context/UserProvider'
 import { theme } from 'theme'
 import LocationForm from './components/locationForm'
+import { useDispatch } from 'react-redux'
+import { setUserLocation } from 'src/features/user/userSlice'
 
 const AllowLocationScreen = () => {
-  const { setUserLocation } = useUserContext()
+  const dispatch = useDispatch()
 
   // TODO: mock behavior
-  const handleSetLocation = () => setUserLocation('Barcelona')
+  const handleSetLocation = () => dispatch(setUserLocation('Barcelona'))
 
   return (
     <PageWrapper centerVertically>

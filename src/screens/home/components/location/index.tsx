@@ -2,17 +2,18 @@ import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native'
 import Text from 'src/components/custom/customText'
 import HorizontalContainer from 'src/components/custom/horizontalContainer'
 import { theme } from 'theme'
-import { useUserContext } from 'src/context/UserProvider'
 import LocationIcon from 'src/components/icons/locationIcon'
 import ChevronIcon from 'src/components/icons/chevronIcon'
 import { useNavigate } from 'src/hooks'
+import { useSelector } from 'react-redux'
+import { RootState } from 'src/store'
 
 const LocationDisplay = () => {
-  const { userLocation } = useUserContext()
+  const userLocation = useSelector((state: RootState) => state.user.user.basicInfo.location)
 
   if (!userLocation) console.error('No user location')
 
-    const navigation = useNavigate()
+  const navigation = useNavigate()
 
   return (
     <View style={styles.container}>

@@ -30,7 +30,7 @@ const LoginForm = () => {
   useEffect(() => {
     if (isSuccess && data) {
       try {
-        dispatch(setUserBasicInfo({ uuid: data.localId, email: data.email as string }))
+        dispatch(setUserBasicInfo({ uuid: data.localId, email: data.email as string, tokenId: data.idToken }))
         Notifier.showNotification({
           title: 'Success',
           description: 'Welcome back!',
