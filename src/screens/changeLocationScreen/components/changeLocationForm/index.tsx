@@ -2,9 +2,8 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { LocationFormModel } from './types'
 import { useUserContext } from 'src/context/UserProvider'
 import ControlledTextInput from 'src/components/custom/controlledTextInput'
-import Toast from 'react-native-root-toast'
-import { theme } from 'theme'
 import { useNavigate } from 'src/hooks'
+import { Notifier, NotifierComponents } from 'react-native-notifier'
 
 const ChangeLocationForm = () => {
   const methods = useForm<LocationFormModel>()
@@ -20,12 +19,13 @@ const ChangeLocationForm = () => {
       navigation.navigate('Home')
     } catch (error) {
       console.error('Error', error)
-      Toast.show('An error has ocurred. Try again later', {
-        position: -200,
-        backgroundColor: theme.colors.toastRed,
-        textColor: theme.colors.b0,
-        textStyle: { fontWeight: '500' },
-        opacity: 1
+      Notifier.showNotification({
+        title: 'Error',
+        description: 'An error has ocurred. Please try again later.',
+        Component: NotifierComponents.Alert,
+        componentProps: {
+          alertType: 'error'
+        }
       })
     }
   }

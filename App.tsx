@@ -5,16 +5,25 @@ import { UserProvider, useUserContext } from 'src/context/UserProvider'
 import AllowLocationScreen from 'src/screens/allowLocationScreen'
 import { NavigationContainer } from '@react-navigation/native'
 import BottomTabBar from 'src/navigation/bottomTabBar'
-import { RootSiblingParent } from 'react-native-root-siblings'
-import { Provider } from 'react-redux'
-import { store } from 'src/store'
+import { Provider, useSelector } from 'react-redux'
+import { RootState, store } from 'src/store'
+import AuthNavigator from 'src/navigation/authNavigator'
+import { NotifierWrapper } from 'react-native-notifier'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
-const AppDisplay = () => {
+export const AppDisplay = () => {
   const { userLocation } = useUserContext()
 
   if (!userLocation) return <AllowLocationScreen />
 
   return <BottomTabBar />
+}
+
+const MainNavigator = () => {
+  const user = useSelector((state: RootState) => state.user.user.basicInfo.uuid)
+  const userEmail = useSelector((state: RootState) => state.user.user.basicInfo.email)
+
+  return <>{user ? <AppDisplay /> : <AuthNavigator />}</>
 }
 
 const App = () => {
@@ -29,15 +38,17 @@ const App = () => {
   if (!loaded && !error) return null
 
   return (
-    <RootSiblingParent>
-      <Provider store={store}>
-        <NavigationContainer>
-          <UserProvider>
-            <AppDisplay />
-          </UserProvider>
-        </NavigationContainer>
-      </Provider>
-    </RootSiblingParent>
+    <GestureHandlerRootView>
+      <NotifierWrapper>
+        <Provider store={store}>
+          <NavigationContainer>
+            <UserProvider>
+              <MainNavigator />
+            </UserProvider>
+          </NavigationContainer>
+        </Provider>
+      </NotifierWrapper>
+    </GestureHandlerRootView>
   )
 }
 

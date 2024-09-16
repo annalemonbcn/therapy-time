@@ -1,9 +1,14 @@
-import { Controller, useFormContext } from 'react-hook-form'
+import { useState } from 'react'
+import { TouchableWithoutFeedback } from 'react-native'
+import { theme } from 'theme'
 import Text from '../customText'
-import { ICustomTextInputProps } from './types'
+import { Controller, useFormContext } from 'react-hook-form'
+import { Icon, ICustomTextInputProps } from './types'
 import { StyledButton, StyledInputWrapper, StyledInput, StyledInputContainer } from './styles'
 import SearchIcon from 'src/components/icons/searchIcon'
-import { theme } from 'theme'
+import EmailIcon from 'src/components/icons/emailIcon'
+import PasswordIcon from 'src/components/icons/passwordIcon'
+import UserIcon from 'src/components/icons/userIcon'
 
 const ErrorText = ({ errorMessage }: { errorMessage: string }) => (
   <Text size="s2" color="darkRed" style={{ marginVertical: 8 }}>
@@ -11,15 +16,28 @@ const ErrorText = ({ errorMessage }: { errorMessage: string }) => (
   </Text>
 )
 
+const iconMap = {
+  email: EmailIcon,
+  password: PasswordIcon,
+  search: SearchIcon,
+  user: UserIcon
+}
+const renderIcon = (icon: Icon) => {
+  const IconComponent = iconMap[icon]
+  return IconComponent ? <IconComponent color="b400" /> : null
+}
+
 const ControlledTextInput = ({
   fieldName,
   placeholderText,
   isRequired = true,
   isSecured = false,
   sendButton,
-  iconType,
+  icon,
   type
 }: ICustomTextInputProps) => {
+  const [isVisible, setIsVisible] = useState(isSecured)
+
   const {
     control,
     formState: { errors, isDirty }
@@ -38,16 +56,24 @@ const ControlledTextInput = ({
       render={({ field: { value, onChange } }) => (
         <StyledInputContainer>
           <StyledInputWrapper type={type}>
-            {iconType && <SearchIcon />}
+            {icon && renderIcon(icon)}
             <StyledInput
               placeholder={placeholderText}
               placeholderTextColor={theme.colors.b400}
               onChangeText={onChange}
               value={value}
-              secureTextEntry={isSecured}
+              secureTextEntry={isVisible}
+              autoCapitalize="none"
               isTouched={isDirty}
               onSubmitEditing={handleSendPress}
             />
+            {isSecured && (
+              <TouchableWithoutFeedback onPress={() => setIsVisible((prevState) => !prevState)}>
+                <Text size="s1" color="b500">
+                  Show
+                </Text>
+              </TouchableWithoutFeedback>
+            )}
           </StyledInputWrapper>
           {errors[fieldName] && <ErrorText errorMessage={errors[fieldName].message as string} />}
           {sendButton && (
