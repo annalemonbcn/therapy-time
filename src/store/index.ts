@@ -12,7 +12,8 @@ export const store = configureStore({
     [authApi.reducerPath]: authApi.reducer,
     [userApi.reducerPath]: userApi.reducer
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(therapistsApi.middleware, authApi.middleware)
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(therapistsApi.middleware, authApi.middleware, userApi.middleware)
 })
 
 setupListeners(store.dispatch)

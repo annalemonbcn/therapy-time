@@ -1,3 +1,3 @@
-type SetProfilePictureRequest = { image: string; uuid: string }
+type SetProfilePictureRequest = { profilePicture: string; uuid: string }
 
 export { SetProfilePictureRequest }

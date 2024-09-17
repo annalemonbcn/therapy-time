@@ -1,30 +1,26 @@
 import { Image, StyleSheet, TouchableWithoutFeedback, View } from 'react-native'
-import { useSelector } from 'react-redux'
 import EditIcon from 'src/components/icons/editIcon'
-import { useModalContext } from 'src/context/ModalProvider'
-import { RootState } from 'src/store'
 import { theme } from 'theme'
-import ContextMenuModal from '../contextMenuModal'
+import { useSetProfilePicture } from '../../hooks'
 
 const ProfilePicture = () => {
-  const { isOpen, openModal } = useModalContext()
-
-  const { profilePicture } = useSelector((state: RootState) => state.user.user.basicInfo)
-
-  const imageSource = profilePicture ? { uri: `${profilePicture}` } : require('./img/default.jpg')
+  const { profilePicture, openGallery } = useSetProfilePicture()
 
   return (
-    <>
-      <View style={styles.imageContainer}>
-        <Image source={imageSource} style={styles.image} />
-        <TouchableWithoutFeedback onPress={() => openModal()}>
-          <View style={styles.iconContainer}>
-            <EditIcon size={18} color="b0" />
-          </View>
-        </TouchableWithoutFeedback>
-      </View>
-      {isOpen && <ContextMenuModal />}
-    </>
+    <View style={styles.imageContainer}>
+      <Image
+        defaultSource={require('./img/default.jpg')}
+        source={{
+          uri: profilePicture || undefined
+        }}
+        style={styles.image}
+      />
+      <TouchableWithoutFeedback onPress={() => openGallery()}>
+        <View style={styles.iconContainer}>
+          <EditIcon size={18} color="b0" />
+        </View>
+      </TouchableWithoutFeedback>
+    </View>
   )
 }
 
