@@ -1,16 +1,19 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { therapistsApi } from 'src/services/therapists'
 import { setupListeners } from '@reduxjs/toolkit/query'
+import { therapistsApi } from 'src/services/therapists'
 import { authApi } from 'src/services/auth'
+import { userApi } from 'src/services/user'
 import userReducer from '../features/user/userSlice'
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
     [therapistsApi.reducerPath]: therapistsApi.reducer,
-    [authApi.reducerPath]: authApi.reducer
+    [authApi.reducerPath]: authApi.reducer,
+    [userApi.reducerPath]: userApi.reducer
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(therapistsApi.middleware, authApi.middleware)
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(therapistsApi.middleware, authApi.middleware, userApi.middleware)
 })
 
 setupListeners(store.dispatch)

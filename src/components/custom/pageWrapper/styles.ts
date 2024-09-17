@@ -5,7 +5,7 @@ import { IPageWrapperProps } from './types'
 
 const StyledPageWrapper = styled(View)<IPageWrapperProps>`
   flex: 1;
-  justify-content: ${({ centerVertically }) => (centerVertically ? 'center' : 'flex - start')};
+  justify-content: ${({ justifyContent }) => (justifyContent ? justifyContent : 'flex-start')};
 
   padding-left: ${theme.space.lg}px;
   padding-right: ${theme.space.lg}px;

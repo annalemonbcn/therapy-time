@@ -2,27 +2,11 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { API_KEY, BASE_URL_AUTH } from 'src/firebase/db'
 import { LoginFormModel } from 'src/screens/login/components/loginForm/types'
 import { SignUpFormModel } from 'src/screens/signUp/components/signUpForm/types'
-
-type SignUpResponse = {
-  idToken: string
-  email?: string
-  refreshToken: string
-  expiresIn: number
-  localId: string
-}
-type LoginResponse = SignUpResponse & {
-  registered?: boolean
-}
-type PasswordRecoveryRequest = {
-  requestType: string
-  email: string
-}
-type PasswordRecoveryResponse = {
-  email: string
-}
+import { LoginResponse, PasswordRecoveryRequest, PasswordRecoveryResponse, SignUpResponse } from './types'
 
 export const authApi = createApi({
   reducerPath: 'authApi',
+  tagTypes: ['User'],
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL_AUTH }),
   endpoints: (builder) => ({
     login: builder.mutation<LoginResponse, LoginFormModel>({

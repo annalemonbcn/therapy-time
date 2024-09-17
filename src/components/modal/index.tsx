@@ -11,11 +11,25 @@ const Header = ({ closeModal }: IHeaderProps) => (
   </TouchableWithoutFeedback>
 )
 
-const BasicModal = ({ isModalOpen, closeModal, showCloseButton = true, children }: IBasicModalProps) => (
+const BasicModal = ({
+  isModalOpen,
+  closeModal,
+  showCloseButton = true,
+  borderRadius = 'xl',
+  alignContent = 'center',
+  animationType = 'none',
+  children
+}: IBasicModalProps) => (
   <View style={styles.centeredView}>
-    <Modal animationType="none" transparent={true} visible={isModalOpen} onRequestClose={() => closeModal()}>
+    <Modal animationType={animationType} transparent={true} visible={isModalOpen} onRequestClose={() => closeModal()}>
       <View style={[styles.centeredView, styles.backdrop]}>
-        <View style={[theme.borders.shadow.basicShadow, styles.modalView]}>
+        <View
+          style={[
+            theme.borders.shadow.basicShadow,
+            styles.modalView,
+            { borderRadius: theme.borders.radius[borderRadius], alignItems: alignContent }
+          ]}
+        >
           {showCloseButton && <Header closeModal={closeModal} />}
           {children}
         </View>
@@ -36,7 +50,6 @@ const styles = StyleSheet.create({
   modalView: {
     width: '90%',
     backgroundColor: theme.colors.b50,
-    borderRadius: theme.borders.radius.xl,
     paddingVertical: theme.space.md,
     paddingHorizontal: theme.space.lg,
     alignItems: 'center'

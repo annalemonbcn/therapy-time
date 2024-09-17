@@ -10,7 +10,7 @@ const ChangeLocationScreen = () => {
   const navigation = useNavigate()
 
   return (
-    <PageWrapper centerVertically>
+    <PageWrapper justifyContent="center">
       <View style={styles.pageContainer}>
         <Image source={require('assets/location.png')} />
         <View style={styles.titleContainer}>

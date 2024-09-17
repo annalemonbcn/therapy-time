@@ -22,28 +22,30 @@ const SignUpForm = () => {
   const [triggerRegister, { data, isLoading, isSuccess, error }] = useRegisterMutation()
   const dispatch = useDispatch()
 
-  const onSubmit: SubmitHandler<SignUpFormModel> = (formData) => {
-    triggerRegister(formData)
-  }
-
   // TODO: check for errors
-  useEffect(() => {
-    if (isSuccess && data) {
-      try {
-        dispatch(setUserBasicInfo({ uuid: data.localId, email: data.email as string, tokenId: data.idToken }))
-        Notifier.showNotification({
-          title: 'Success',
-          description: 'User registered succesfully',
-          Component: NotifierComponents.Alert,
-          componentProps: {
-            alertType: 'success'
-          }
+  const onSubmit: SubmitHandler<SignUpFormModel> = async (formData) => {
+    try {
+      const { data, error } = await triggerRegister(formData)
+      console.log('data', data)
+      dispatch(
+        setUserBasicInfo({
+          uuid: data?.localId as string,
+          email: data?.email as string,
+          tokenId: data?.idToken as string
         })
-      } catch (error) {
-        console.error('Error', error)
-      }
+      )
+      Notifier.showNotification({
+        title: 'Success',
+        description: 'User registered succesfully',
+        Component: NotifierComponents.Alert,
+        componentProps: {
+          alertType: 'success'
+        }
+      })
+    } catch (error) {
+      console.error('Error', error)
     }
-  }, [isSuccess, data, dispatch])
+  }
 
   if (isLoading) return <ActivityIndicator />
 

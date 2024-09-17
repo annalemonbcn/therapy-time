@@ -1,16 +1,19 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import * as SplashScreen from 'expo-splash-screen'
-import { useLoadInitialConfig } from 'src/hooks'
+import { useLoadInitialConfig, useLoadInitialInfo } from 'src/hooks'
 import AllowLocationScreen from 'src/screens/allowLocationScreen'
 import { NavigationContainer } from '@react-navigation/native'
 import BottomTabBar from 'src/navigation/bottomTabBar'
-import { Provider, useSelector } from 'react-redux'
+import { Provider, useDispatch, useSelector } from 'react-redux'
 import { RootState, store } from 'src/store'
 import AuthNavigator from 'src/navigation/authNavigator'
 import { NotifierWrapper } from 'react-native-notifier'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import { MenuProvider } from 'react-native-popup-menu'
 
-export const AppDisplay = () => {
+const AppDisplay = () => {
+  useLoadInitialInfo()
+
   const userLocation = useSelector((state: RootState) => state.user.user.basicInfo.location)
 
   if (!userLocation) return <AllowLocationScreen />
@@ -38,11 +41,13 @@ const App = () => {
   return (
     <GestureHandlerRootView>
       <NotifierWrapper>
-        <Provider store={store}>
-          <NavigationContainer>
-            <MainNavigator />
-          </NavigationContainer>
-        </Provider>
+        <MenuProvider>
+          <Provider store={store}>
+            <NavigationContainer>
+              <MainNavigator />
+            </NavigationContainer>
+          </Provider>
+        </MenuProvider>
       </NotifierWrapper>
     </GestureHandlerRootView>
   )
