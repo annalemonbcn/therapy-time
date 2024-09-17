@@ -19,16 +19,38 @@ const useContextMenuActions = () => {
     return granted ? true : false
   }
 
-  const pickImage = async () => {
+  const verifyGalleryPermissions = async () => {
+    const { granted } = await ImagePicker.requestMediaLibraryPermissionsAsync()
+    return granted ? true : false
+  }
+
+  const takePicture = async () => {
     const isCameraGranted = await verifyCameraPermissions()
     if (!isCameraGranted) return
 
-    let result = await ImagePicker.launchCameraAsync({
+    const result = await ImagePicker.launchCameraAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
       aspect: [9, 9],
       base64: true,
-      quality: 0.3
+      quality: 0.5
+    })
+
+    if (result.canceled) return
+
+    setImage(`data:image/jpeg;base64,${result.assets[0].base64}`)
+  }
+
+  const openGallery = async () => {
+    const isGalleryGranted = await verifyGalleryPermissions()
+    if (!isGalleryGranted) return
+
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [9, 9],
+      base64: true,
+      quality: 0.5
     })
 
     if (result.canceled) return
@@ -42,13 +64,13 @@ const useContextMenuActions = () => {
     {
       id: 'takePicture',
       title: 'Take a picture',
-      trigger: () => pickImage(),
+      trigger: () => takePicture(),
       icon: <CameraIcon size={20} />
     },
     {
       id: 'selectGallery',
       title: 'Select from gallery',
-      trigger: () => console.log('select from gallery'),
+      trigger: () => openGallery(),
       icon: <ImageIcon size={20} />
     }
   ]
