@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { IUserState, SetUserBasicInfoRequest } from './types'
+import { UserBooking } from 'src/data/types'
 
 const initialState: IUserState = {
   user: {
@@ -22,14 +23,24 @@ export const userSlice = createSlice({
       state.user.basicInfo.email = action.payload.email
       state.user.basicInfo.tokenId = action.payload.tokenId
     },
+    resetTokenId: (state) => {
+      state.user.basicInfo.tokenId = ''
+    },
+    setUserName: (state, action: PayloadAction<string>) => {
+      state.user.basicInfo.name = action.payload
+    },
+    setUserProfilePicture: (state, action: PayloadAction<string>) => {
+      state.user.basicInfo.profilePicture = action.payload
+    },
     setUserLocation: (state, action: PayloadAction<string>) => {
       state.user.basicInfo.location = action.payload
     },
-    resetTokenId: (state) => {
-      state.user.basicInfo.tokenId = ''
+    setUserBookings: (state, action: PayloadAction<UserBooking[]>) => {
+      state.user.bookings = state.user.bookings
     }
   }
 })
 
-export const { setUserBasicInfo, setUserLocation, resetTokenId } = userSlice.actions
+export const { setUserBasicInfo, resetTokenId, setUserName, setUserProfilePicture, setUserLocation, setUserBookings } =
+  userSlice.actions
 export default userSlice.reducer
