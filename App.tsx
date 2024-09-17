@@ -9,6 +9,7 @@ import { RootState, store } from 'src/store'
 import AuthNavigator from 'src/navigation/authNavigator'
 import { NotifierWrapper } from 'react-native-notifier'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import { MenuProvider } from 'react-native-popup-menu'
 
 export const AppDisplay = () => {
   const userLocation = useSelector((state: RootState) => state.user.user.basicInfo.location)
@@ -38,11 +39,13 @@ const App = () => {
   return (
     <GestureHandlerRootView>
       <NotifierWrapper>
-        <Provider store={store}>
-          <NavigationContainer>
-            <MainNavigator />
-          </NavigationContainer>
-        </Provider>
+        <MenuProvider>
+          <Provider store={store}>
+            <NavigationContainer>
+              <MainNavigator />
+            </NavigationContainer>
+          </Provider>
+        </MenuProvider>
       </NotifierWrapper>
     </GestureHandlerRootView>
   )

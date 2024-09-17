@@ -26,7 +26,6 @@ const LoginForm = () => {
   const onSubmit: SubmitHandler<LoginFormModel> = async (formData) => {
     try {
       const { data, error } = await triggerLogin(formData)
-      console.log('data', data)
       dispatch(
         setUserBasicInfo({
           uuid: data?.localId as string,

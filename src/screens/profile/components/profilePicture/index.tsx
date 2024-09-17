@@ -1,10 +1,9 @@
 import { Image, StyleSheet, TouchableWithoutFeedback, View } from 'react-native'
-import EditIcon from 'src/components/icons/editIcon'
-import { theme } from 'theme'
 import { useSetProfilePicture } from '../../hooks'
+import PictureContextMenu from '../pictureContextMenu'
 
 const ProfilePicture = () => {
-  const { profilePicture, openGallery } = useSetProfilePicture()
+  const { profilePicture, takePicture, openGallery } = useSetProfilePicture()
 
   return (
     <View style={styles.imageContainer}>
@@ -15,11 +14,7 @@ const ProfilePicture = () => {
         }}
         style={styles.image}
       />
-      <TouchableWithoutFeedback onPress={() => openGallery()}>
-        <View style={styles.iconContainer}>
-          <EditIcon size={18} color="b0" />
-        </View>
-      </TouchableWithoutFeedback>
+      <PictureContextMenu takePicture={takePicture} openGallery={openGallery} />
     </View>
   )
 }
@@ -34,15 +29,5 @@ const styles = StyleSheet.create({
     width: 170,
     height: 170,
     borderRadius: 100
-  },
-  iconContainer: {
-    position: 'absolute',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: theme.borders.radius.xs,
-    backgroundColor: theme.colors.main,
-    bottom: theme.space.sm,
-    right: theme.space.sm,
-    padding: theme.space.xs
   }
 })

@@ -10,6 +10,7 @@ const useSetProfilePicture = () => {
   const [profilePicture, setProfilePicture] = useState<string | null>(null)
   const { closeModal } = useModalContext()
 
+  // TODO: also save it to a local redux state instead of local state ?
   const [updateProfilePicture] = useSetProfilePictureMutation()
   const uuid = useSelector((state: RootState) => state.user.user.basicInfo.uuid)
 

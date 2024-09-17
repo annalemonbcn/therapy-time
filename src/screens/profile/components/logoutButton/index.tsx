@@ -28,7 +28,7 @@ const LogoutButton = () => {
   return (
     <View style={styles.logoutContainer}>
       <TouchableWithoutFeedback onPress={() => handleLogout()}>
-        <Text size="s2" color="blue" fontWeight="semi-bold">
+        <Text size="s2" color="blue">
           Log Out
         </Text>
       </TouchableWithoutFeedback>
