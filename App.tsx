@@ -10,12 +10,16 @@ import AuthNavigator from 'src/navigation/authNavigator'
 import { NotifierWrapper } from 'react-native-notifier'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { MenuProvider } from 'react-native-popup-menu'
+import FillProfileScreen from 'src/screens/fillProfile'
 
 const AppDisplay = () => {
-  useLoadInitialInfo()
+  // useLoadInitialInfo()
 
+  const name = useSelector((state: RootState) => state.user.user.basicInfo.name)
   const userLocation = useSelector((state: RootState) => state.user.user.basicInfo.location)
+  const showRegister = name ? false : true
 
+  if (showRegister) return <FillProfileScreen />
   if (!userLocation) return <AllowLocationScreen />
 
   return <BottomTabBar />

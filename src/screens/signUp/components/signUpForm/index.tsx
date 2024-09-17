@@ -7,26 +7,24 @@ import Button from 'src/components/custom/customButton'
 import { useRegisterMutation } from 'src/services/auth'
 import { useDispatch } from 'react-redux'
 import { setUserBasicInfo } from 'src/features/user/userSlice'
-import { useEffect, useState } from 'react'
 import { Notifier, NotifierComponents } from 'react-native-notifier'
 
 const SignUpForm = () => {
   const methods = useForm<SignUpFormModel>({
     defaultValues: {
-      email: 'test3@test.com',
+      email: 'aesteve8@gmail.com',
       password: '12345678a'
     }
   })
   const { handleSubmit } = methods
 
-  const [triggerRegister, { data, isLoading, isSuccess, error }] = useRegisterMutation()
+  const [triggerRegister, { isLoading }] = useRegisterMutation()
   const dispatch = useDispatch()
 
   // TODO: check for errors
   const onSubmit: SubmitHandler<SignUpFormModel> = async (formData) => {
     try {
       const { data, error } = await triggerRegister(formData)
-      console.log('data', data)
       dispatch(
         setUserBasicInfo({
           uuid: data?.localId as string,
