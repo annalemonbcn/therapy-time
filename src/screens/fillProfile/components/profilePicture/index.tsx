@@ -1,11 +1,10 @@
-import { Image, StyleSheet, View } from 'react-native'
-import { useSetProfilePicture } from '../../hooks'
-import PictureContextMenu from '../pictureContextMenu'
-import { useGetProfilePicture } from './hooks'
+import { Image, View, StyleSheet } from 'react-native'
+import PictureContextMenu from 'src/screens/profile/components/pictureContextMenu'
+import { useSetProfilePicture } from './hooks'
+import { useEffect } from 'react'
 
 const ProfilePicture = () => {
-  const profilePicture = useGetProfilePicture()
-  const { takePicture, openGallery } = useSetProfilePicture()
+  const { profilePicture, takePicture, openGallery } = useSetProfilePicture()
 
   return (
     <View style={styles.imageContainer}>

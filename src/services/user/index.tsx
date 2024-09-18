@@ -15,16 +15,19 @@ import { UserBooking } from 'src/data/types'
 export const userApi = createApi({
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({ baseUrl: URL_FIREBASE }),
+  tagTypes: ['name', 'profilePicture'],
   endpoints: (builder) => ({
     setName: builder.mutation<void, SetNameRequest>({
       query: (body) => ({
         url: `/users/${body.uuid}.json`,
         method: 'PATCH',
         body
-      })
+      }),
+      invalidatesTags: ['name']
     }),
     getName: builder.query<{ name: string }, GetNameRequest>({
-      query: ({ uuid }) => `/users/${uuid}.json`
+      query: ({ uuid }) => `/users/${uuid}.json`,
+      providesTags: ['name']
     }),
     setEmail: builder.mutation<void, SetEmailRequest>({
       query: (body) => ({
@@ -34,17 +37,19 @@ export const userApi = createApi({
       })
     }),
     getEmail: builder.query<{ email: string }, GetEmailRequest>({
-      query: (body) => `/users/${body.uuid}.json`
+      query: ({ uuid }) => `/users/${uuid}.json`
     }),
     setProfilePicture: builder.mutation<void, SetProfilePictureRequest>({
       query: (body) => ({
         url: `/users/${body.uuid}.json`,
         method: 'PATCH',
         body
-      })
+      }),
+      invalidatesTags: ['profilePicture']
     }),
     getProfilePicture: builder.query<{ profilePicture: string }, GetProfilePictureRequest>({
-      query: (body) => `/users/${body.uuid}.json`
+      query: ({ uuid }) => `/users/${uuid}.json`,
+      providesTags: ['profilePicture']
     }),
     setBookings: builder.mutation<void, SetBookingsRequest>({
       query: (body) => ({
@@ -54,7 +59,7 @@ export const userApi = createApi({
       })
     }),
     getBookings: builder.query<{ bookings: UserBooking[] }, GetBookingsRequest>({
-      query: (body) => `/users/${body.uuid}.json`
+      query: ({ uuid }) => `/users/${uuid}.json`
     })
   })
 })

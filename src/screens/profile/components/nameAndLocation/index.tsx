@@ -1,15 +1,16 @@
 import { StyleSheet, View } from 'react-native'
-import { useSelector } from 'react-redux'
 import Text from 'src/components/custom/customText'
-import { RootState } from 'src/store'
+import { useGetUserLocation, useGetUuid } from 'src/hooks'
 import { theme } from 'theme'
+import { useGetName } from './hooks'
 
 const NameAndLocation = () => {
-  const { name, location } = useSelector((state: RootState) => state.user.user.basicInfo)
+  const location = useGetUserLocation()
+  const name = useGetName()
 
   return (
     <View style={styles.nameContainer}>
-      <Text fontWeight="bold">{name ? name : 'No name yet'}</Text>
+      <Text fontWeight="bold">{name ? name : 'No name'}</Text>
       <Text size="s2">{location}</Text>
     </View>
   )

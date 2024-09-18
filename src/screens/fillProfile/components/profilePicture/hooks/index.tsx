@@ -1,15 +1,15 @@
 import * as ImagePicker from 'expo-image-picker'
-import { useDispatch, useSelector } from 'react-redux'
-import { useSetProfilePictureMutation } from 'src/services/user'
-import { RootState } from 'src/store'
+import { useMemo, useState } from 'react'
+import { useFormContext } from 'react-hook-form'
 import { Notifier, NotifierComponents } from 'react-native-notifier'
-import { setUserProfilePicture } from 'src/features/user/userSlice'
-import { useGetUuid } from 'src/hooks'
-import { showSuccessNotification } from 'src/utils/notifications'
+import { useSelector } from 'react-redux'
+import { useGetProfilePictureQuery, useSetProfilePictureMutation } from 'src/services/user'
+import { RootState } from 'src/store'
+import { ProfileDataFormModel } from '../../fillProfileForm/types'
 
 const useSetProfilePicture = () => {
-  const [updateProfilePicture] = useSetProfilePictureMutation()
-  const uuid = useGetUuid()
+  const [profilePicture, setProfilePicture] = useState('')
+  const { setValue } = useFormContext<ProfileDataFormModel>()
 
   const verifyCameraPermissions = async () => {
     const { granted } = await ImagePicker.requestCameraPermissionsAsync()
@@ -35,12 +35,8 @@ const useSetProfilePicture = () => {
 
     if (!result.canceled) {
       const base64Data = `data:image/jpeg;base64,${result.assets[0].base64}`
-      try {
-        await updateProfilePicture({ uuid, profilePicture: base64Data as string })
-        showSuccessNotification('Your profile picture has been updated')
-      } catch (error) {
-        console.error('Error', error)
-      }
+      setProfilePicture(base64Data)
+      setValue('profilePicture', base64Data)
     }
   }
 
@@ -58,16 +54,13 @@ const useSetProfilePicture = () => {
 
     if (!result.canceled) {
       const base64Data = `data:image/jpeg;base64,${result.assets[0].base64}`
-      try {
-        await updateProfilePicture({ uuid, profilePicture: base64Data as string })
-        showSuccessNotification('Your profile picture has been updated')
-      } catch (error) {
-        console.error('Error', error)
-      }
+      setProfilePicture(base64Data)
+      setValue('profilePicture', base64Data)
     }
   }
 
   return {
+    profilePicture,
     takePicture,
     openGallery
   }

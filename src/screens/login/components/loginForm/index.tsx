@@ -7,7 +7,7 @@ import Button from 'src/components/custom/customButton'
 import { useLoginMutation } from 'src/services/auth'
 import { useDispatch } from 'react-redux'
 import { setUserBasicInfo } from 'src/features/user/userSlice'
-import { Notifier, NotifierComponents } from 'react-native-notifier'
+import { showSuccessNotification } from 'src/utils/notifications'
 
 // TODO: delete defaultValues
 const LoginForm = () => {
@@ -33,14 +33,7 @@ const LoginForm = () => {
           tokenId: data?.idToken as string
         })
       )
-      Notifier.showNotification({
-        title: 'Success',
-        description: 'Welcome back!',
-        Component: NotifierComponents.Alert,
-        componentProps: {
-          alertType: 'success'
-        }
-      })
+      showSuccessNotification('Welcome back!')
     } catch (error) {
       console.error('Error', error)
     }

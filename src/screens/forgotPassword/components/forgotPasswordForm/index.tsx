@@ -5,8 +5,7 @@ import ControlledTextInput from 'src/components/custom/controlledTextInput'
 import { theme } from 'theme'
 import Button from 'src/components/custom/customButton'
 import { usePasswordRecoveryMutation } from 'src/services/auth'
-import { useEffect } from 'react'
-import { Notifier, NotifierComponents } from 'react-native-notifier'
+import { showSuccessNotification } from 'src/utils/notifications'
 
 const ForgotPasswordForm = () => {
   const methods = useForm<ForgotPasswordFormModel>()
@@ -19,14 +18,7 @@ const ForgotPasswordForm = () => {
   const onSubmit: SubmitHandler<ForgotPasswordFormModel> = (formData) => {
     try {
       triggerRecovery({ email: formData.email, requestType: 'PASSWORD_RESET' })
-      Notifier.showNotification({
-        title: 'Email sent',
-        description: 'A password reset email has been sent',
-        Component: NotifierComponents.Alert,
-        componentProps: {
-          alertType: 'success'
-        }
-      })
+      showSuccessNotification('A password reset email has been sent')
     } catch (error) {
       console.error('Error', error)
     }
