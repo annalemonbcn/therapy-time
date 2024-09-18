@@ -10,7 +10,9 @@ import { RootState } from 'src/store'
 
 const useGetUuid = () => useSelector((state: RootState) => state.user.user.basicInfo.uuid)
 
-export { useGetUuid }
+const useGetUserLocation = () => useSelector((state: RootState) => state.user.user.basicInfo.location)
+
+export { useGetUuid, useGetUserLocation }
 
 const useLoadInitialConfig = () => {
   const [loaded, error] = useFonts({

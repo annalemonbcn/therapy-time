@@ -4,12 +4,10 @@ import HorizontalContainer from 'src/components/custom/horizontalContainer'
 import { theme } from 'theme'
 import LocationIcon from 'src/components/icons/locationIcon'
 import ChevronIcon from 'src/components/icons/chevronIcon'
-import { useNavigate } from 'src/hooks'
-import { useSelector } from 'react-redux'
-import { RootState } from 'src/store'
+import { useGetUserLocation, useNavigate } from 'src/hooks'
 
 const LocationDisplay = () => {
-  const userLocation = useSelector((state: RootState) => state.user.user.basicInfo.location)
+  const userLocation = useGetUserLocation()
 
   if (!userLocation) console.error('No user location')
 

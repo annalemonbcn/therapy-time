@@ -1,13 +1,11 @@
-import { Image, StyleSheet, TouchableWithoutFeedback, View } from 'react-native'
+import { Image, StyleSheet, View } from 'react-native'
 import { useSetProfilePicture } from '../../hooks'
 import PictureContextMenu from '../pictureContextMenu'
-import { useSelector } from 'react-redux'
-import { RootState } from 'src/store'
+import { useGetProfilePicture } from './hooks'
 
 const ProfilePicture = () => {
+  const profilePicture = useGetProfilePicture()
   const { takePicture, openGallery } = useSetProfilePicture()
-
-  const profilePicture = useSelector((state: RootState) => state.user.user.basicInfo.profilePicture)
 
   return (
     <View style={styles.imageContainer}>

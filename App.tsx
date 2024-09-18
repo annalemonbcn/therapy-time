@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import * as SplashScreen from 'expo-splash-screen'
-import { useGetUuid, useLoadInitialConfig } from 'src/hooks'
+import { useGetUserLocation, useGetUuid, useLoadInitialConfig } from 'src/hooks'
 import AllowLocationScreen from 'src/screens/allowLocationScreen'
 import { NavigationContainer } from '@react-navigation/native'
 import BottomTabBar from 'src/navigation/bottomTabBar'
@@ -29,7 +29,7 @@ const AppDisplay = () => {
 }
 
 const ShowBottomTabBar = () => {
-  const userLocation = useSelector((state: RootState) => state.user.user.basicInfo.location)
+  const userLocation = useGetUserLocation()
 
   return <>{userLocation ? <BottomTabBar /> : <AllowLocationScreen />}</>
 }

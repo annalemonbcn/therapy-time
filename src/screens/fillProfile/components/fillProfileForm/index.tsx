@@ -10,6 +10,7 @@ import { useSetEmailMutation, useSetNameMutation, useSetProfilePictureMutation }
 import { useSelector } from 'react-redux'
 import { RootState } from 'src/store'
 import { Notifier, NotifierComponents } from 'react-native-notifier'
+import { useGetUuid } from 'src/hooks'
 
 const showNotification = () =>
   Notifier.showNotification({
@@ -35,7 +36,7 @@ const FillProfilePictureForm = () => {
   const [setName] = useSetNameMutation()
   const [setEmail] = useSetEmailMutation()
 
-  const uuid = useSelector((state: RootState) => state.user.user.basicInfo.uuid)
+  const uuid = useGetUuid()
 
   const onSubmit: SubmitHandler<ProfileDataFormModel> = ({ profilePicture, name, email }) => {
     try {

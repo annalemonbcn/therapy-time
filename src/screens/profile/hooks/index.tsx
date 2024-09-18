@@ -2,18 +2,23 @@ import * as ImagePicker from 'expo-image-picker'
 import { useDispatch, useSelector } from 'react-redux'
 import { useSetProfilePictureMutation } from 'src/services/user'
 import { RootState } from 'src/store'
-import { useModalContext } from 'src/context/ModalProvider'
 import { Notifier, NotifierComponents } from 'react-native-notifier'
 import { setUserProfilePicture } from 'src/features/user/userSlice'
+import { useGetUuid } from 'src/hooks'
 
 const useSetProfilePicture = () => {
-  const { closeModal } = useModalContext()
-
-  const dispatch = useDispatch()
-
-  // TODO: also save it to a local redux state instead of local state ?
   const [updateProfilePicture] = useSetProfilePictureMutation()
-  const uuid = useSelector((state: RootState) => state.user.user.basicInfo.uuid)
+  const uuid = useGetUuid()
+
+  const showNotification = () =>
+    Notifier.showNotification({
+      title: 'Success',
+      description: 'Your profile picture has been updated',
+      Component: NotifierComponents.Alert,
+      componentProps: {
+        alertType: 'success'
+      }
+    })
 
   const verifyCameraPermissions = async () => {
     const { granted } = await ImagePicker.requestCameraPermissionsAsync()
@@ -40,17 +45,8 @@ const useSetProfilePicture = () => {
     if (!result.canceled) {
       const base64Data = `data:image/jpeg;base64,${result.assets[0].base64}`
       try {
-        updateProfilePicture({ uuid, profilePicture: base64Data as string })
-        dispatch(setUserProfilePicture(base64Data))
-        Notifier.showNotification({
-          title: 'Success',
-          description: 'Your profile picture has been updated',
-          Component: NotifierComponents.Alert,
-          componentProps: {
-            alertType: 'success'
-          }
-        })
-        closeModal()
+        await updateProfilePicture({ uuid, profilePicture: base64Data as string })
+        showNotification()
       } catch (error) {
         console.error('Error', error)
       }
@@ -72,17 +68,8 @@ const useSetProfilePicture = () => {
     if (!result.canceled) {
       const base64Data = `data:image/jpeg;base64,${result.assets[0].base64}`
       try {
-        updateProfilePicture({ uuid, profilePicture: base64Data as string })
-        dispatch(setUserProfilePicture(base64Data))
-        Notifier.showNotification({
-          title: 'Success',
-          description: 'Your profile picture has been updated',
-          Component: NotifierComponents.Alert,
-          componentProps: {
-            alertType: 'success'
-          }
-        })
-        closeModal()
+        await updateProfilePicture({ uuid, profilePicture: base64Data as string })
+        showNotification()
       } catch (error) {
         console.error('Error', error)
       }
