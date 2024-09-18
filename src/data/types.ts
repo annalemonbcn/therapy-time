@@ -10,7 +10,11 @@ type UserBasicInfo = {
   email: string
   name?: string
   profilePicture?: string
-  location: string
+  location: {
+    latitude: string
+    longitude: string
+    address: string
+  }
 }
 
 type LocationInfo = {

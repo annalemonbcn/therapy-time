@@ -1,7 +1,7 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import * as Location from 'expo-location'
 import { useEffect, useState } from 'react'
-import { GOOGLE_API } from 'src/db/googleApi'
+import { GOOGLE_API_KEY } from 'src/db/googleApi'
 import { getStatusBarHeight } from 'src/utils'
 
 const Map = () => {
@@ -28,7 +28,7 @@ const Map = () => {
   useEffect(() => {
     ;(async () => {
       if (location.latitude) {
-        const REVERSE_GEOCODING_URL = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.latitude},${location.longitude}&key=${GOOGLE_API}`
+        const REVERSE_GEOCODING_URL = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.latitude},${location.longitude}&key=${GOOGLE_API_KEY}`
         const response = await fetch(REVERSE_GEOCODING_URL)
         const data = await response.json()
         if (data.results.length >= 1) setAddress(data.results.at(0).formatted_address)
@@ -36,7 +36,7 @@ const Map = () => {
     })()
   }, [location])
 
-  const mapStaticUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${location.latitude},${location.longitude}&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:Me%7C${location.latitude},${location.longitude}&key=${GOOGLE_API}`
+  const mapStaticUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${location.latitude},${location.longitude}&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:Me%7C${location.latitude},${location.longitude}&key=${GOOGLE_API_KEY}`
 
   return (
     <View style={styles.pageContainer}>

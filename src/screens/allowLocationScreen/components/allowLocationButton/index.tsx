@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native'
 import * as Location from 'expo-location'
 import Button from 'src/components/custom/customButton'
 import { showErrorNotification } from 'src/utils/notifications'
-import { GOOGLE_API } from 'src/db/googleApi'
+import { GOOGLE_API_KEY } from 'src/db/googleApi'
 import { useDispatch } from 'react-redux'
 import { setUserLocation } from 'src/features/user/userSlice'
 
@@ -31,7 +31,13 @@ const AllowLocationButton = ({
         location.coords.longitude.toString()
       )
 
-      dispatch(setUserLocation(address))
+      dispatch(
+        setUserLocation({
+          latitude: location.coords.latitude.toString(),
+          longitude: location.coords.longitude.toString(),
+          address
+        })
+      )
     } catch (error) {
       console.error('Error fetching location:', error)
       showErrorNotification('Failed to fetch location')
@@ -41,14 +47,14 @@ const AllowLocationButton = ({
   }
 
   const getAddressFromCoordinates = async (lat: string, lng: string): Promise<string> => {
-    const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${GOOGLE_API}`
+    const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${GOOGLE_API_KEY}`
 
     try {
       const response = await fetch(geocodingUrl)
       const data = await response.json()
       const result = data.results[0]
 
-      return `${result.address_components[1].short_name}, ${result.address_components[3].short_name}`
+      return `${result.address_components[1].long_name}, ${result.address_components[3].long_name}`
     } catch (error) {
       console.error('Error fetching address:', error)
       throw new Error('Failed to fetch address')

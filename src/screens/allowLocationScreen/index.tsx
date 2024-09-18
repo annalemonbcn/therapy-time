@@ -1,5 +1,4 @@
 import { ActivityIndicator, Image, StyleSheet, View } from 'react-native'
-import Button from 'src/components/custom/customButton'
 import Text from 'src/components/custom/customText'
 import PageWrapper from 'src/components/custom/pageWrapper'
 import { theme } from 'theme'
@@ -29,7 +28,7 @@ const AllowLocationScreen = () => {
             <AllowLocationButton loading={loading} setLoading={setLoading} />
             <View style={styles.manualLocationContainer}>
               <Text size="s2">or enter it manually</Text>
-              <LocationForm />
+              <LocationForm loading={loading} setLoading={setLoading} />
             </View>
           </View>
         )}

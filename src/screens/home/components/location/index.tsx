@@ -1,15 +1,12 @@
 import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native'
 import Text from 'src/components/custom/customText'
-import HorizontalContainer from 'src/components/custom/horizontalContainer'
 import { theme } from 'theme'
 import LocationIcon from 'src/components/icons/locationIcon'
 import ChevronIcon from 'src/components/icons/chevronIcon'
 import { useGetUserLocation, useNavigate } from 'src/hooks'
 
 const LocationDisplay = () => {
-  const userLocation = useGetUserLocation()
-
-  if (!userLocation) console.error('No user location')
+  const { address } = useGetUserLocation()
 
   const navigation = useNavigate()
 
@@ -20,13 +17,13 @@ const LocationDisplay = () => {
           <Text color="b500" size="s2">
             Location
           </Text>
-          <HorizontalContainer verticalCenter="flex-end" gap="sm2">
+          <View style={styles.addressContainer}>
             <LocationIcon size={22} />
             <Text color="b700" fontWeight="semi-bold">
-              {userLocation}
+              {address}
             </Text>
             <ChevronIcon size={20} />
-          </HorizontalContainer>
+          </View>
         </View>
       </TouchableWithoutFeedback>
     </View>
@@ -42,6 +39,13 @@ const styles = StyleSheet.create({
   locationContainer: {
     alignSelf: 'flex-start',
     paddingVertical: theme.space.sm2,
-    gap: theme.space.xs
+    gap: theme.space.xs,
+    maxWidth: '90%'
+  },
+  addressContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: theme.space.xs2,
+    maxWidth: '90%'
   }
 })

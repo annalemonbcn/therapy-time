@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { IUserState, SetUserBasicInfoRequest } from './types'
+import { IUserState, SetUserBasicInfoRequest, SetUserLocationRequest } from './types'
 import { UserBooking } from 'src/data/types'
 
 const initialState: IUserState = {
@@ -8,7 +8,11 @@ const initialState: IUserState = {
       uuid: '',
       email: '',
       tokenId: '',
-      location: ''
+      location: {
+        latitude: '',
+        longitude: '',
+        address: ''
+      }
     },
     bookings: []
   }
@@ -26,8 +30,10 @@ export const userSlice = createSlice({
     resetTokenId: (state) => {
       state.user.basicInfo.tokenId = ''
     },
-    setUserLocation: (state, action: PayloadAction<string>) => {
-      state.user.basicInfo.location = action.payload
+    setUserLocation: (state, action: PayloadAction<SetUserLocationRequest>) => {
+      state.user.basicInfo.location.address = action.payload.address
+      state.user.basicInfo.location.latitude = action.payload.latitude
+      state.user.basicInfo.location.latitude = action.payload.longitude
     }
   }
 })

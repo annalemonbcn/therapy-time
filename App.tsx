@@ -29,9 +29,9 @@ const AppDisplay = () => {
 }
 
 const ShowBottomTabBar = () => {
-  const userLocation = useGetUserLocation()
+  const { address } = useGetUserLocation()
 
-  return <>{userLocation ? <BottomTabBar /> : <AllowLocationScreen />}</>
+  return <>{address ? <BottomTabBar /> : <AllowLocationScreen />}</>
 }
 
 const App = () => {

@@ -5,20 +5,21 @@ import { theme } from 'theme'
 import ChangeLocationForm from './components/changeLocationForm'
 import Button from 'src/components/custom/customButton'
 import { useNavigate } from 'src/hooks'
+import { getStatusBarHeight } from 'src/utils'
 
 const ChangeLocationScreen = () => {
   const navigation = useNavigate()
 
   return (
-    <PageWrapper justifyContent="center">
+    <PageWrapper justifyContent="flex-start">
       <View style={styles.pageContainer}>
         <Image source={require('assets/location.png')} />
         <View style={styles.titleContainer}>
           <Text size="s5" fontWeight="semi-bold">
-            Change your location
+            Set your location
           </Text>
           <Text size="s3" textAlign="center">
-            Set a new location to have a better experience.
+            Set a new location manually to have a better experience.
           </Text>
         </View>
         <View style={styles.manualLocationContainer}>
@@ -36,6 +37,7 @@ const ChangeLocationScreen = () => {
 
 const styles = StyleSheet.create({
   pageContainer: {
+    marginTop: getStatusBarHeight() + theme.space.xl4,
     width: '100%',
     alignItems: 'center',
     gap: theme.space.xl,
