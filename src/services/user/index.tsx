@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { URL_FIREBASE } from 'src/firebase/db'
+import { URL_FIREBASE } from 'src/db/firebase'
 import {
   GetBookingsRequest,
   GetEmailRequest,

@@ -5,13 +5,13 @@ import { theme } from 'theme'
 import { useGetName } from './hooks'
 
 const NameAndLocation = () => {
-  const location = useGetUserLocation()
+  const address = useGetUserLocation()
   const name = useGetName()
 
   return (
     <View style={styles.nameContainer}>
       <Text fontWeight="bold">{name ? name : 'No name'}</Text>
-      <Text size="s2">{location}</Text>
+      <Text size="s2">{address}</Text>
     </View>
   )
 }

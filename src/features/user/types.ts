@@ -10,4 +10,10 @@ type SetUserBasicInfoRequest = {
   tokenId: string
 }
 
-export { IUserState, SetUserBasicInfoRequest }
+type SetUserLocationRequest = {
+  latitude: string
+  longitude: string
+  address: string
+}
+
+export { IUserState, SetUserBasicInfoRequest, SetUserLocationRequest }

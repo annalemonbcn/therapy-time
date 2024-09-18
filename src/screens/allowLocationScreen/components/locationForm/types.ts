@@ -1,5 +1,5 @@
 type LocationFormModel = {
-  location: string
+  address: string
 }
 
 export { LocationFormModel }
