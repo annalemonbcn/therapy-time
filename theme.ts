@@ -57,7 +57,9 @@ const space = {
   md: 16,
   lg: 24,
   xl: 32,
-  xl2: 40
+  xl2: 40,
+  xl3: 56,
+  xl4: 80
 }
 
 const borders = {

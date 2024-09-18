@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { API_KEY, BASE_URL_AUTH } from 'src/firebase/db'
+import { API_KEY, BASE_URL_AUTH } from 'src/db/firebase'
 import { LoginFormModel } from 'src/screens/login/components/loginForm/types'
 import { SignUpFormModel } from 'src/screens/signUp/components/signUpForm/types'
 import { LoginResponse, PasswordRecoveryRequest, PasswordRecoveryResponse, SignUpResponse } from './types'

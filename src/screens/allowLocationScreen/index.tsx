@@ -1,20 +1,18 @@
-import { Image, StyleSheet, View } from 'react-native'
+import { ActivityIndicator, Image, StyleSheet, View } from 'react-native'
 import Button from 'src/components/custom/customButton'
 import Text from 'src/components/custom/customText'
 import PageWrapper from 'src/components/custom/pageWrapper'
 import { theme } from 'theme'
 import LocationForm from './components/locationForm'
-import { useDispatch } from 'react-redux'
-import { setUserLocation } from 'src/features/user/userSlice'
+import { useState } from 'react'
+import AllowLocationButton from './components/allowLocationButton'
+import { getStatusBarHeight } from 'src/utils'
 
 const AllowLocationScreen = () => {
-  const dispatch = useDispatch()
-
-  // TODO: mock behavior
-  const handleSetLocation = () => dispatch(setUserLocation('Barcelona'))
+  const [loading, setLoading] = useState(false)
 
   return (
-    <PageWrapper justifyContent="center">
+    <PageWrapper justifyContent="flex-start">
       <View style={styles.pageContainer}>
         <Image source={require('assets/location.png')} />
         <View style={styles.titleContainer}>
@@ -25,15 +23,16 @@ const AllowLocationScreen = () => {
             We will need your location to have a better experience.
           </Text>
         </View>
-        <View style={styles.buttonsContainer}>
-          <Button primary onPress={handleSetLocation}>
-            Sure, I'd like that
-          </Button>
-          <View style={styles.manualLocationContainer}>
-            <Text size="s2">or enter it manually</Text>
-            <LocationForm />
+        {loading && <ActivityIndicator />}
+        {!loading && (
+          <View style={styles.buttonsContainer}>
+            <AllowLocationButton loading={loading} setLoading={setLoading} />
+            <View style={styles.manualLocationContainer}>
+              <Text size="s2">or enter it manually</Text>
+              <LocationForm />
+            </View>
           </View>
-        </View>
+        )}
       </View>
     </PageWrapper>
   )
@@ -41,6 +40,7 @@ const AllowLocationScreen = () => {
 
 const styles = StyleSheet.create({
   pageContainer: {
+    marginTop: getStatusBarHeight() + theme.space.xl4,
     width: '100%',
     alignItems: 'center',
     gap: theme.space.xl,

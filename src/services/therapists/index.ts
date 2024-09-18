@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { Therapist } from 'src/data/types'
-import { URL_FIREBASE } from 'src/firebase/db'
+import { URL_FIREBASE } from 'src/db/firebase'
 
 // TODO: addBooking (clase 13, minuto 10)
 export const therapistsApi = createApi({

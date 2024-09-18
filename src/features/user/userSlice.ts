@@ -26,21 +26,11 @@ export const userSlice = createSlice({
     resetTokenId: (state) => {
       state.user.basicInfo.tokenId = ''
     },
-    setUserName: (state, action: PayloadAction<string>) => {
-      state.user.basicInfo.name = action.payload
-    },
-    setUserProfilePicture: (state, action: PayloadAction<string>) => {
-      state.user.basicInfo.profilePicture = action.payload
-    },
     setUserLocation: (state, action: PayloadAction<string>) => {
       state.user.basicInfo.location = action.payload
-    },
-    setUserBookings: (state, action: PayloadAction<UserBooking[]>) => {
-      state.user.bookings = state.user.bookings
     }
   }
 })
 
-export const { setUserBasicInfo, resetTokenId, setUserName, setUserProfilePicture, setUserLocation, setUserBookings } =
-  userSlice.actions
+export const { setUserBasicInfo, resetTokenId, setUserLocation } = userSlice.actions
 export default userSlice.reducer
