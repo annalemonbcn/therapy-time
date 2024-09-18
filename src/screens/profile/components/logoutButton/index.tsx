@@ -1,9 +1,9 @@
 import { StyleSheet, View } from 'react-native'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
-import { Notifier, NotifierComponents } from 'react-native-notifier'
 import { useDispatch } from 'react-redux'
 import Text from 'src/components/custom/customText'
 import { resetTokenId } from 'src/features/user/userSlice'
+import { showSuccessNotification } from 'src/utils/notifications'
 import { theme } from 'theme'
 
 const LogoutButton = () => {
@@ -13,14 +13,7 @@ const LogoutButton = () => {
   const handleLogout = () => {
     try {
       dispatch(resetTokenId())
-      Notifier.showNotification({
-        title: 'Success',
-        description: 'Log Out successful. See you soon!',
-        Component: NotifierComponents.Alert,
-        componentProps: {
-          alertType: 'success'
-        }
-      })
+      showSuccessNotification('Log Out successful. See you soon!')
     } catch (error) {
       console.error('Error', error)
     }

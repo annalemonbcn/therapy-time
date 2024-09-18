@@ -5,20 +5,11 @@ import { RootState } from 'src/store'
 import { Notifier, NotifierComponents } from 'react-native-notifier'
 import { setUserProfilePicture } from 'src/features/user/userSlice'
 import { useGetUuid } from 'src/hooks'
+import { showSuccessNotification } from 'src/utils/notifications'
 
 const useSetProfilePicture = () => {
   const [updateProfilePicture] = useSetProfilePictureMutation()
   const uuid = useGetUuid()
-
-  const showNotification = () =>
-    Notifier.showNotification({
-      title: 'Success',
-      description: 'Your profile picture has been updated',
-      Component: NotifierComponents.Alert,
-      componentProps: {
-        alertType: 'success'
-      }
-    })
 
   const verifyCameraPermissions = async () => {
     const { granted } = await ImagePicker.requestCameraPermissionsAsync()
@@ -46,7 +37,7 @@ const useSetProfilePicture = () => {
       const base64Data = `data:image/jpeg;base64,${result.assets[0].base64}`
       try {
         await updateProfilePicture({ uuid, profilePicture: base64Data as string })
-        showNotification()
+        showSuccessNotification('Your profile picture has been updated')
       } catch (error) {
         console.error('Error', error)
       }
@@ -69,7 +60,7 @@ const useSetProfilePicture = () => {
       const base64Data = `data:image/jpeg;base64,${result.assets[0].base64}`
       try {
         await updateProfilePicture({ uuid, profilePicture: base64Data as string })
-        showNotification()
+        showSuccessNotification('Your profile picture has been updated')
       } catch (error) {
         console.error('Error', error)
       }

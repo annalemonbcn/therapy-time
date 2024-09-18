@@ -15,7 +15,7 @@ import { useGetUuid } from 'src/hooks'
 const showNotification = () =>
   Notifier.showNotification({
     title: 'Success',
-    description: 'Yout data has been updated',
+    description: 'Your data has been updated',
     Component: NotifierComponents.Alert,
     componentProps: {
       alertType: 'success'
@@ -53,7 +53,14 @@ const FillProfilePictureForm = () => {
       <ProfilePicture />
       <View style={styles.formContainer}>
         <ControlledTextInput fieldName="name" placeholderText="Your Name" type="secondary" icon="user" isRequired />
-        <ControlledTextInput fieldName="email" placeholderText="Your Email" type="secondary" icon="email" isRequired />
+        <ControlledTextInput
+          fieldName="email"
+          placeholderText="Your Email"
+          type="secondary"
+          icon="email"
+          isRequired
+          canWrite={false}
+        />
         <View style={styles.buttonsContainer}>
           <Button primary onPress={handleSubmit(onSubmit)}>
             Save

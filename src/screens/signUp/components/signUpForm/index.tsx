@@ -7,7 +7,7 @@ import Button from 'src/components/custom/customButton'
 import { useRegisterMutation } from 'src/services/auth'
 import { useDispatch } from 'react-redux'
 import { setUserBasicInfo } from 'src/features/user/userSlice'
-import { Notifier, NotifierComponents } from 'react-native-notifier'
+import { showSuccessNotification } from 'src/utils/notifications'
 
 const SignUpForm = () => {
   const methods = useForm<SignUpFormModel>({
@@ -32,14 +32,7 @@ const SignUpForm = () => {
           tokenId: data?.idToken as string
         })
       )
-      Notifier.showNotification({
-        title: 'Success',
-        description: 'User registered succesfully',
-        Component: NotifierComponents.Alert,
-        componentProps: {
-          alertType: 'success'
-        }
-      })
+      showSuccessNotification('User registered succesfully')
     } catch (error) {
       console.error('Error', error)
     }

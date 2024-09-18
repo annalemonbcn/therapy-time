@@ -28,6 +28,7 @@ interface ICustomTextInputProps {
     isInside: boolean
     triggerAction: any
   }
+  canWrite?: boolean
 }
 
 export { ICustomTextInputProps, IconType, Icon }

@@ -9,6 +9,7 @@ import SearchIcon from 'src/components/icons/searchIcon'
 import EmailIcon from 'src/components/icons/emailIcon'
 import PasswordIcon from 'src/components/icons/passwordIcon'
 import UserIcon from 'src/components/icons/userIcon'
+import { showWarnNotification } from 'src/utils/notifications'
 
 const ErrorText = ({ errorMessage }: { errorMessage: string }) => (
   <Text size="s2" color="darkRed" style={{ marginVertical: 8 }}>
@@ -34,7 +35,8 @@ const ControlledTextInput = ({
   isSecured = false,
   sendButton,
   icon,
-  type
+  type,
+  canWrite = true
 }: ICustomTextInputProps) => {
   const [isVisible, setIsVisible] = useState(isSecured)
 
@@ -58,6 +60,8 @@ const ControlledTextInput = ({
           <StyledInputWrapper type={type}>
             {icon && renderIcon(icon)}
             <StyledInput
+              onPress={!canWrite ? () => showWarnNotification("Email can't be changed") : () => {}}
+              editable={canWrite ? true : false}
               placeholder={placeholderText}
               placeholderTextColor={theme.colors.b400}
               onChangeText={onChange}
