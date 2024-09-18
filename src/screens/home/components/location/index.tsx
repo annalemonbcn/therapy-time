@@ -6,7 +6,7 @@ import ChevronIcon from 'src/components/icons/chevronIcon'
 import { useGetUserLocation, useNavigate } from 'src/hooks'
 
 const LocationDisplay = () => {
-  const { address } = useGetUserLocation()
+  const address = useGetUserLocation()
 
   const navigation = useNavigate()
 

@@ -30,6 +30,8 @@ const AllowLocationButton = ({
         location.coords.latitude.toString(),
         location.coords.longitude.toString()
       )
+      
+      console.log('location :>> ', location);
 
       dispatch(
         setUserLocation({

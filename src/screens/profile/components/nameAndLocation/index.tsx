@@ -5,7 +5,7 @@ import { theme } from 'theme'
 import { useGetName } from './hooks'
 
 const NameAndLocation = () => {
-  const { address } = useGetUserLocation()
+  const address = useGetUserLocation()
   const name = useGetName()
 
   return (
