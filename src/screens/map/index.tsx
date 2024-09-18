@@ -1,6 +1,4 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
-import * as Location from 'expo-location'
-import { useEffect, useState } from 'react'
 import { GOOGLE_API_KEY } from 'src/db/googleApi'
 import { getStatusBarHeight } from 'src/utils'
 import { useSelector } from 'react-redux'
@@ -16,9 +14,11 @@ const Map = () => {
       <Text>Address: {location.address}</Text>
       <Text>Latitude: {location.latitude}</Text>
       <Text>Longitude: {location.longitude}</Text>
-      <View>
-        <Image source={{ uri: mapStaticUrl }} style={{ width: 300, height: 300, backgroundColor: 'grey' }} />
-      </View>
+      {location.latitude && (
+        <View>
+          <Image source={{ uri: mapStaticUrl }} style={{ width: 300, height: 300, backgroundColor: 'grey' }} />
+        </View>
+      )}
     </View>
   )
 }
