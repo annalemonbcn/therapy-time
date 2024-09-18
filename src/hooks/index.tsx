@@ -8,6 +8,10 @@ import { NavigationProp } from 'src/navigation/homeNavigator/types'
 import { useGetBookingsQuery, useGetNameQuery, useGetProfilePictureQuery } from 'src/services/user'
 import { RootState } from 'src/store'
 
+const useGetUuid = () => useSelector((state: RootState) => state.user.user.basicInfo.uuid)
+
+export { useGetUuid }
+
 const useLoadInitialConfig = () => {
   const [loaded, error] = useFonts({
     Inter_400Regular,
@@ -21,69 +25,3 @@ const useLoadInitialConfig = () => {
 const useNavigate = () => useNavigation<NavigationProp>()
 
 export { useLoadInitialConfig, useNavigate }
-
-const fetchName = (uuid: string) => {
-  const { data, isLoading, isSuccess } = useGetNameQuery({ uuid })
-
-  const name = useMemo(() => {
-    if (isLoading || !isSuccess) return ''
-    return data.name
-  }, [isLoading, isSuccess])
-
-  return name
-}
-const setNameToLocalStore = (name: string) => {
-  if (!name) return
-  const dispatch = useDispatch()
-  dispatch(setUserName(name))
-}
-
-const fetchProfilePicture = (uuid: string) => {
-  const { data, isLoading, isSuccess } = useGetProfilePictureQuery({ uuid })
-
-  const profilePicture = useMemo(() => {
-    if (isLoading || !isSuccess) return ''
-    return data.profilePicture
-  }, [isLoading, isSuccess])
-
-  return profilePicture
-}
-const setProfilePictureToLocalStore = (profilePicture: string) => {
-  if (!profilePicture) return
-  const dispatch = useDispatch()
-  dispatch(setUserProfilePicture(profilePicture))
-}
-
-const fetchBookings = (uuid: string) => {
-  const { data, isLoading, isSuccess } = useGetBookingsQuery({ uuid })
-
-  const bookings = useMemo(() => {
-    if (isLoading || !isSuccess) return []
-    return data.bookings
-  }, [isLoading, isSuccess])
-
-  return bookings
-}
-const setBookingsToLocalStore = (bookings: UserBooking[]) => {
-  if (!bookings) return
-  const dispatch = useDispatch()
-  dispatch(setUserBookings(bookings))
-}
-const fetchBasicInfoFromDb = async () => {
-  const uuid = useSelector((state: RootState) => state.user.user.basicInfo.uuid)
-
-  const name = fetchName(uuid)
-  if (name) setNameToLocalStore(name)
-
-  const profilePicture = fetchProfilePicture(uuid)
-  if (profilePicture) setProfilePictureToLocalStore(profilePicture)
-
-  const bookings = fetchBookings(uuid)
-  if (bookings) setBookingsToLocalStore(bookings)
-}
-
-const useLoadInitialInfo = () => {
-  fetchBasicInfoFromDb()
-}
-
-export { useLoadInitialInfo }

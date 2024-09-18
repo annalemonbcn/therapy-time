@@ -1,34 +1,37 @@
-import { useEffect, useMemo } from 'react'
+import { useEffect } from 'react'
 import * as SplashScreen from 'expo-splash-screen'
-import { useLoadInitialConfig, useLoadInitialInfo } from 'src/hooks'
+import { useGetUuid, useLoadInitialConfig } from 'src/hooks'
 import AllowLocationScreen from 'src/screens/allowLocationScreen'
 import { NavigationContainer } from '@react-navigation/native'
 import BottomTabBar from 'src/navigation/bottomTabBar'
-import { Provider, useDispatch, useSelector } from 'react-redux'
+import { Provider, useSelector } from 'react-redux'
 import { RootState, store } from 'src/store'
 import AuthNavigator from 'src/navigation/authNavigator'
 import { NotifierWrapper } from 'react-native-notifier'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { MenuProvider } from 'react-native-popup-menu'
 import FillProfileScreen from 'src/screens/fillProfile'
-
-const AppDisplay = () => {
-  // useLoadInitialInfo()
-
-  const name = useSelector((state: RootState) => state.user.user.basicInfo.name)
-  const userLocation = useSelector((state: RootState) => state.user.user.basicInfo.location)
-  const showRegister = name ? false : true
-
-  if (showRegister) return <FillProfileScreen />
-  if (!userLocation) return <AllowLocationScreen />
-
-  return <BottomTabBar />
-}
+import { useGetNameQuery } from 'src/services/user'
 
 const MainNavigator = () => {
   const user = useSelector((state: RootState) => state.user.user.basicInfo.tokenId)
 
   return <>{user ? <AppDisplay /> : <AuthNavigator />}</>
+}
+
+const AppDisplay = () => {
+  const uuid = useGetUuid()
+  const { data: name, isFetching } = useGetNameQuery({ uuid })
+
+  if (isFetching) return
+
+  return <>{name ? <ShowBottomTabBar /> : <FillProfileScreen />}</>
+}
+
+const ShowBottomTabBar = () => {
+  const userLocation = useSelector((state: RootState) => state.user.user.basicInfo.location)
+
+  return <>{userLocation ? <BottomTabBar /> : <AllowLocationScreen />}</>
 }
 
 const App = () => {
