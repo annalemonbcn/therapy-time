@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import { GOOGLE_API_KEY } from 'src/db/googleApi'
-import { getStatusBarHeight } from 'src/utils'
+import { STATUS_BAR_HEIGHT } from 'src/utils'
 import { useSelector } from 'react-redux'
 import { RootState } from 'src/store'
 
@@ -27,6 +27,6 @@ export default Map
 
 const styles = StyleSheet.create({
   pageContainer: {
-    marginTop: getStatusBarHeight()
+    marginTop: STATUS_BAR_HEIGHT
   }
 })

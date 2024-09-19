@@ -9,6 +9,8 @@ import HomeIcon from '../../components/icons/homeIcon'
 import HomeNavigator from 'src/navigation/homeNavigator'
 import TabBarIcon from './components/tabBarIcon'
 import { theme } from 'theme'
+import BookingsScreen from 'src/screens/bookingsScreen'
+import CalendarIcon from 'src/components/icons/calendarIcon'
 
 const Tab = createBottomTabNavigator<RootTabParamList>()
 
@@ -35,6 +37,14 @@ const BottomTabBar = () => (
       options={{
         headerShown: false,
         tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} icon={<LocationIcon size={20} />} />
+      }}
+    />
+    <Tab.Screen
+      name="TabBookings"
+      component={BookingsScreen}
+      options={{
+        headerTitle: 'My Bookings',
+        tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} icon={<CalendarIcon size={20} />} />
       }}
     />
     <Tab.Screen

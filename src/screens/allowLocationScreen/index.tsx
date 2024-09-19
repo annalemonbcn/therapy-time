@@ -5,7 +5,7 @@ import { theme } from 'theme'
 import LocationForm from './components/locationForm'
 import { useState } from 'react'
 import AllowLocationButton from './components/allowLocationButton'
-import { getStatusBarHeight } from 'src/utils'
+import { STATUS_BAR_HEIGHT } from 'src/utils'
 
 const AllowLocationScreen = () => {
   const [loading, setLoading] = useState(false)
@@ -39,7 +39,7 @@ const AllowLocationScreen = () => {
 
 const styles = StyleSheet.create({
   pageContainer: {
-    marginTop: getStatusBarHeight() + theme.space.xl4,
+    marginTop: STATUS_BAR_HEIGHT + theme.space.xl4,
     width: '100%',
     alignItems: 'center',
     gap: theme.space.xl,

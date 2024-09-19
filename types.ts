@@ -1,4 +1,3 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { theme } from 'theme'
 
 type Colors = keyof typeof theme.colors
@@ -18,6 +17,7 @@ export { Colors, FontSize, FontWeight, Space, FlexCenter, BorderRadius }
 type RootTabParamList = {
   TabHome: undefined
   TabMap: undefined
+  TabBookings: undefined
   TabProfile: undefined
 }
 

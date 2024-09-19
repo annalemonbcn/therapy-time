@@ -5,7 +5,7 @@ import { theme } from 'theme'
 import ChangeLocationForm from './components/changeLocationForm'
 import Button from 'src/components/custom/customButton'
 import { useNavigate } from 'src/hooks'
-import { getStatusBarHeight } from 'src/utils'
+import { STATUS_BAR_HEIGHT } from 'src/utils'
 
 const ChangeLocationScreen = () => {
   const navigation = useNavigate()
@@ -37,7 +37,7 @@ const ChangeLocationScreen = () => {
 
 const styles = StyleSheet.create({
   pageContainer: {
-    marginTop: getStatusBarHeight() + theme.space.xl4,
+    marginTop: STATUS_BAR_HEIGHT + theme.space.xl4,
     width: '100%',
     alignItems: 'center',
     gap: theme.space.xl,
