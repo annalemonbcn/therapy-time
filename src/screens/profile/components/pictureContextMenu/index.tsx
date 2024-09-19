@@ -7,8 +7,7 @@ import { Menu, MenuOption, MenuOptions, MenuTrigger } from 'react-native-popup-m
 import EditIcon from 'src/components/icons/editIcon'
 import Text from 'src/components/custom/customText'
 import { Fragment } from 'react'
-
-const Divider = () => <View style={{ height: 1, backgroundColor: theme.colors.b200 }} />
+import Separator from 'src/components/separator'
 
 const PictureContextMenu = ({ takePicture, openGallery }: { takePicture: () => void; openGallery: () => void }) => {
   const options: Option[] = [
@@ -47,7 +46,7 @@ const PictureContextMenu = ({ takePicture, openGallery }: { takePicture: () => v
               </Text>
               {option.icon}
             </MenuOption>
-            {idx === 0 && <Divider />}
+            {idx === 0 && <Separator />}
           </Fragment>
         ))}
       </MenuOptions>

@@ -14,7 +14,6 @@ import NoData from './components/noData'
 
 const DoctorsDisplay = ({ route }: DoctorsDisplayProps) => {
   const { data: therapists, isLoading } = useDoctorsDisplay()
-
   const [category, setCategory] = useState<TagsEnum>(route.params.category)
   const [query, setQuery] = useState(route.params.name)
 

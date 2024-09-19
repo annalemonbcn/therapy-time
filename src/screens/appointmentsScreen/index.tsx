@@ -4,23 +4,26 @@ import PageWrapper from 'src/components/custom/pageWrapper'
 import { useGetUuid } from 'src/hooks'
 import { useGetBookingsQuery } from 'src/services/user'
 import { theme } from 'theme'
+import NoData from './components/noData'
 
-const BookingsScreen = () => {
+const AppointmentsScreen = () => {
   const uuid = useGetUuid()
   const { data, isFetching, isSuccess } = useGetBookingsQuery({ uuid })
 
-  if (isFetching) <ActivityIndicator />
+  if (isFetching) return <ActivityIndicator />
+
+  if (isSuccess && !data) return <NoData />
 
   return (
     <PageWrapper>
       <View style={styles.pageContainer}>
-        <Text>BookingsScreen</Text>
+        <Text>Bookings Here</Text>
       </View>
     </PageWrapper>
   )
 }
 
-export default BookingsScreen
+export default AppointmentsScreen
 
 const styles = StyleSheet.create({
   pageContainer: {
