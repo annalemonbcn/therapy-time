@@ -6,9 +6,11 @@ import StarIcon from 'src/components/icons/starIcon'
 const CardReviews = ({ average, totalRatings }: ICardReviewsProps) => (
   <HorizontalContainer verticalCenter="center" gap="xs">
     <StarIcon size={16} />
-    <Text size="s11" color="b500">
-      {average} |
-    </Text>
+    {average && (
+      <Text size="s11" color="b500">
+        {average} |
+      </Text>
+    )}
     <Text size="s11" color="b500">
       {totalRatings} {totalRatings > 1 ? 'Reviews' : 'Review'}
     </Text>

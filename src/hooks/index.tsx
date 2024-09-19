@@ -8,7 +8,9 @@ const useGetUuid = () => useSelector((state: RootState) => state.user.user.basic
 
 const useGetUserLocation = () => useSelector((state: RootState) => state.user.user.basicInfo.location.address)
 
-export { useGetUuid, useGetUserLocation }
+const useGetUserEmail = () => useSelector((state: RootState) => state.user.user.basicInfo.email)
+
+export { useGetUuid, useGetUserLocation, useGetUserEmail }
 
 const useLoadInitialConfig = () => {
   const [loaded, error] = useFonts({

@@ -1,5 +1,5 @@
 interface ICardReviewsProps {
-  average: number
+  average: number | undefined
   totalRatings: number
 }
 
