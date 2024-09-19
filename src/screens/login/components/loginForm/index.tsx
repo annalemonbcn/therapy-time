@@ -54,7 +54,7 @@ const LoginForm = () => {
           isSecured
         />
         <View style={styles.buttonsContainer}>
-          <Button primary onPress={handleSubmit(onSubmit)}>
+          <Button primary onPress={handleSubmit(onSubmit)} disabled={isLoading}>
             Sign In
           </Button>
         </View>

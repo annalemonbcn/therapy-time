@@ -53,7 +53,7 @@ const SignUpForm = () => {
           isSecured
         />
         <View style={styles.buttonsContainer}>
-          <Button primary onPress={handleSubmit(onSubmit)}>
+          <Button primary onPress={handleSubmit(onSubmit)} disabled={isLoading}>
             Create Account
           </Button>
         </View>

@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
+import React, { useState } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { ProfileDataFormModel } from './types'
 import { theme } from 'theme'
@@ -23,6 +23,7 @@ const showNotification = () =>
   })
 
 const FillProfilePictureForm = () => {
+  const [isLoading, setIsLoading] = useState(false)
   const email = useSelector((state: RootState) => state.user.user.basicInfo.email)
 
   const methods = useForm<ProfileDataFormModel>({
@@ -39,6 +40,7 @@ const FillProfilePictureForm = () => {
   const uuid = useGetUuid()
 
   const onSubmit: SubmitHandler<ProfileDataFormModel> = ({ profilePicture, name, email }) => {
+    setIsLoading(true)
     try {
       setProfilePicture({ uuid, profilePicture })
       setName({ uuid, name })
@@ -46,8 +48,13 @@ const FillProfilePictureForm = () => {
       showNotification()
     } catch (error) {
       console.error('Error', error)
+    } finally {
+      setIsLoading(false)
     }
   }
+
+  if (isLoading) <ActivityIndicator />
+
   return (
     <FormProvider {...methods}>
       <ProfilePicture />
@@ -62,7 +69,7 @@ const FillProfilePictureForm = () => {
           canWrite={false}
         />
         <View style={styles.buttonsContainer}>
-          <Button primary onPress={handleSubmit(onSubmit)}>
+          <Button primary onPress={handleSubmit(onSubmit)} disabled={isLoading}>
             Save
           </Button>
         </View>
