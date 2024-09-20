@@ -1,59 +1,12 @@
 import { useMemo } from 'react'
-import { useFormContext } from 'react-hook-form'
+import { useWatch } from 'react-hook-form'
 import { MarkingProps } from 'react-native-calendars/src/calendar/day/marking'
 import { Days } from 'src/data/types'
-import { BookingFormShape } from 'src/screens/appointment/types'
 import { TODAY_NAME } from 'src/utils/time'
 import { theme } from 'theme'
 
-// const useGetMarkedDays = ({ saturdaysDisabled }: { saturdaysDisabled: boolean }) => {
-//   const { watch } = useFormContext<BookingFormShape>()
-//   const defaultDate = watch('day')
-
-//   const isWeekend = (date: Date) => {
-//     const day = date.getDay()
-//     return day === 0 || (saturdaysDisabled && day === 6)
-//   }
-
-//   const getDisabledDays = (minDate: string, maxDate: string) => {
-//     const start = new Date(minDate)
-//     const end = new Date(maxDate)
-//     const disabledDays: {
-//       [key: string]: { disabled: boolean; disableTouchEvent: boolean }
-//     } = {}
-
-//     const currentDate = start
-//     while (currentDate <= end) {
-//       if (isWeekend(currentDate)) {
-//         const dateString = currentDate.toISOString().split('T')[0]
-//         disabledDays[dateString] = { disabled: false, disableTouchEvent: false }
-//       }
-//       currentDate.setDate(currentDate.getDate() + 1)
-//     }
-//     return disabledDays
-//   }
-
-//   const markedDates = useMemo(() => {
-//     const disabledDays = getDisabledDays(TODAY, END_DAY)
-
-//     return {
-//       [defaultDate]: {
-//         selected: true,
-//         selectedColor: theme.colors.main,
-//         selectedTextColor: theme.colors.b0,
-//         disabled: false,
-//         disableTouchEvent: true
-//       },
-//       ...disabledDays
-//     }
-//   }, [defaultDate])
-
-//   return markedDates
-// }
-
 const useAvailableDays = ({ workingDays }: { workingDays: Days[] }) => {
-  const { watch } = useFormContext<BookingFormShape>()
-  const defaultDate = watch('day')
+  const defaultDate = useWatch({ name: 'day' })
 
   const availableDays = useMemo(() => {
     const today = new Date()

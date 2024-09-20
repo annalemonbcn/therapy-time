@@ -1,8 +1,3 @@
-import { useSelector } from 'react-redux'
-import { Therapist } from 'src/data/types'
-import { therapistsApi } from 'src/services/therapists'
-import { RootState } from 'src/store'
-
 interface ICheckAppointmentProps {
   handleConfirm: () => void
 }

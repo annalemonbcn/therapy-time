@@ -16,7 +16,7 @@ export { Colors, FontSize, FontWeight, Space, FlexCenter, BorderRadius }
 
 type RootTabParamList = {
   TabHome: undefined
-  TabMap: undefined
+  // TabMap: undefined
   TabAppointments: undefined
   TabProfile: undefined
 }

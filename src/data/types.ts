@@ -158,6 +158,7 @@ type Language = {
 type Booking = {
   date: string
   time: string
+  status: 'active' | 'canceled'
 }
 type TherapistBooking = Booking & { userEmail: string }
 type UserBooking = Booking & { therapistId: string }

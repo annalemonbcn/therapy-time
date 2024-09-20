@@ -5,20 +5,37 @@ import { useGetBookingsQuery } from 'src/services/user'
 import { theme } from 'theme'
 import NoData from './components/noData'
 import { useGetUuid } from 'src/utils/utils'
+import BookingCard from './components/bookingCard'
+import { UserBooking } from 'src/data/types'
+import { FlatList, ScrollView } from 'react-native-gesture-handler'
+import { useState } from 'react'
+import { ListBooking, Tabs } from './types'
+import { dtoToListBooking, filterBookings } from './utils'
 
 const AppointmentsScreen = () => {
+  const [tab, setTab] = useState<Tabs>('canceled')
   const uuid = useGetUuid()
   const { data, isFetching, isSuccess } = useGetBookingsQuery({ uuid })
 
   if (isFetching) return <ActivityIndicator />
 
-  if (isSuccess && !data) return <NoData />
+  const bookings = dtoToListBooking(data?.bookings as UserBooking[])
+
+  if (isSuccess && !bookings) return <NoData />
+
+  const filteredBookings = filterBookings(bookings as ListBooking[], tab)
 
   return (
     <PageWrapper>
-      <View style={styles.pageContainer}>
-        <Text>Bookings Here</Text>
-      </View>
+      <ScrollView contentContainerStyle={styles.pageContainer}>
+        <FlatList
+          data={filteredBookings}
+          keyExtractor={(booking) => booking.bookingId}
+          renderItem={({ item }) => <BookingCard booking={item as UserBooking} />}
+          style={styles.list}
+          scrollEnabled={false}
+        />
+      </ScrollView>
     </PageWrapper>
   )
 }
@@ -27,8 +44,12 @@ export default AppointmentsScreen
 
 const styles = StyleSheet.create({
   pageContainer: {
-    marginTop: theme.space.xl,
+    paddingBottom: theme.space.xl,
     width: '100%',
     alignItems: 'center'
+  },
+  list: {
+    marginVertical: theme.space.sm2,
+    paddingHorizontal: theme.space.sm2
   }
 })

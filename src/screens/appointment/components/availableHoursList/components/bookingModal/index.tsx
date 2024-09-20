@@ -97,7 +97,8 @@ const BookingModal = () => {
     const newBooking: UserBooking = {
       date: formData.day,
       time: formData.hour,
-      therapistId: params.therapistId
+      therapistId: params.therapistId,
+      status: 'active'
     }
 
     let bookings: UserBooking[] = []
@@ -131,7 +132,8 @@ const BookingModal = () => {
     const newBooking: TherapistBooking = {
       date: formData.day,
       time: formData.hour,
-      userEmail
+      userEmail,
+      status: 'active'
     }
 
     let bookings: TherapistBooking[] = []

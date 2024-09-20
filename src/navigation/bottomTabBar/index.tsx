@@ -31,14 +31,14 @@ const BottomTabBar = () => (
         tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} icon={<HomeIcon size={20} />} />
       }}
     />
-    <Tab.Screen
+    {/* <Tab.Screen
       name="TabMap"
       component={Map}
       options={{
         headerShown: false,
         tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} icon={<LocationIcon size={20} />} />
       }}
-    />
+    /> */}
     <Tab.Screen
       name="TabAppointments"
       component={AppointmentsScreen}
