@@ -3,7 +3,8 @@ import Text from 'src/components/custom/customText'
 import { theme } from 'theme'
 import LocationIcon from 'src/components/icons/locationIcon'
 import ChevronIcon from 'src/components/icons/chevronIcon'
-import { useGetUserLocation, useNavigate } from 'src/hooks'
+import { useNavigate } from 'src/hooks'
+import { useGetUserLocation } from 'src/utils/utils'
 
 const LocationDisplay = () => {
   const address = useGetUserLocation()

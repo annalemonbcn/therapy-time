@@ -10,7 +10,7 @@ import { useSetEmailMutation, useSetNameMutation, useSetProfilePictureMutation }
 import { useSelector } from 'react-redux'
 import { RootState } from 'src/store'
 import { Notifier, NotifierComponents } from 'react-native-notifier'
-import { useGetUuid } from 'src/hooks'
+import { useGetUuid } from 'src/utils/utils'
 
 const showNotification = () =>
   Notifier.showNotification({

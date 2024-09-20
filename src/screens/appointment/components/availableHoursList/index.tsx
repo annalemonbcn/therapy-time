@@ -11,6 +11,8 @@ const AvailableHoursList = () => {
 
   const hoursArr = useAvailableHoursList()
 
+  if (!hoursArr) return <Text>Something went wrong. Please try again.</Text>
+
   if (hoursArr.length === 0)
     return (
       <View style={styles.textContainer}>

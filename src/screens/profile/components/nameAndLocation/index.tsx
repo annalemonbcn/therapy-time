@@ -1,8 +1,8 @@
 import { StyleSheet, View } from 'react-native'
 import Text from 'src/components/custom/customText'
-import { useGetUserLocation, useGetUuid } from 'src/hooks'
 import { theme } from 'theme'
 import { useGetName } from './hooks'
+import { useGetUserLocation } from 'src/utils/utils'
 
 const NameAndLocation = () => {
   const address = useGetUserLocation()

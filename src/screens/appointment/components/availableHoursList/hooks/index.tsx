@@ -1,13 +1,16 @@
 import { useRoute } from '@react-navigation/native'
 import { useFormContext } from 'react-hook-form'
+import Text from 'src/components/custom/customText'
 import { BookingFormShape, RouteProp } from 'src/screens/appointment/types'
-import { getDoctorSessionInfo } from 'src/utils/doctors'
+import { getTherapistSessionInfo } from 'src/utils/doctors'
 import { generateHours } from 'src/utils/time'
 
 const useAvailableHoursList = () => {
   const { params } = useRoute<RouteProp>()
 
-  const sessionInfo = getDoctorSessionInfo(params.therapistId)
+  const sessionInfo = getTherapistSessionInfo(params.therapistId)
+  if (!sessionInfo) return
+
   const {
     workingSchedule: { startHour, finishHour }
   } = sessionInfo

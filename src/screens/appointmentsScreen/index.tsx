@@ -1,10 +1,10 @@
 import { ActivityIndicator, StyleSheet, View } from 'react-native'
 import Text from 'src/components/custom/customText'
 import PageWrapper from 'src/components/custom/pageWrapper'
-import { useGetUuid } from 'src/hooks'
 import { useGetBookingsQuery } from 'src/services/user'
 import { theme } from 'theme'
 import NoData from './components/noData'
+import { useGetUuid } from 'src/utils/utils'
 
 const AppointmentsScreen = () => {
   const uuid = useGetUuid()

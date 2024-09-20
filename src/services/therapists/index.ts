@@ -3,7 +3,6 @@ import { Therapist, TherapistBooking } from 'src/data/types'
 import { URL_FIREBASE } from 'src/db/firebase'
 import { SetTherapistBookingsRequest } from './types'
 
-// TODO: addBooking (clase 13, minuto 10)
 export const therapistsApi = createApi({
   reducerPath: 'therapistsApi',
   baseQuery: fetchBaseQuery({ baseUrl: URL_FIREBASE }),

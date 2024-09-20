@@ -2,12 +2,14 @@ import Text from 'src/components/custom/customText'
 import CustomCalendar from 'src/components/custom/calendar'
 import { useRoute } from '@react-navigation/native'
 import { RouteProp } from '../../types'
-import { getDoctorSessionInfo } from 'src/utils/doctors'
+import { getTherapistSessionInfo } from 'src/utils/doctors'
 
 const CalendarWrapper = () => {
   const { params } = useRoute<RouteProp>()
 
-  const sessionInfo = getDoctorSessionInfo(params.therapistId)
+  const sessionInfo = getTherapistSessionInfo(params.therapistId)
+  if (!sessionInfo) return <Text>Something went wrong. Please try again.</Text>
+
   const {
     workingSchedule: { workingDays }
   } = sessionInfo

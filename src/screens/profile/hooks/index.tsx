@@ -1,11 +1,7 @@
 import * as ImagePicker from 'expo-image-picker'
-import { useDispatch, useSelector } from 'react-redux'
 import { useSetProfilePictureMutation } from 'src/services/user'
-import { RootState } from 'src/store'
-import { Notifier, NotifierComponents } from 'react-native-notifier'
-import { setUserProfilePicture } from 'src/features/user/userSlice'
-import { useGetUuid } from 'src/hooks'
 import { showSuccessNotification } from 'src/utils/notifications'
+import { useGetUuid } from 'src/utils/utils'
 
 const useSetProfilePicture = () => {
   const [updateProfilePicture] = useSetProfilePictureMutation()
