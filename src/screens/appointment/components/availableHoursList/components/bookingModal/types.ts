@@ -1,3 +1,8 @@
+import { useSelector } from 'react-redux'
+import { Therapist } from 'src/data/types'
+import { therapistsApi } from 'src/services/therapists'
+import { RootState } from 'src/store'
+
 interface ICheckAppointmentProps {
   handleConfirm: () => void
 }
@@ -5,16 +10,3 @@ interface ICheckAppointmentProps {
 type Stage = 'check_appointment' | 'confirm_appointment'
 
 export { ICheckAppointmentProps, Stage }
-
-const mapTherapistIds = {
-  therapist1: '0',
-  therapist2: '1',
-  therapist3: '2',
-  therapist4: '3',
-  therapist5: '4',
-  therapist6: '5',
-  therapist7: '6',
-  therapist8: '7'
-}
-
-export { mapTherapistIds }

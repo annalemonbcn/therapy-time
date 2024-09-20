@@ -13,9 +13,10 @@ import { useModalContext } from 'src/context/ModalProvider'
 import { getDoctorNameById } from 'src/utils/doctors'
 import { useGetBookingsQuery, userApi, useSetBookingsMutation } from 'src/services/user'
 import { useGetUserEmail, useGetUuid } from 'src/hooks'
-import { useSetTherapistBookingMutation } from 'src/services/therapists'
-import { UserBooking } from 'src/data/types'
+import { useGetTherapistBookingsQuery, useSetTherapistBookingsMutation } from 'src/services/therapists'
+import { TherapistBooking, UserBooking } from 'src/data/types'
 import { showErrorNotification } from 'src/utils/notifications'
+import { useGetDbTherapistId } from './hooks'
 
 const CheckAppointment = ({ handleConfirm }: ICheckAppointmentProps) => {
   const { getValues } = useFormContext<BookingFormShape>()
@@ -86,51 +87,88 @@ const BookingModal = () => {
   const { getValues } = useFormContext<BookingFormShape>()
 
   const uuid = useGetUuid()
-  const userEmail = useGetUserEmail()
   const [setUserBookings] = useSetBookingsMutation()
   const { data: bookingsData, isLoading: isGetBookingsLoading } = useGetBookingsQuery({ uuid })
-  const [setTherapistBooking] = useSetTherapistBookingMutation()
 
-  const addBooking = async () => {
-    try {
-      const formData = getValues()
-      const newBooking: UserBooking = {
-        date: formData.day,
-        time: formData.hour,
-        therapistId: params.therapistId
-      }
+  const addUserBooking = async () => {
+    if (!isGetBookingsLoading) {
+      try {
+        const formData = getValues()
+        const newBooking: UserBooking = {
+          date: formData.day,
+          time: formData.hour,
+          therapistId: params.therapistId
+        }
 
-      let bookings: UserBooking[] = []
+        let bookings: UserBooking[] = []
 
-      if (bookingsData && typeof bookingsData === 'object' && 'bookings' in bookingsData) {
-        const existingBookings = bookingsData.bookings
+        if (bookingsData && 'bookings' in bookingsData) {
+          const existingBookings = bookingsData.bookings
 
-        if (Array.isArray(existingBookings)) {
-          bookings = [...existingBookings, newBooking]
+          if (Array.isArray(existingBookings)) {
+            bookings = [...existingBookings, newBooking]
+          } else {
+            bookings = [newBooking]
+          }
         } else {
           bookings = [newBooking]
         }
-      } else {
-        bookings = [newBooking]
-      }
 
-      await setUserBookings({ uuid, bookings })
-      return true
-    } catch (error) {
-      showErrorNotification('Error adding booking')
-      console.error('Error:', error)
-      return false
+        await setUserBookings({ uuid, bookings })
+      } catch (error) {
+        throw new Error('Error adding booking')
+      }
+    }
+  }
+
+  const userEmail = useGetUserEmail()
+  const { data: bookingsTherapistData, isLoading: isGetBookingsTherapistLoading } = useGetTherapistBookingsQuery({
+    therapistId: params.therapistId
+  })
+  const [setTherapistBooking] = useSetTherapistBookingsMutation()
+  const dbTherapistId = useGetDbTherapistId(params.therapistId)
+
+  // TODO: check this
+  const addTherapistBooking = async () => {
+    if (!isGetBookingsTherapistLoading) {
+      try {
+        const formData = getValues()
+        const newBooking: TherapistBooking = {
+          date: formData.day,
+          time: formData.hour,
+          userEmail
+        }
+
+        let bookings: TherapistBooking[] = []
+
+        if (bookingsTherapistData && 'bookings' in bookingsTherapistData) {
+          const existingBookings = bookingsTherapistData.bookings
+
+          if (Array.isArray(existingBookings)) {
+            bookings = [...existingBookings, newBooking]
+          } else {
+            bookings = [newBooking]
+          }
+        } else {
+          bookings = [newBooking]
+        }
+
+        await setTherapistBooking({ therapistId: dbTherapistId, bookings })
+      } catch (error) {
+        throw new Error('Error adding booking')
+      }
     }
   }
 
   const handleConfirm = () => {
     setLoading(true)
     try {
-      addBooking()
-      // setTherapistBooking({ therapistId: params.therapistId, booking: { date: data.day, time: data.hour, userEmail } }) // Therapist side
+      addUserBooking()
+      addTherapistBooking()
       setStage('confirm_appointment')
     } catch (error) {
       console.error('Error', error)
+      showErrorNotification(error as string)
     } finally {
       setLoading(false)
     }

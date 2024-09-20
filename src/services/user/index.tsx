@@ -15,7 +15,7 @@ import { UserBooking } from 'src/data/types'
 export const userApi = createApi({
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({ baseUrl: URL_FIREBASE }),
-  tagTypes: ['name', 'profilePicture'],
+  tagTypes: ['name', 'profilePicture', 'bookings'],
   endpoints: (builder) => ({
     setName: builder.mutation<void, SetNameRequest>({
       query: (body) => ({
@@ -56,10 +56,12 @@ export const userApi = createApi({
         url: `/users/${body.uuid}.json`,
         method: 'PATCH',
         body
-      })
+      }),
+      invalidatesTags: ['bookings']
     }),
     getBookings: builder.query<{ bookings: UserBooking[] }, GetBookingsRequest>({
-      query: ({ uuid }) => `/users/${uuid}.json`
+      query: ({ uuid }) => `/users/${uuid}.json`,
+      providesTags: ['bookings']
     })
   })
 })

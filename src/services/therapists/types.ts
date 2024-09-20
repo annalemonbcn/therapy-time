@@ -1,5 +1,5 @@
 import { TherapistBooking } from 'src/data/types'
 
-type SetTherapistbookingRequest = { therapistId: string; booking: TherapistBooking }
+type SetTherapistBookingsRequest = { therapistId: string; bookings: TherapistBooking[] }
 
-export { SetTherapistbookingRequest }
+export { SetTherapistBookingsRequest }
