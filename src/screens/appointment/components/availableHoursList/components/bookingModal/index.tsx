@@ -95,6 +95,7 @@ const BookingModal = () => {
 
     const formData = getValues()
     const newBooking: UserBooking = {
+      bookingId: Date.now().toString(),
       date: formData.day,
       time: formData.hour,
       therapistId: params.therapistId,
@@ -130,6 +131,7 @@ const BookingModal = () => {
 
     const formData = getValues()
     const newBooking: TherapistBooking = {
+      bookingId: Date.now().toString(),
       date: formData.day,
       time: formData.hour,
       userEmail,

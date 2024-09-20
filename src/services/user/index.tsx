@@ -83,5 +83,6 @@ export const {
   useSetProfilePictureMutation,
   useGetProfilePictureQuery,
   useSetBookingsMutation,
-  useGetBookingsQuery
+  useGetBookingsQuery,
+  useCancelBookingMutation
 } = userApi

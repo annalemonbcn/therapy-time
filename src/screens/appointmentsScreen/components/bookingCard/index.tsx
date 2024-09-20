@@ -11,13 +11,28 @@ import { toTitleCase } from 'src/utils'
 import CardLocation from 'src/components/therapistCard/components/location'
 import Button from 'src/components/custom/customButton'
 import { Tabs } from '../../types'
+import { useModalContext } from 'src/context/ModalProvider'
 
-const BookingCard = ({ booking, selectedTab }: { booking: UserBooking; selectedTab: Tabs }) => {
+const BookingCard = ({
+  booking,
+  selectedTab,
+  setSelectedAppointment
+}: {
+  booking: UserBooking
+  selectedTab: Tabs
+  setSelectedAppointment: React.Dispatch<React.SetStateAction<UserBooking | undefined>>
+}) => {
+  const { openModal } = useModalContext()
   const { data: therapist, isLoading } = useGetDoctorDetails(booking.therapistId)
 
   if (isLoading) return <ActivityIndicator />
 
   if (!therapist) return
+
+  const handlePress = () => {
+    setSelectedAppointment(booking)
+    openModal()
+  }
 
   return (
     <BasicCard hasShadow>
@@ -41,7 +56,7 @@ const BookingCard = ({ booking, selectedTab }: { booking: UserBooking; selectedT
         </View>
         <Separator />
         {selectedTab === 'upcoming' && (
-          <Button onPress={() => console.log('cancel')} bgGrey>
+          <Button onPress={() => handlePress()} bgGrey>
             Cancel
           </Button>
         )}

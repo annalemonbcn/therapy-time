@@ -12,9 +12,15 @@ import { useState } from 'react'
 import { Tabs } from './types'
 import { filterBookings, sortBookings } from './utils'
 import TabsNavigator from './components/tabs'
+import { ModalProvider, useModalContext } from 'src/context/ModalProvider'
+import CancelAppointmentModal from './components/cancelAppointmentModal'
 
-const AppointmentsScreen = () => {
+const AppointmentsDisplay = () => {
   const [tab, setTab] = useState<Tabs>('upcoming')
+  const [selectedAppointment, setSelectedAppointment] = useState<UserBooking>()
+
+  const { isOpen } = useModalContext()
+
   const uuid = useGetUuid()
   const { data, isFetching, isSuccess } = useGetBookingsQuery({ uuid })
 
@@ -33,14 +39,27 @@ const AppointmentsScreen = () => {
         <FlatList
           data={filteredBookings}
           keyExtractor={(booking) => booking.bookingId}
-          renderItem={({ item }) => <BookingCard booking={item as UserBooking} selectedTab={tab} />}
+          renderItem={({ item }) => (
+            <BookingCard
+              booking={item as UserBooking}
+              selectedTab={tab}
+              setSelectedAppointment={setSelectedAppointment}
+            />
+          )}
           style={styles.list}
           scrollEnabled={false}
         />
       </ScrollView>
+      {isOpen && <CancelAppointmentModal appointment={selectedAppointment} />}
     </PageWrapper>
   )
 }
+
+const AppointmentsScreen = () => (
+  <ModalProvider>
+    <AppointmentsDisplay />
+  </ModalProvider>
+)
 
 export default AppointmentsScreen
 
