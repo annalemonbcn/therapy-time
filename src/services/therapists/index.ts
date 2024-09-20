@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { Therapist, TherapistBooking } from 'src/data/types'
 import { URL_FIREBASE } from 'src/db/firebase'
-import { SetTherapistBookingsRequest } from './types'
+import { CancelTherapistBookingRequest, SetTherapistBookingsRequest } from './types'
 
 export const therapistsApi = createApi({
   reducerPath: 'therapistsApi',
@@ -36,6 +36,14 @@ export const therapistsApi = createApi({
         return { bookings: therapist.bookings }
       },
       providesTags: ['bookings']
+    }),
+    cancelBooking: builder.mutation<void, CancelTherapistBookingRequest>({
+      query: (body) => ({
+        url: `/therapists/${body.therapistId}.json`,
+        method: 'PATCH',
+        body
+      }),
+      invalidatesTags: ['bookings']
     })
   })
 })

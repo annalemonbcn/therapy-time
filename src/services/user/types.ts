@@ -14,6 +14,8 @@ type GetProfilePictureRequest = UUID
 type SetBookingsRequest = UUID & { bookings: UserBooking[] }
 type GetBookingsRequest = UUID
 
+type CancelBookingRequest = UUID & { bookingId: string; status: 'canceled' }
+
 export {
   SetNameRequest,
   GetNameRequest,
@@ -22,5 +24,6 @@ export {
   SetProfilePictureRequest,
   GetProfilePictureRequest,
   SetBookingsRequest,
-  GetBookingsRequest
+  GetBookingsRequest,
+  CancelBookingRequest
 }

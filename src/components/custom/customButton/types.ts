@@ -6,6 +6,7 @@ type ICustomButtonProps = TouchableOpacityProps & {
   onPress: () => void
   primary?: boolean
   secondary?: boolean
+  bgGrey?: boolean
   isTag?: boolean
   textFontSize?: FontSize
 }

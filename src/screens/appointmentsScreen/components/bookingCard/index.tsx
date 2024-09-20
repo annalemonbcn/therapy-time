@@ -9,8 +9,10 @@ import { useGetDoctorDetails } from 'src/screens/doctorDetails/hooks'
 import CardImage from 'src/components/custom/image'
 import { toTitleCase } from 'src/utils'
 import CardLocation from 'src/components/therapistCard/components/location'
+import Button from 'src/components/custom/customButton'
+import { Tabs } from '../../types'
 
-const BookingCard = ({ booking }: { booking: UserBooking }) => {
+const BookingCard = ({ booking, selectedTab }: { booking: UserBooking; selectedTab: Tabs }) => {
   const { data: therapist, isLoading } = useGetDoctorDetails(booking.therapistId)
 
   if (isLoading) return <ActivityIndicator />
@@ -37,6 +39,12 @@ const BookingCard = ({ booking }: { booking: UserBooking }) => {
             </View>
           </View>
         </View>
+        <Separator />
+        {selectedTab === 'upcoming' && (
+          <Button onPress={() => console.log('cancel')} bgGrey>
+            Cancel
+          </Button>
+        )}
       </View>
     </BasicCard>
   )
@@ -55,7 +63,6 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   infoContainer: {
-    // flex: 1,
     gap: theme.space.xs
   },
   bottomTextsContainer: {

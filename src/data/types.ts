@@ -156,6 +156,7 @@ type Language = {
 }
 
 type Booking = {
+  bookingId: string
   date: string
   time: string
   status: 'active' | 'canceled'

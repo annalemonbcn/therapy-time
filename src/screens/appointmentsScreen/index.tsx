@@ -9,8 +9,8 @@ import BookingCard from './components/bookingCard'
 import { UserBooking } from 'src/data/types'
 import { FlatList, ScrollView } from 'react-native-gesture-handler'
 import { useState } from 'react'
-import { ListBooking, Tabs } from './types'
-import { dtoToListBooking, filterBookings } from './utils'
+import { Tabs } from './types'
+import { filterBookings, sortBookings } from './utils'
 import TabsNavigator from './components/tabs'
 
 const AppointmentsScreen = () => {
@@ -20,11 +20,11 @@ const AppointmentsScreen = () => {
 
   if (isFetching) return <ActivityIndicator />
 
-  const bookings = dtoToListBooking(data?.bookings as UserBooking[])
+  const bookings = sortBookings(data?.bookings as UserBooking[])
 
   if (isSuccess && !bookings) return <NoData />
 
-  const filteredBookings = filterBookings(bookings as ListBooking[], tab)
+  const filteredBookings = filterBookings(bookings as UserBooking[], tab)
 
   return (
     <PageWrapper>
@@ -33,7 +33,7 @@ const AppointmentsScreen = () => {
         <FlatList
           data={filteredBookings}
           keyExtractor={(booking) => booking.bookingId}
-          renderItem={({ item }) => <BookingCard booking={item as UserBooking} />}
+          renderItem={({ item }) => <BookingCard booking={item as UserBooking} selectedTab={tab} />}
           style={styles.list}
           scrollEnabled={false}
         />

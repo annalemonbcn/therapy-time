@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { URL_FIREBASE } from 'src/db/firebase'
 import {
+  CancelBookingRequest,
   GetBookingsRequest,
   GetEmailRequest,
   GetNameRequest,
@@ -62,6 +63,14 @@ export const userApi = createApi({
     getBookings: builder.query<{ bookings: UserBooking[] }, GetBookingsRequest>({
       query: ({ uuid }) => `/users/${uuid}.json`,
       providesTags: ['bookings']
+    }),
+    cancelBooking: builder.mutation<void, CancelBookingRequest>({
+      query: (body) => ({
+        url: `/users/${body.uuid}.json`,
+        method: 'PATCH',
+        body
+      }),
+      invalidatesTags: ['bookings']
     })
   })
 })

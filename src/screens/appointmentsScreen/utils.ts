@@ -1,7 +1,7 @@
 import { UserBooking } from 'src/data/types'
-import { FilterBy, ListBooking, Tabs } from './types'
+import { FilterBy, Tabs } from './types'
 
-const filterBookings = (bookings: ListBooking[], filterBy: FilterBy): ListBooking[] => {
+const filterBookings = (bookings: UserBooking[], filterBy: FilterBy): UserBooking[] => {
   const today = new Date()
 
   return bookings.filter((booking) => {
@@ -23,21 +23,15 @@ const filterBookings = (bookings: ListBooking[], filterBy: FilterBy): ListBookin
   })
 }
 
-const sortBookings = (bookings: ListBooking[]) =>
-  bookings.sort((a, b) => {
+const sortBookings = (bookings: UserBooking[]) => {
+  if (!bookings) return undefined
+  const bookingsDups = [...bookings]
+  return bookingsDups.sort((a, b) => {
     const dateA = new Date(`${a.date}T${a.time}:00`)
     const dateB = new Date(`${b.date}T${b.time}:00`)
 
     return dateA.getTime() - dateB.getTime()
   })
-
-const dtoToListBooking = (bookings: UserBooking[]): ListBooking[] | undefined => {
-  if (!bookings) return undefined
-  const listBookings = bookings.map((booking, idx) => ({
-    bookingId: idx.toString(),
-    ...booking
-  }))
-  return sortBookings(listBookings)
 }
 
-export { dtoToListBooking, filterBookings }
+export { sortBookings, filterBookings }

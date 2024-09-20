@@ -39,6 +39,12 @@ const StyledTouchable = styled(TouchableOpacity)<ICustomButtonProps>`
     )
   }}
 
+  ${({ bgGrey }) =>
+    bgGrey &&
+    `
+      background-color: ${theme.colors.b200};
+    `}
+
   ${({ disabled }) =>
     disabled &&
     `
