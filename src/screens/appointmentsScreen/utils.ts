@@ -15,7 +15,10 @@ const filterBookings = (bookings: ListBooking[], filterBy: FilterBy): ListBookin
     }
 
     if (filterBy === 'upcoming') {
-      return bookingDate > today || bookingDate.getTime() - today.getTime() < 24 * 60 * 60 * 1000
+      return (
+        bookingDate > today ||
+        (bookingDate.getTime() - today.getTime() < 24 * 60 * 60 * 1000 && bookingDate.getHours() >= today.getHours())
+      )
     }
   })
 }

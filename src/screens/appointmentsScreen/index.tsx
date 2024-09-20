@@ -11,9 +11,10 @@ import { FlatList, ScrollView } from 'react-native-gesture-handler'
 import { useState } from 'react'
 import { ListBooking, Tabs } from './types'
 import { dtoToListBooking, filterBookings } from './utils'
+import TabsNavigator from './components/tabs'
 
 const AppointmentsScreen = () => {
-  const [tab, setTab] = useState<Tabs>('canceled')
+  const [tab, setTab] = useState<Tabs>('upcoming')
   const uuid = useGetUuid()
   const { data, isFetching, isSuccess } = useGetBookingsQuery({ uuid })
 
@@ -27,6 +28,7 @@ const AppointmentsScreen = () => {
 
   return (
     <PageWrapper>
+      <TabsNavigator selectedTab={tab} setSelectedTab={setTab} />
       <ScrollView contentContainerStyle={styles.pageContainer}>
         <FlatList
           data={filteredBookings}
