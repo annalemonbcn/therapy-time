@@ -12,6 +12,7 @@ import TabsNavigator from './components/tabs'
 import { ModalProvider, useModalContext } from 'src/context/ModalProvider'
 import CancelAppointmentModal from './components/cancelAppointmentModal'
 import { useAppointmentsScreen } from './hooks'
+import Text from 'src/components/custom/customText'
 
 const AppointmentsDisplay = () => {
   const [tab, setTab] = useState<Tabs>('upcoming')
@@ -22,8 +23,7 @@ const AppointmentsDisplay = () => {
   const { data: bookings, isLoading } = useAppointmentsScreen()
 
   if (isLoading) return <ActivityIndicator />
-  // TODO: handle
-  if (!bookings) return <NoData />
+  if (!bookings || bookings.length === 0) return <NoData />
 
   const filteredBookings = filterBookings(bookings as UserBooking[], tab)
 
@@ -31,6 +31,9 @@ const AppointmentsDisplay = () => {
     <PageWrapper>
       <TabsNavigator selectedTab={tab} setSelectedTab={setTab} />
       <ScrollView contentContainerStyle={styles.pageContainer}>
+        <Text fontWeight="bold" style={styles.text}>
+          {filteredBookings.length} founds
+        </Text>
         <FlatList
           data={filteredBookings}
           keyExtractor={(booking) => booking.bookingId}
@@ -45,7 +48,9 @@ const AppointmentsDisplay = () => {
           scrollEnabled={false}
         />
       </ScrollView>
-      {isOpen && <CancelAppointmentModal appointment={selectedAppointment} />}
+      {isOpen && (
+        <CancelAppointmentModal appointment={selectedAppointment} setSelectedAppointment={setSelectedAppointment} />
+      )}
     </PageWrapper>
   )
 }
@@ -61,8 +66,10 @@ export default AppointmentsScreen
 const styles = StyleSheet.create({
   pageContainer: {
     paddingBottom: theme.space.xl,
-    width: '100%',
-    alignItems: 'center'
+    width: '100%'
+  },
+  text: {
+    paddingLeft: theme.space.sm
   },
   list: {
     marginVertical: theme.space.sm2,

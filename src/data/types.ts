@@ -194,6 +194,7 @@ export {
   TagsEnum,
   tagsArray,
   User,
+  Booking,
   TherapistBooking,
   UserBooking
 }

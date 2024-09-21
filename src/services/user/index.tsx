@@ -64,6 +64,10 @@ export const userApi = createApi({
     getBookings: builder.query<{ bookings: UserBooking[] }, GetBookingsRequest>({
       query: ({ uuid }) => `users/${uuid}/bookings.json`,
       transformResponse: (res: any) => {
+        if (!res) {
+          return { bookings: [] } 
+        }
+        
         const bookings = Object.values(res) as UserBooking[]
 
         return { bookings }

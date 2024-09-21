@@ -8,7 +8,7 @@ import { useRoute } from '@react-navigation/native'
 import { useModalContext } from 'src/context/ModalProvider'
 import { useSetBookingMutation } from 'src/services/user'
 import { useSetTherapistBookingMutation } from 'src/services/therapists'
-import { TherapistBooking, UserBooking } from 'src/data/types'
+import { Booking, TherapistBooking, UserBooking } from 'src/data/types'
 import { showErrorNotification } from 'src/utils/notifications'
 import { useGetDbTherapistId } from './hooks'
 import { useGetUserEmail, useGetUuid } from 'src/utils/utils'
@@ -33,31 +33,31 @@ const BookingModal = () => {
   const dbTherapistId = useGetDbTherapistId(params.therapistId)
 
   const bookingId = Date.now().toString()
+  const booking: Booking = {
+    bookingId: Date.now().toString(),
+    date: day,
+    time: hour,
+    status: 'active'
+  }
 
   const addUserBooking = () => {
-    const booking: UserBooking = {
-      bookingId,
-      date: day,
-      time: hour,
-      therapistId: params.therapistId,
-      status: 'active'
+    const userBooking: UserBooking = {
+      ...booking,
+      therapistId: params.therapistId
     }
-    return setUserBooking({ uuid, bookingId: booking.bookingId, booking })
+    return setUserBooking({ uuid, bookingId: booking.bookingId, booking: userBooking })
   }
 
   const addTherapistBooking = () => {
-    const booking: TherapistBooking = {
-      bookingId,
-      date: day,
-      time: hour,
-      status: 'active',
+    const therapistBooking: TherapistBooking = {
+      ...booking,
       userEmail
     }
 
     return setTherapistBooking({
       bookingId: booking.bookingId,
       therapistId: dbTherapistId,
-      booking
+      booking: therapistBooking
     })
   }
 

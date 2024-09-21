@@ -1,24 +1,27 @@
 import { useState } from 'react'
 import { ActivityIndicator } from 'react-native'
 import { useModalContext } from 'src/context/ModalProvider'
-import { CancelAppointmentModalStage } from './types'
 import BasicModal from 'src/components/modal'
 import { UserBooking } from 'src/data/types'
 import CheckCancelStage from './components/checkCancelStage'
-import ConfirmCancelStage from './components/confirmCancelStage'
 import { useCancelBookingMutation } from 'src/services/user'
 import { useGetUuid } from 'src/utils/utils'
-import { showErrorNotification } from 'src/utils/notifications'
+import { showErrorNotification, showSuccessNotification } from 'src/utils/notifications'
 import { useCancelTherapistBookingMutation } from 'src/services/therapists'
 import { useGetDbTherapistId } from 'src/screens/appointment/components/availableHoursList/components/bookingModal/hooks'
 
-const CancelAppointmentModal = ({ appointment }: { appointment: UserBooking | undefined }) => {
-  const [stage, setStage] = useState<CancelAppointmentModalStage>('question')
+const CancelAppointmentModal = ({
+  appointment,
+  setSelectedAppointment
+}: {
+  appointment: UserBooking | undefined
+  setSelectedAppointment: React.Dispatch<React.SetStateAction<UserBooking | undefined>>
+}) => {
   const [loading, setLoading] = useState(false)
 
   const { isOpen, closeModal } = useModalContext()
 
-  if (!appointment) return
+  if (!appointment || appointment.status === 'canceled') return
 
   const uuid = useGetUuid()
   const [cancelBooking] = useCancelBookingMutation()
@@ -38,20 +41,22 @@ const CancelAppointmentModal = ({ appointment }: { appointment: UserBooking | un
     setLoading(true)
     try {
       await Promise.all([cancelUserBooking(), cancelTherapistBooking()])
-      setStage('confirm')
+      showSuccessNotification('You have successfully cancelled your appointment.')
+      closeModal()
     } catch (error) {
       console.error('Error', error)
       showErrorNotification('Error canceling appointment.')
     } finally {
       setLoading(false)
+      setSelectedAppointment(undefined)
     }
   }
 
+  if (loading) return <ActivityIndicator />
+
   return (
     <BasicModal isModalOpen={isOpen} closeModal={closeModal} showCloseButton={false}>
-      {loading && <ActivityIndicator />}
-      {!loading && stage === 'question' && <CheckCancelStage handleConfirm={handleConfirm} appointment={appointment} />}
-      {!loading && stage === 'confirm' && <ConfirmCancelStage />}
+      <CheckCancelStage handleConfirm={handleConfirm} appointment={appointment} />
     </BasicModal>
   )
 }
