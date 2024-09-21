@@ -30,7 +30,7 @@ const DoctorsDisplay = ({ route }: DoctorsDisplayProps) => {
   }
 
   if (isLoading) return <ActivityIndicator />
-  if (!filteredTherapists || filteredTherapists.length === 0) return <NoData />
+  if (!filteredTherapists) return <NoData />
 
   return (
     <PageWrapper>

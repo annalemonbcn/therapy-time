@@ -12,7 +12,7 @@ const Reviews = ({ reviews }: IReviewsProps) => {
     </Text>
   )
 
-  const showReviews = reviews.length > 0
+  const showAuxText = !reviews || reviews.length === 0
 
   return (
     <View style={styles.container}>
@@ -24,8 +24,8 @@ const Reviews = ({ reviews }: IReviewsProps) => {
           See all
         </Text>
       </HorizontalContainer>
-      {!showReviews && noReviews}
-      {showReviews && <Review review={reviews[0]} />}
+      {showAuxText && noReviews}
+      {!showAuxText && <Review review={reviews[0]} />}
     </View>
   )
 }
