@@ -15,11 +15,11 @@ export const therapistsApi = createApi({
       query: (id) => `/therapists.json?orderBy="basicInfo/id"&equalTo="${id}"`,
       transformResponse: (res: any) => Object.values(res)
     }),
-    setTherapistBookings: builder.mutation<void, SetTherapistBookingsRequest>({
-      query: (body) => ({
-        url: `/therapists/${body.therapistId}.json`,
-        method: 'PATCH',
-        body
+    setTherapistBooking: builder.mutation<void, SetTherapistBookingsRequest>({
+      query: ({ therapistId, booking, bookingId }) => ({
+        url: `/therapists/${therapistId}/bookings/${bookingId}.json`,
+        method: 'PUT',
+        body: JSON.stringify(booking)
       }),
       invalidatesTags: ['bookings']
     }),
@@ -51,6 +51,6 @@ export const therapistsApi = createApi({
 export const {
   useGetTherapistsQuery,
   useGetTherapistByIdQuery,
-  useSetTherapistBookingsMutation,
+  useSetTherapistBookingMutation,
   useGetTherapistBookingsQuery
 } = therapistsApi
