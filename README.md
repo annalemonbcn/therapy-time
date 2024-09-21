@@ -97,6 +97,7 @@ List of technologies used to develop this app:
 What's coming next?
 
 - Better error handling
+- Fix calendar errors: currently you can make an appointment for a past date, disable booked hours per day for each therapist
 - Live map with user pin and nearest therapists pins
 - Implement testing
 
