@@ -1,20 +1,64 @@
-import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View } from 'react-native'
+import { useEffect } from 'react'
+import * as SplashScreen from 'expo-splash-screen'
+import { useLoadInitialConfig } from 'src/hooks'
+import AllowLocationScreen from 'src/screens/allowLocationScreen'
+import { NavigationContainer } from '@react-navigation/native'
+import BottomTabBar from 'src/navigation/bottomTabBar'
+import { Provider, useSelector } from 'react-redux'
+import { RootState, store } from 'src/store'
+import AuthNavigator from 'src/navigation/authNavigator'
+import { NotifierWrapper } from 'react-native-notifier'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import { MenuProvider } from 'react-native-popup-menu'
+import FillProfileScreen from 'src/screens/fillProfile'
+import { useGetNameQuery } from 'src/services/user'
+import { useGetUserLocation, useGetUuid } from 'src/utils/utils'
 
-export default function App() {
+const MainNavigator = () => {
+  const user = useSelector((state: RootState) => state.user.user.basicInfo.tokenId)
+
+  return <>{user ? <AppDisplay /> : <AuthNavigator />}</>
+}
+
+const AppDisplay = () => {
+  const uuid = useGetUuid()
+  const { data: name, isFetching } = useGetNameQuery({ uuid })
+
+  if (isFetching) return
+
+  return <>{name ? <ShowBottomTabBar /> : <FillProfileScreen />}</>
+}
+
+const ShowBottomTabBar = () => {
+  const address = useGetUserLocation()
+
+  return <>{address ? <BottomTabBar /> : <AllowLocationScreen />}</>
+}
+
+const App = () => {
+  const { loaded, error } = useLoadInitialConfig()
+
+  useEffect(() => {
+    if (loaded || error) {
+      SplashScreen.hideAsync()
+    }
+  }, [loaded, error])
+
+  if (!loaded && !error) return null
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <GestureHandlerRootView>
+      <NotifierWrapper>
+        <MenuProvider>
+          <Provider store={store}>
+            <NavigationContainer>
+              <MainNavigator />
+            </NavigationContainer>
+          </Provider>
+        </MenuProvider>
+      </NotifierWrapper>
+    </GestureHandlerRootView>
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-})
+export default App
