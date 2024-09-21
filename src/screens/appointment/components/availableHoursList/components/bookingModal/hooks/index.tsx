@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
-import { useSelector } from 'react-redux'
-import { therapistsApi, useGetTherapistsQuery } from 'src/services/therapists'
+import { useGetTherapistsQuery } from 'src/services/therapists'
+
 const extractNumber = (str: string) => {
   const match = str.match(/\d+$/)
   if (!match) return

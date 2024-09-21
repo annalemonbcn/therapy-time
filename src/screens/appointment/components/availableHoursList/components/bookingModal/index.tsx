@@ -11,11 +11,11 @@ import { ICheckAppointmentProps, Stage } from './types'
 import { useRoute } from '@react-navigation/native'
 import { useModalContext } from 'src/context/ModalProvider'
 import { getTherapistName } from 'src/utils/doctors'
-import { useGetBookingsQuery, useSetBookingsMutation } from 'src/services/user'
+import { useGetBookingsQuery, useSetBookingMutation } from 'src/services/user'
 import { useGetTherapistBookingsQuery, useSetTherapistBookingsMutation } from 'src/services/therapists'
 import { TherapistBooking, UserBooking } from 'src/data/types'
 import { showErrorNotification } from 'src/utils/notifications'
-import { useGetDbTherapistId } from './hooks'
+import { useAddUserBooking, useGetDbTherapistId } from './hooks'
 import { useGetUserEmail, useGetUuid } from 'src/utils/utils'
 
 const CheckAppointment = ({ handleConfirm }: ICheckAppointmentProps) => {
@@ -87,36 +87,49 @@ const BookingModal = () => {
   const { getValues } = useFormContext<BookingFormShape>()
 
   const uuid = useGetUuid()
-  const [setUserBookings] = useSetBookingsMutation()
+  const [setUserBooking] = useSetBookingMutation()
   const { data: bookingsData, isLoading: isGetBookingsLoading } = useGetBookingsQuery({ uuid })
 
-  const addUserBooking = async () => {
-    if (isGetBookingsLoading) return
+  // const addUserBooking = async () => {
+  //   if (isGetBookingsLoading) return
 
-    const formData = getValues()
-    const newBooking: UserBooking = {
+  //   const formData = getValues()
+  //   const newBooking: UserBooking = {
+  //     bookingId: Date.now().toString(),
+  //     date: formData.day,
+  //     time: formData.hour,
+  //     therapistId: params.therapistId,
+  //     status: 'active'
+  //   }
+
+  //   let bookings: UserBooking[] = []
+
+  //   if (bookingsData && 'bookings' in bookingsData) {
+  //     const existingBookings = bookingsData.bookings
+
+  //     if (Array.isArray(existingBookings)) {
+  //       bookings = [...existingBookings, newBooking]
+  //     } else {
+  //       bookings = [newBooking]
+  //     }
+  //   } else {
+  //     bookings = [newBooking]
+  //   }
+
+  //   return setUserBooking({ uuid, bookingId: newBooking.bookingId, booking: newBooking })
+  // }
+
+  const { day, hour } = getValues()
+
+  const addUserBooking = () => {
+    const booking: UserBooking = {
       bookingId: Date.now().toString(),
-      date: formData.day,
-      time: formData.hour,
+      date: day,
+      time: hour,
       therapistId: params.therapistId,
       status: 'active'
     }
-
-    let bookings: UserBooking[] = []
-
-    if (bookingsData && 'bookings' in bookingsData) {
-      const existingBookings = bookingsData.bookings
-
-      if (Array.isArray(existingBookings)) {
-        bookings = [...existingBookings, newBooking]
-      } else {
-        bookings = [newBooking]
-      }
-    } else {
-      bookings = [newBooking]
-    }
-
-    return setUserBookings({ uuid, bookings })
+    return setUserBooking({ uuid, bookingId: booking.bookingId, booking })
   }
 
   const userEmail = useGetUserEmail()

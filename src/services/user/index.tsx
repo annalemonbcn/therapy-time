@@ -53,11 +53,11 @@ export const userApi = createApi({
       query: ({ uuid }) => `/users/${uuid}.json`,
       providesTags: ['profilePicture']
     }),
-    setBookings: builder.mutation<void, SetBookingsRequest>({
-      query: (body) => ({
-        url: `/users/${body.uuid}.json`,
-        method: 'PATCH',
-        body
+    setBooking: builder.mutation<void, SetBookingsRequest>({
+      query: ({ uuid, booking, bookingId }) => ({
+        url: `/users/${uuid}/bookings/${bookingId}.json`,
+        method: 'PUT',
+        body: JSON.stringify(booking)
       }),
       invalidatesTags: ['bookings']
     }),
@@ -88,7 +88,7 @@ export const {
   useGetEmailQuery,
   useSetProfilePictureMutation,
   useGetProfilePictureQuery,
-  useSetBookingsMutation,
+  useSetBookingMutation,
   useGetBookingsQuery,
   useCancelBookingMutation
 } = userApi
