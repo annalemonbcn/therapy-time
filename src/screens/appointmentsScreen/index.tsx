@@ -22,6 +22,7 @@ const AppointmentsDisplay = () => {
   const { data: bookings, isLoading } = useAppointmentsScreen()
 
   if (isLoading) return <ActivityIndicator />
+  // TODO: handle
   if (!bookings) return <NoData />
 
   const filteredBookings = filterBookings(bookings as UserBooking[], tab)

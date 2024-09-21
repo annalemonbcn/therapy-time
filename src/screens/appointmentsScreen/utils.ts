@@ -10,11 +10,11 @@ const filterBookings = (bookings: UserBooking[], filterBy: FilterBy): UserBookin
       return booking.status === 'canceled'
     }
 
-    if (filterBy === 'completed') {
-      return bookingDate <= today && booking.status !== 'canceled'
+    if (filterBy === 'completed' && booking.status !== 'canceled') {
+      return bookingDate <= today
     }
 
-    if (filterBy === 'upcoming') {
+    if (filterBy === 'upcoming' && booking.status !== 'canceled') {
       return (
         bookingDate > today ||
         (bookingDate.getTime() - today.getTime() < 24 * 60 * 60 * 1000 && bookingDate.getHours() >= today.getHours())

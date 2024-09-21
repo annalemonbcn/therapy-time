@@ -37,11 +37,11 @@ export const therapistsApi = createApi({
       },
       providesTags: ['bookings']
     }),
-    cancelBooking: builder.mutation<void, CancelTherapistBookingRequest>({
-      query: (body) => ({
-        url: `/therapists/${body.therapistId}.json`,
+    cancelTherapistBooking: builder.mutation<void, CancelTherapistBookingRequest>({
+      query: ({ therapistId, bookingId, status }) => ({
+        url: `/therapists/${therapistId}/bookings/${bookingId}.json`,
         method: 'PATCH',
-        body
+        body: { status }
       }),
       invalidatesTags: ['bookings']
     })
@@ -52,5 +52,6 @@ export const {
   useGetTherapistsQuery,
   useGetTherapistByIdQuery,
   useSetTherapistBookingMutation,
-  useGetTherapistBookingsQuery
+  useGetTherapistBookingsQuery,
+  useCancelTherapistBookingMutation
 } = therapistsApi

@@ -32,9 +32,11 @@ const BookingModal = () => {
   const [setUserBooking] = useSetBookingMutation()
   const dbTherapistId = useGetDbTherapistId(params.therapistId)
 
+  const bookingId = Date.now().toString()
+
   const addUserBooking = () => {
     const booking: UserBooking = {
-      bookingId: Date.now().toString(),
+      bookingId,
       date: day,
       time: hour,
       therapistId: params.therapistId,
@@ -45,7 +47,7 @@ const BookingModal = () => {
 
   const addTherapistBooking = () => {
     const booking: TherapistBooking = {
-      bookingId: Date.now().toString(),
+      bookingId,
       date: day,
       time: hour,
       status: 'active',

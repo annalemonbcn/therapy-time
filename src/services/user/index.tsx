@@ -71,10 +71,10 @@ export const userApi = createApi({
       providesTags: ['bookings']
     }),
     cancelBooking: builder.mutation<void, CancelBookingRequest>({
-      query: (body) => ({
-        url: `/users/${body.uuid}.json`,
+      query: ({ uuid, bookingId, status }) => ({
+        url: `/users/${uuid}/bookings/${bookingId}.json`,
         method: 'PATCH',
-        body
+        body: { status }
       }),
       invalidatesTags: ['bookings']
     })
