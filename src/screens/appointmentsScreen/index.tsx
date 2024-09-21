@@ -1,10 +1,7 @@
 import { ActivityIndicator, StyleSheet, View } from 'react-native'
-import Text from 'src/components/custom/customText'
 import PageWrapper from 'src/components/custom/pageWrapper'
-import { useGetBookingsQuery } from 'src/services/user'
 import { theme } from 'theme'
 import NoData from './components/noData'
-import { useGetUuid } from 'src/utils/utils'
 import BookingCard from './components/bookingCard'
 import { UserBooking } from 'src/data/types'
 import { FlatList, ScrollView } from 'react-native-gesture-handler'
@@ -25,7 +22,6 @@ const AppointmentsDisplay = () => {
   const { data: bookings, isLoading } = useAppointmentsScreen()
 
   if (isLoading) return <ActivityIndicator />
-
   if (!bookings) return <NoData />
 
   const filteredBookings = filterBookings(bookings as UserBooking[], tab)
@@ -48,7 +44,7 @@ const AppointmentsDisplay = () => {
           scrollEnabled={false}
         />
       </ScrollView>
-      {/* {isOpen && <CancelAppointmentModal appointment={selectedAppointment} />} */}
+      {isOpen && <CancelAppointmentModal appointment={selectedAppointment} />}
     </PageWrapper>
   )
 }
