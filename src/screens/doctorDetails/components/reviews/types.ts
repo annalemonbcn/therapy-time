@@ -1,7 +1,7 @@
 import { Review } from 'src/data/types'
 
 interface IReviewsProps {
-  reviews: Review[]
+  reviews: Review[] | undefined
 }
 
 export { IReviewsProps }

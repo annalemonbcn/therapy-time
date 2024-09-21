@@ -22,6 +22,8 @@ const DoctorDetails = ({ route }: DoctorDetailsProps) => {
   if (isLoading) return <ActivityIndicator />
   if (!therapist) return <NoData />
 
+  console.log('therapist :>> ', therapist);
+
   return (
     <PageWrapper>
       <ScrollView contentContainerStyle={styles.pageContainer}>
