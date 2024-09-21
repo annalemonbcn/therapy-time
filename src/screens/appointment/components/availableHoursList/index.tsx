@@ -1,15 +1,14 @@
 import { StyleSheet, View } from 'react-native'
 import HourTag from './components/hourTag'
 import { theme } from 'theme'
-import { useFormContext } from 'react-hook-form'
-import { BookingFormShape, RouteProp } from '../../types'
+import { useWatch } from 'react-hook-form'
 import { useAvailableHoursList } from './hooks'
 import Text from 'src/components/custom/customText'
 
 const AvailableHoursList = () => {
-  const { watch } = useFormContext<BookingFormShape>()
-
   const hoursArr = useAvailableHoursList()
+
+  if (!hoursArr) return <Text>Something went wrong. Please try again.</Text>
 
   if (hoursArr.length === 0)
     return (
@@ -23,7 +22,7 @@ const AvailableHoursList = () => {
     <View style={styles.container}>
       {hoursArr.map((hour, idx) => (
         <View key={idx} style={{ width: '25%' }}>
-          <HourTag hour={hour} isSelected={hour === watch('hour')} />
+          <HourTag hour={hour} isSelected={hour === useWatch({ name: 'hour' })} />
         </View>
       ))}
     </View>

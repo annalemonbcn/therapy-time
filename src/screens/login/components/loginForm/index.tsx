@@ -9,14 +9,8 @@ import { useDispatch } from 'react-redux'
 import { setUserBasicInfo } from 'src/features/user/userSlice'
 import { showSuccessNotification } from 'src/utils/notifications'
 
-// TODO: delete defaultValues
 const LoginForm = () => {
-  const methods = useForm<LoginFormModel>({
-    defaultValues: {
-      email: 'test3@test.com',
-      password: '12345678a'
-    }
-  })
+  const methods = useForm<LoginFormModel>()
   const { handleSubmit } = methods
 
   const [triggerLogin, { isLoading }] = useLoginMutation()
@@ -54,7 +48,7 @@ const LoginForm = () => {
           isSecured
         />
         <View style={styles.buttonsContainer}>
-          <Button primary onPress={handleSubmit(onSubmit)}>
+          <Button primary onPress={handleSubmit(onSubmit)} disabled={isLoading}>
             Sign In
           </Button>
         </View>

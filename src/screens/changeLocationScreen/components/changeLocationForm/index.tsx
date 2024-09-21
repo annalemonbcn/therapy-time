@@ -50,7 +50,7 @@ const ChangeLocationForm = () => {
       <ControlledTextInput
         fieldName="address"
         placeholderText="Location"
-        sendButton={{ isInside: false, triggerAction: handleSubmit(onSubmit) }}
+        sendButton={{ isInside: false, triggerAction: handleSubmit(onSubmit), isDisabled: loading }}
         type="primary"
       />
     </FormProvider>

@@ -1,5 +1,5 @@
-import { useGetUuid } from 'src/hooks'
 import { useGetNameQuery } from 'src/services/user'
+import { useGetUuid } from 'src/utils/utils'
 
 const useGetName = () => {
   const uuid = useGetUuid()

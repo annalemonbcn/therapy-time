@@ -11,8 +11,10 @@ type GetEmailRequest = UUID
 type SetProfilePictureRequest = UUID & { profilePicture: string }
 type GetProfilePictureRequest = UUID
 
-type SetBookingsRequest = UUID & { bookings: UserBooking[] }
+type SetBookingsRequest = UUID & { booking: UserBooking; bookingId: string }
 type GetBookingsRequest = UUID
+
+type CancelBookingRequest = UUID & { bookingId: string; status: 'canceled' }
 
 export {
   SetNameRequest,
@@ -22,5 +24,6 @@ export {
   SetProfilePictureRequest,
   GetProfilePictureRequest,
   SetBookingsRequest,
-  GetBookingsRequest
+  GetBookingsRequest,
+  CancelBookingRequest
 }

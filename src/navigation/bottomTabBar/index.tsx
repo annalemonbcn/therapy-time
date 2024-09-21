@@ -9,6 +9,8 @@ import HomeIcon from '../../components/icons/homeIcon'
 import HomeNavigator from 'src/navigation/homeNavigator'
 import TabBarIcon from './components/tabBarIcon'
 import { theme } from 'theme'
+import CalendarIcon from 'src/components/icons/calendarIcon'
+import AppointmentsScreen from 'src/screens/appointmentsScreen'
 
 const Tab = createBottomTabNavigator<RootTabParamList>()
 
@@ -29,12 +31,20 @@ const BottomTabBar = () => (
         tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} icon={<HomeIcon size={20} />} />
       }}
     />
-    <Tab.Screen
+    {/* <Tab.Screen
       name="TabMap"
       component={Map}
       options={{
         headerShown: false,
         tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} icon={<LocationIcon size={20} />} />
+      }}
+    /> */}
+    <Tab.Screen
+      name="TabAppointments"
+      component={AppointmentsScreen}
+      options={{
+        headerTitle: 'My Appointments',
+        tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} icon={<CalendarIcon size={20} />} />
       }}
     />
     <Tab.Screen

@@ -32,12 +32,6 @@ const AppointmentDisplay = () => {
     }
 
     openModal()
-
-    // TODO: if ok:
-    // 1. open modal
-    // 2. register date at:
-    //   - user
-    //   - therapist
   }
 
   return (

@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { URL_FIREBASE } from 'src/db/firebase'
 import {
+  CancelBookingRequest,
   GetBookingsRequest,
   GetEmailRequest,
   GetNameRequest,
@@ -11,11 +12,12 @@ import {
   SetProfilePictureRequest
 } from './types'
 import { UserBooking } from 'src/data/types'
+import { sortBookings } from 'src/screens/appointmentsScreen/utils'
 
 export const userApi = createApi({
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({ baseUrl: URL_FIREBASE }),
-  tagTypes: ['name', 'profilePicture'],
+  tagTypes: ['name', 'profilePicture', 'bookings'],
   endpoints: (builder) => ({
     setName: builder.mutation<void, SetNameRequest>({
       query: (body) => ({
@@ -51,15 +53,34 @@ export const userApi = createApi({
       query: ({ uuid }) => `/users/${uuid}.json`,
       providesTags: ['profilePicture']
     }),
-    setBookings: builder.mutation<void, SetBookingsRequest>({
-      query: (body) => ({
-        url: `/users/${body.uuid}.json`,
-        method: 'PATCH',
-        body
-      })
+    setBooking: builder.mutation<void, SetBookingsRequest>({
+      query: ({ uuid, booking, bookingId }) => ({
+        url: `/users/${uuid}/bookings/${bookingId}.json`,
+        method: 'PUT',
+        body: JSON.stringify(booking)
+      }),
+      invalidatesTags: ['bookings']
     }),
     getBookings: builder.query<{ bookings: UserBooking[] }, GetBookingsRequest>({
-      query: ({ uuid }) => `/users/${uuid}.json`
+      query: ({ uuid }) => `users/${uuid}/bookings.json`,
+      transformResponse: (res: any) => {
+        if (!res) {
+          return { bookings: [] } 
+        }
+        
+        const bookings = Object.values(res) as UserBooking[]
+
+        return { bookings }
+      },
+      providesTags: ['bookings']
+    }),
+    cancelBooking: builder.mutation<void, CancelBookingRequest>({
+      query: ({ uuid, bookingId, status }) => ({
+        url: `/users/${uuid}/bookings/${bookingId}.json`,
+        method: 'PATCH',
+        body: { status }
+      }),
+      invalidatesTags: ['bookings']
     })
   })
 })
@@ -71,6 +92,7 @@ export const {
   useGetEmailQuery,
   useSetProfilePictureMutation,
   useGetProfilePictureQuery,
-  useSetBookingsMutation,
-  useGetBookingsQuery
+  useSetBookingMutation,
+  useGetBookingsQuery,
+  useCancelBookingMutation
 } = userApi

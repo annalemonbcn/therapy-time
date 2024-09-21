@@ -1,5 +1,6 @@
-import { mockTherapists } from 'src/data/mock.data'
-import { SessionInfo, TagsEnum, Therapist } from 'src/data/types'
+import { useSelector } from 'react-redux'
+import { TagsEnum, Therapist } from 'src/data/types'
+import { therapistsApi } from 'src/services/therapists'
 
 const filterTherapistsByCategory = (therapists: Therapist[], category: TagsEnum) =>
   therapists.filter((therapist) => therapist.sessionInfo.tags.includes(category))
@@ -9,18 +10,22 @@ const filterTherapistsByName = (therapists: Therapist[], query: string) =>
 
 export { filterTherapistsByCategory, filterTherapistsByName }
 
-// TODO: delete
-const getDoctorDetails = (id: string) => mockTherapists.find((therapist) => therapist.basicInfo.id === id)
-
-// TODO: delete
-const getDoctorNameById = (id: string) => {
-  const selectedDoctor = getDoctorDetails(id)
-  return selectedDoctor?.basicInfo.name
+const getTherapistById = (therapistId: string) => {
+  const therapist = useSelector(therapistsApi.endpoints.getTherapistById.select(therapistId))
+  if (!therapist || !therapist.data) return
+  return therapist.data[0]
 }
 
-const getDoctorSessionInfo = (id: string) => {
-  const selectedDoctor = getDoctorDetails(id)
-  return selectedDoctor?.sessionInfo as SessionInfo
+const getTherapistName = (therapistId: string) => {
+  const therapist = getTherapistById(therapistId)
+  if (!therapist) return
+  return therapist.basicInfo.name
 }
 
-export { getDoctorDetails, getDoctorNameById, getDoctorSessionInfo }
+const getTherapistSessionInfo = (therapistId: string) => {
+  const therapist = getTherapistById(therapistId)
+  if (!therapist) return
+  return therapist.sessionInfo
+}
+
+export { getTherapistById, getTherapistName, getTherapistSessionInfo }

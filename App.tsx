@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import * as SplashScreen from 'expo-splash-screen'
-import { useGetUserLocation, useGetUuid, useLoadInitialConfig } from 'src/hooks'
+import { useLoadInitialConfig } from 'src/hooks'
 import AllowLocationScreen from 'src/screens/allowLocationScreen'
 import { NavigationContainer } from '@react-navigation/native'
 import BottomTabBar from 'src/navigation/bottomTabBar'
@@ -12,6 +12,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { MenuProvider } from 'react-native-popup-menu'
 import FillProfileScreen from 'src/screens/fillProfile'
 import { useGetNameQuery } from 'src/services/user'
+import { useGetUserLocation, useGetUuid } from 'src/utils/utils'
 
 const MainNavigator = () => {
   const user = useSelector((state: RootState) => state.user.user.basicInfo.tokenId)

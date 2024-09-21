@@ -27,6 +27,7 @@ interface ICustomTextInputProps {
   sendButton?: {
     isInside: boolean
     triggerAction: any
+    isDisabled: boolean
   }
   canWrite?: boolean
 }

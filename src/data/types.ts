@@ -156,10 +156,12 @@ type Language = {
 }
 
 type Booking = {
+  bookingId: string
   date: string
   time: string
+  status: 'active' | 'canceled'
 }
-type TherapistBooking = Booking & { clientId: string }
+type TherapistBooking = Booking & { userEmail: string }
 type UserBooking = Booking & { therapistId: string }
 
 type Therapist = {
@@ -182,4 +184,18 @@ type User = {
   bookings: UserBooking[]
 }
 
-export { Therapist, WorkingSchedule, Days, Review, SessionInfo, SessionType, TagsEnum, tagsArray, User, UserBooking }
+export {
+  Language,
+  Therapist,
+  WorkingSchedule,
+  Days,
+  Review,
+  SessionInfo,
+  SessionType,
+  TagsEnum,
+  tagsArray,
+  User,
+  Booking,
+  TherapistBooking,
+  UserBooking
+}

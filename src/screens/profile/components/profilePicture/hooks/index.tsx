@@ -1,5 +1,5 @@
-import { useGetUuid } from 'src/hooks'
 import { useGetProfilePictureQuery } from 'src/services/user'
+import { useGetUuid } from 'src/utils/utils'
 
 const useGetProfilePicture = () => {
   const uuid = useGetUuid()

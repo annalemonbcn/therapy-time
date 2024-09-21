@@ -81,7 +81,7 @@ const ControlledTextInput = ({
           </StyledInputWrapper>
           {errors[fieldName] && <ErrorText errorMessage={errors[fieldName].message as string} />}
           {sendButton && (
-            <StyledButton onPress={handleSendPress} isInside={sendButton.isInside}>
+            <StyledButton onPress={handleSendPress} isInside={sendButton.isInside} disabled={sendButton.isDisabled}>
               Send
             </StyledButton>
           )}

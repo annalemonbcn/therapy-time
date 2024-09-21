@@ -27,7 +27,11 @@ const DoctorDetails = ({ route }: DoctorDetailsProps) => {
       <ScrollView contentContainerStyle={styles.pageContainer}>
         <TherapistCard therapist={therapist} imgSize={70} />
         <View style={styles.specs}>
-          <FeaturesList />
+          <FeaturesList
+            price={therapist.sessionInfo.sessionPrice.toString()}
+            sessionType={therapist.sessionInfo.type}
+            languages={therapist.basicInfo.languages}
+          />
           <AboutMe description={therapist.basicInfo.description} />
           <WorkingTime workingTime={therapist.sessionInfo.workingSchedule} />
           <Reviews reviews={therapist.reviews.reviews} />
