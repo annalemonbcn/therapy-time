@@ -24,7 +24,8 @@ const filterBookings = (bookings: UserBooking[], filterBy: FilterBy): UserBookin
 }
 
 const sortBookings = (bookings: UserBooking[]) => {
-  if (!bookings) return undefined
+  if (!bookings) return
+
   const bookingsDups = [...bookings]
   return bookingsDups.sort((a, b) => {
     const dateA = new Date(`${a.date}T${a.time}:00`)

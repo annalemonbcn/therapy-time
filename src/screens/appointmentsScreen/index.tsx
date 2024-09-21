@@ -14,6 +14,7 @@ import { filterBookings, sortBookings } from './utils'
 import TabsNavigator from './components/tabs'
 import { ModalProvider, useModalContext } from 'src/context/ModalProvider'
 import CancelAppointmentModal from './components/cancelAppointmentModal'
+import { useAppointmentsScreen } from './hooks'
 
 const AppointmentsDisplay = () => {
   const [tab, setTab] = useState<Tabs>('upcoming')
@@ -21,14 +22,11 @@ const AppointmentsDisplay = () => {
 
   const { isOpen } = useModalContext()
 
-  const uuid = useGetUuid()
-  const { data, isFetching, isSuccess } = useGetBookingsQuery({ uuid })
+  const { data: bookings, isLoading } = useAppointmentsScreen()
 
-  if (isFetching) return <ActivityIndicator />
+  if (isLoading) return <ActivityIndicator />
 
-  const bookings = sortBookings(data?.bookings as UserBooking[])
-
-  if (isSuccess && !bookings) return <NoData />
+  if (!bookings) return <NoData />
 
   const filteredBookings = filterBookings(bookings as UserBooking[], tab)
 
@@ -50,7 +48,7 @@ const AppointmentsDisplay = () => {
           scrollEnabled={false}
         />
       </ScrollView>
-      {isOpen && <CancelAppointmentModal appointment={selectedAppointment} />}
+      {/* {isOpen && <CancelAppointmentModal appointment={selectedAppointment} />} */}
     </PageWrapper>
   )
 }

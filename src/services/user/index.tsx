@@ -12,6 +12,7 @@ import {
   SetProfilePictureRequest
 } from './types'
 import { UserBooking } from 'src/data/types'
+import { sortBookings } from 'src/screens/appointmentsScreen/utils'
 
 export const userApi = createApi({
   reducerPath: 'userApi',
@@ -61,7 +62,12 @@ export const userApi = createApi({
       invalidatesTags: ['bookings']
     }),
     getBookings: builder.query<{ bookings: UserBooking[] }, GetBookingsRequest>({
-      query: ({ uuid }) => `/users/${uuid}.json`,
+      query: ({ uuid }) => `users/${uuid}/bookings.json`,
+      transformResponse: (res: any) => {
+        const bookings = Object.values(res) as UserBooking[]
+
+        return { bookings }
+      },
       providesTags: ['bookings']
     }),
     cancelBooking: builder.mutation<void, CancelBookingRequest>({
