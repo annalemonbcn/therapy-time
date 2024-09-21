@@ -6,9 +6,12 @@ import HorizontalContainer from 'src/components/custom/horizontalContainer'
 import { useNavigate } from 'src/hooks'
 
 const NearDoctor = () => {
-  const nearDoctor = useGetNearDoctor()
+  const mockTherapistId = 'therapist5'
+  const { data: nearDoctor, isLoading } = useGetNearDoctor(mockTherapistId)
 
   const navigation = useNavigate()
+
+  if (isLoading || !nearDoctor) return
 
   return (
     <View>
