@@ -33,8 +33,8 @@ This project is an app for displaying therapists and make appointments to their 
 
 <p align="center">
   <img src = "https://firebasestorage.googleapis.com/v0/b/lemoninfilm.appspot.com/o/01_login.png?alt=media&token=b980b991-288a-42ea-bc90-28cd84377d2a" width=350>
+  <img src = "https://firebasestorage.googleapis.com/v0/b/lemoninfilm.appspot.com/o/07_forget_password.png?alt=media&token=4bfb7080-7569-4087-8a0b-1071008a8fc8" width=350>
   <img src = "https://firebasestorage.googleapis.com/v0/b/lemoninfilm.appspot.com/o/02_location.png?alt=media&token=52f66c89-b27e-468b-a022-1696655adfa1" width=350>
-  <img src = "https://firebasestorage.googleapis.com/v0/b/lemoninfilm.appspot.com/o/04_booking.png?alt=media&token=874fa6ba-bf8b-4361-b51c-3bd4a475a514" width=350>
   <img src = "https://firebasestorage.googleapis.com/v0/b/lemoninfilm.appspot.com/o/04_booking.png?alt=media&token=874fa6ba-bf8b-4361-b51c-3bd4a475a514" width=350>
   <img src = "https://firebasestorage.googleapis.com/v0/b/lemoninfilm.appspot.com/o/05_list.png?alt=media&token=2aa8d41e-a410-4d1c-959b-8cd4db300b84" width=350>
   <img src = "https://firebasestorage.googleapis.com/v0/b/lemoninfilm.appspot.com/o/06_profile.png?alt=media&token=edb7bd2e-55c1-470b-8548-170e05323b66" width=350>
