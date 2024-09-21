@@ -15,7 +15,7 @@ const Title = ({ title }: TitleProps) => (
 )
 Title.displayName = 'FeatureTitle'
 
-const Subtitle = ({ subTitle }: SubtitleProps) => <Text size="s2">{subTitle}</Text>
+const Subtitle = ({ subTitle }: SubtitleProps) => <Text size="s2" textAlign='center'>{subTitle}</Text>
 Subtitle.displayName = 'FeatureSubtitle'
 
 const Feature = ({ children }: FeatureProps) => {
@@ -42,7 +42,8 @@ export default Feature
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center'
+    alignItems: 'center',
+    flex: 1
   },
   icon: {
     backgroundColor: theme.colors.b100,

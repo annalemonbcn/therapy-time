@@ -1,4 +1,4 @@
-import { ActivityIndicator, Easing, StyleSheet, View } from 'react-native'
+import { ActivityIndicator, StyleSheet, View } from 'react-native'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { SignUpFormModel } from './types'
 import { theme } from 'theme'
@@ -10,12 +10,7 @@ import { setUserBasicInfo } from 'src/features/user/userSlice'
 import { showSuccessNotification } from 'src/utils/notifications'
 
 const SignUpForm = () => {
-  const methods = useForm<SignUpFormModel>({
-    defaultValues: {
-      email: 'aesteve8@gmail.com',
-      password: '12345678a'
-    }
-  })
+  const methods = useForm<SignUpFormModel>()
   const { handleSubmit } = methods
 
   const [triggerRegister, { isLoading }] = useRegisterMutation()

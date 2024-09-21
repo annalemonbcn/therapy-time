@@ -74,9 +74,10 @@ const BookingModal = () => {
     }
   }
 
+  if (loading) return <ActivityIndicator />
+
   return (
     <BasicModal isModalOpen={isOpen} closeModal={closeModal} showCloseButton={false}>
-      {loading && <ActivityIndicator />}
       {stage === 'check_appointment' && <CheckAppointmentStage handleConfirm={handleConfirm} />}
       {stage === 'confirm_appointment' && <ConfirmAppointmentStage />}
     </BasicModal>

@@ -185,6 +185,7 @@ type User = {
 }
 
 export {
+  Language,
   Therapist,
   WorkingSchedule,
   Days,
