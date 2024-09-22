@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native'
 import * as Location from 'expo-location'
 import Button from 'src/components/custom/customButton'
 import { showErrorNotification } from 'src/utils/notifications'
-import { GOOGLE_API_KEY } from 'src/db/googleApi'
 import { useDispatch } from 'react-redux'
 import { setUserLocation } from 'src/features/user/userSlice'
 
@@ -47,7 +46,7 @@ const AllowLocationButton = ({
   }
 
   const getAddressFromCoordinates = async (lat: string, lng: string): Promise<string> => {
-    const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${GOOGLE_API_KEY}`
+    const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.EXPO_PUBLIC_GOOGLE_API_KEY}`
 
     try {
       const response = await fetch(geocodingUrl)

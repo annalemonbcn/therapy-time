@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { URL_FIREBASE } from 'src/db/firebase'
 import {
   CancelBookingRequest,
   GetBookingsRequest,
@@ -12,11 +11,10 @@ import {
   SetProfilePictureRequest
 } from './types'
 import { UserBooking } from 'src/data/types'
-import { sortBookings } from 'src/screens/appointmentsScreen/utils'
 
 export const userApi = createApi({
   reducerPath: 'userApi',
-  baseQuery: fetchBaseQuery({ baseUrl: URL_FIREBASE }),
+  baseQuery: fetchBaseQuery({ baseUrl: process.env.EXPO_PUBLIC_FIREBASE_URL }),
   tagTypes: ['name', 'profilePicture', 'bookings'],
   endpoints: (builder) => ({
     setName: builder.mutation<void, SetNameRequest>({
@@ -65,9 +63,9 @@ export const userApi = createApi({
       query: ({ uuid }) => `users/${uuid}/bookings.json`,
       transformResponse: (res: any) => {
         if (!res) {
-          return { bookings: [] } 
+          return { bookings: [] }
         }
-        
+
         const bookings = Object.values(res) as UserBooking[]
 
         return { bookings }

@@ -1,11 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { Therapist, TherapistBooking } from 'src/data/types'
-import { URL_FIREBASE } from 'src/db/firebase'
 import { CancelTherapistBookingRequest, SetTherapistBookingsRequest } from './types'
 
 export const therapistsApi = createApi({
   reducerPath: 'therapistsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: URL_FIREBASE }),
+  baseQuery: fetchBaseQuery({ baseUrl: process.env.EXPO_PUBLIC_FIREBASE_URL }),
   tagTypes: ['bookings'],
   endpoints: (builder) => ({
     getTherapists: builder.query<Therapist[], void>({

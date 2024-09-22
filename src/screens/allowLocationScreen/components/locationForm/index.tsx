@@ -3,9 +3,7 @@ import { LocationFormModel } from './types'
 import ControlledTextInput from 'src/components/custom/controlledTextInput'
 import { useDispatch } from 'react-redux'
 import { setUserLocation } from 'src/features/user/userSlice'
-import { GOOGLE_API_KEY } from 'src/db/googleApi'
 import { showErrorNotification } from 'src/utils/notifications'
-import { ActivityIndicator } from 'react-native'
 
 const LocationForm = ({
   loading,
@@ -24,7 +22,7 @@ const LocationForm = ({
     try {
       const urlGeocoding = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
         formData.address
-      )}&key=${GOOGLE_API_KEY}`
+      )}&key=${process.env.EXPO_PUBLIC_GOOGLE_API_KEY}`
 
       const response = await fetch(urlGeocoding)
       const data = await response.json()
@@ -47,7 +45,7 @@ const LocationForm = ({
       <ControlledTextInput
         fieldName="address"
         placeholderText="Location"
-        sendButton={{ isInside: false, triggerAction: handleSubmit(onSubmit) }}
+        sendButton={{ isInside: false, triggerAction: handleSubmit(onSubmit), isDisabled: loading }}
         type="primary"
       />
     </FormProvider>
