@@ -4,7 +4,7 @@ import { theme } from 'theme'
 import { Tabs } from '../../types'
 
 const Title = ({ title, isActive = false }: { title: string; isActive?: boolean }) => (
-  <Text fontWeight="semi-bold" color={isActive ? 'main' : 'b400'} style={styles.text}>
+  <Text fontWeight="semi-bold" color={isActive ? 'main' : 'b400'} style={isActive && styles.text}>
     {title}
   </Text>
 )
